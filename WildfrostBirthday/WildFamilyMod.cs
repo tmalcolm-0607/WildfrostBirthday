@@ -24,7 +24,7 @@ namespace WildfrostBirthday
     {
 
         public WildFamilyMod(string modDirectory) : base(modDirectory) => Instance = this;
-        public static WildFamilyMod Instance;
+        public static WildFamilyMod? Instance;
 
         public override string GUID => "madfamilymod.wildfrost.madhouse";
         public override string[] Depends => new string[] { };
@@ -468,6 +468,7 @@ namespace WildfrostBirthday
                     };
                 });
 
+            // Adding TargetConstraintIsItem to charms with Consume trait
             var sodaCharm = AddCharm("soda_charm", "Soda Charm", "Gain Barrage, Frenzy x3, Consume. Halve all current effects.", "GeneralCharmPool", "charms/soda_charm", 3)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
@@ -479,58 +480,69 @@ namespace WildfrostBirthday
 
                     data.effects = new StatusEffectStacks[]
                     {
-                        SStack("Reduce Effects", 1),
+                        SStack("Reduce Effects", 2),
                         SStack("MultiHit", 3)
+                    };
+
+                    data.targetConstraints = new TargetConstraint[]
+                    {
+                        ScriptableObject.CreateInstance<TargetConstraintIsItem>()
                     };
                 });
 
-            var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and set Attack to 1", "GeneralCharmPool", "charms/duck_charm", 2)
-                            .SubscribeToAfterAllBuildEvent(data =>
-                            {
-                                data.effects = new StatusEffectStacks[]
-                                {
-                                    SStack("When Hit Add Frenzy To Self", 1),
-                                    SStack("Set Attack", 1),
-                                    SStack("MultiHit", 1)
-                                };
-
-                                data.giveTraits = new TraitStacks[]
-                                {
-                                    TStack("Aimless", 1)
-                                };
-                            });
-
-            var bookCharm = AddCharm("book_charm", "Book Charm", "Draw 1 on deploy and each turn", "GeneralCharmPool", "charms/book_charm", 2)
-                                    .SubscribeToAfterAllBuildEvent(data =>
-                                    {
-                                        data.effects = new StatusEffectStacks[]
-                                        {
-                                            SStack("Draw Cards", 1),
-                                        };
-                                        data.giveTraits = new TraitStacks[]
-                                        {
-                                            TStack("Draw", 1)
-                                        };
-                                    });
             var pizzaCharm = AddCharm("pizza_charm", "Pizza Charm", "Hits all enemies. Consume.", "GeneralCharmPool", "charms/pizza_charm", 2)
-                                    .SubscribeToAfterAllBuildEvent(data =>
-                                    {
-                                        data.giveTraits = new TraitStacks[]
-                                        {
-                                            TStack("Barrage", 1),
-                                            TStack("Consume", 1)
-                                        };
-                                    });
+                .SubscribeToAfterAllBuildEvent(data =>
+                {
+                    data.giveTraits = new TraitStacks[]
+                    {
+                        TStack("Barrage", 1),
+                        TStack("Consume", 1)
+                    };
 
+                    data.targetConstraints = new TargetConstraint[]
+                    {
+                        ScriptableObject.CreateInstance<TargetConstraintIsItem>()
+                    };
+                });
+
+            // Restoring plantCharm, bookCharm, and duckCharm
             var plantCharm = AddCharm("plant_charm", "Plant Charm", "Gain +1 Attack after attacking", "GeneralCharmPool", "charms/plant_charm", 2)
-                                    .SubscribeToAfterAllBuildEvent(data =>
-                                    {                                        
-                                        data.effects = new StatusEffectStacks[]
-                                        {
-                                            SStack("On Turn Add Attack To Self", 1)
-                                        };
-                                    }).WithText("On Turn Add {0} Attack To Self");
+    .SubscribeToAfterAllBuildEvent(data =>
+    {
+        data.effects = new StatusEffectStacks[]
+        {
+            SStack("On Turn Add Attack To Self", 1)
+        };
+    }).WithText("On Turn Add {0} Attack To Self");
 
+var bookCharm = AddCharm("book_charm", "Book Charm", "Draw 1 on deploy and each turn", "GeneralCharmPool", "charms/book_charm", 2)
+    .SubscribeToAfterAllBuildEvent(data =>
+    {
+        data.effects = new StatusEffectStacks[]
+        {
+           
+        };
+        data.giveTraits = new TraitStacks[]
+        {
+            TStack("Draw", 1)
+        };
+    });
+
+var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and set Attack to 1", "GeneralCharmPool", "charms/duck_charm", 2)
+    .SubscribeToAfterAllBuildEvent(data =>
+    {
+        data.effects = new StatusEffectStacks[]
+        {
+            SStack("When Hit Add Frenzy To Self", 1),
+            SStack("Set Attack", 1),
+            SStack("MultiHit", 1)
+        };
+
+        data.giveTraits = new TraitStacks[]
+        {
+            TStack("Aimless", 1)
+        };
+    });
         }
 
 
@@ -538,8 +550,8 @@ namespace WildfrostBirthday
     private CardDataBuilder AddFamilyUnit(
             string id, string displayName, string spritePath,
             int hp, int atk, int counter, int blingvalue, string flavor,
-            CardData.StatusEffectStacks[] attackSStacks = null,
-            CardData.StatusEffectStacks[] startSStacks = null,
+            CardData.StatusEffectStacks[]? attackSStacks = null,
+            CardData.StatusEffectStacks[]? startSStacks = null,
             bool isLeader = false)
         {
             string cardId = (isLeader ? "leader-" : "companion-") + id;
@@ -577,7 +589,7 @@ namespace WildfrostBirthday
             return builder;
         }
 
-        private CardUpgradeDataBuilder AddCharm(string id, string title, string cardText, string charmPool, string spritePath, int tier, StatusEffectStacks[] effects = null)
+        private CardUpgradeDataBuilder AddCharm(string id, string title, string cardText, string charmPool, string spritePath, int tier, StatusEffectStacks[]? effects = null)
         {
             string cardId = "charm-" + id;
 
@@ -613,7 +625,7 @@ namespace WildfrostBirthday
             return builder;
         }
 
-        private StatusEffectDataBuilder AddCopiedStatusEffect<T>(string from, string to, Action<T> modify, string text = null, string textInsert = null) where T : StatusEffectData
+        private StatusEffectDataBuilder AddCopiedStatusEffect<T>(string from, string to, Action<T> modify, string? text = null, string? textInsert = null) where T : StatusEffectData
         {
             var builder = StatusCopy(from, to);
             if (!string.IsNullOrEmpty(text)) builder.WithText(text);
@@ -705,7 +717,7 @@ namespace WildfrostBirthday
 
         public class CardScriptChangeBackground : CardScript
         {
-            public string imagePath;
+            public string imagePath = string.Empty;
             public override void Run(CardData target)
             {
                 target.backgroundSprite = imagePath.ToSprite(); //Change the background image of the charmbearer.
