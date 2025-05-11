@@ -39,7 +39,7 @@ namespace WildfrostBirthday
             if (!preLoaded)
             {
                 CreateFamilyUnits();
-                CreateExampleItemCard();
+                CreateItemCards();
                 assets.Add(TribeCopy("Basic", "MadFamily")                   //Snowdweller = "Basic", Shademancer = "Magic", Clunkmaster = "Clunk"
                                    .WithFlag("Images/tribe_madfamily.png")                    //Loads your DrawFlag.png in your Images subfolder of your mod folder
                                    .WithSelectSfxEvent(FMODUnity.RuntimeManager.PathToEventReference("event:/sfx/card/draw_multi"))
@@ -146,6 +146,12 @@ namespace WildfrostBirthday
                 "When destroyed, add +1 health to all allies",
                 startSStacks: new[] { SStack("When Destroyed Add Health To Allies", 1) }
             );
+            AddFamilyUnit(
+                "wisp", "Wisp", "companions/wisp",
+                1, 0, 0, 0,
+                "When destroyed, add +1 health to all allies",
+                startSStacks: new[] { SStack("When Destroyed Add Health To Allies", 1) }
+            );
 
             // === 3. Register Copied Effects (can now reference Soulrose) ===
             AddCopiedStatusEffect<StatusEffectSummon>(
@@ -158,10 +164,26 @@ namespace WildfrostBirthday
                 textInsert: "<card=madfamilymod.wildfrost.madhouse.companion-soulrose>"
             );
             AddCopiedStatusEffect<StatusEffectSummon>(
+                "Summon Fallow", "On Turn Summon Wisp",
+                data =>
+                {
+                    data.summonCard = TryGet<CardData>("companion-wisp");
+                },
+                text: "{0}",
+                textInsert: "<card=madfamilymod.wildfrost.madhouse.companion-wisp>"
+            );
+            AddCopiedStatusEffect<StatusEffectSummon>(
                 "Summon Fallow", "Summon Soulrose",
                 data =>
                 {
                     data.summonCard = TryGet<CardData>("companion-soulrose");
+                }
+            );
+            AddCopiedStatusEffect<StatusEffectSummon>(
+                "Summon Fallow", "Summon Wisp",
+                data =>
+                {
+                    data.summonCard = TryGet<CardData>("companion-wisp");
                 }
             );
 
@@ -170,6 +192,13 @@ namespace WildfrostBirthday
                 data =>
                 {
                     data.targetSummon = TryGet<StatusEffectData>("Summon Soulrose") as StatusEffectSummon;
+                }
+            );
+            AddCopiedStatusEffect<StatusEffectInstantSummon>(
+                "Instant Summon Fallow", "Instant Summon Wisp",
+                data =>
+                {
+                    data.targetSummon = TryGet<StatusEffectData>("Summon Wisp") as StatusEffectSummon;
                 }
             );
 
@@ -798,7 +827,7 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
         }
 
         // Example usage of AddItemCard
-        private void CreateExampleItemCard()
+        private void CreateItemCards()
         {
             AddItemCard(
                 "Snow_pillow", "Snow Pillow", "items/snow_pillow",
@@ -807,6 +836,13 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                     SStack("Heal", 6),
                     SStack("Snow", 1)
                     }
+            );
+            AddItemCard(
+                "refreshing_water", "Refreshing Water", "items/refreshing_water",
+                "A bottle of refreshing water.", 10,
+                startSStacks: new[] {
+                    SStack("Cleanse", 4) 
+                }
             );
         }
     }
