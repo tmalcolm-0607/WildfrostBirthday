@@ -805,7 +805,7 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
         private CardDataBuilder AddItemCard(
             string id, string displayName, string spritePath,
             string flavor, int blingValue,
-            CardData.StatusEffectStacks[]? startSStacks = null)
+            CardData.StatusEffectStacks[]? startSStacks = null, CardData.StatusEffectStacks[]? attackSStacks = null)
         {
             string cardId = "item-" + id;
             string fullSprite = spritePath + ".png";
@@ -819,7 +819,8 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                 .WithValue(blingValue)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    data.attackEffects = startSStacks ?? new StatusEffectStacks[0];
+                    data.startWithEffects = startSStacks ?? new StatusEffectStacks[0];
+                    data.attackEffects = attackSStacks ?? new StatusEffectStacks[0];
                 });
 
             assets.Add(builder);
