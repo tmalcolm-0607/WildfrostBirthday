@@ -58,3 +58,16 @@ Pizza Charm – Hits all enemies and gains Consume
 Plant Charm – Gain +1 Attack after each attack
 
 Family Charm – Gain +2 HP and +2 ATK for every MadFamily member in your deck
+
+## Documentation
+For developers interested in customizing or extending this mod, comprehensive documentation is available in the `docs` folder:
+
+- [Tracking](docs/tracking.md): Central hub for mod development progress and task tracking
+- [CardData Documentation](docs/CardData.md): Details on the core card data system
+- [CardUpgradeData Documentation](docs/CardUpgradeData.md): Information about card upgrades and charms
+- [StatusEffectData Documentation](docs/StatusEffectData.md): Guide to status effects and their implementation
+- [AddFamilyUnit Guide](docs/AddFamilyUnit.md): How to create new family units
+- [Charm Creation Guide](docs/CharmCreation.md): How to create and balance new charms
+
+## Last Updated
+May 10, 2025
