@@ -39,6 +39,7 @@ namespace WildfrostBirthday
             if (!preLoaded)
             {
                 CreateFamilyUnits();
+                CreateExampleItemCard();
                 assets.Add(TribeCopy("Basic", "MadFamily")                   //Snowdweller = "Basic", Shademancer = "Magic", Clunkmaster = "Clunk"
                                    .WithFlag("Images/tribe_madfamily.png")                    //Loads your DrawFlag.png in your Images subfolder of your mod folder
                                    .WithSelectSfxEvent(FMODUnity.RuntimeManager.PathToEventReference("event:/sfx/card/draw_multi"))
@@ -297,13 +298,13 @@ namespace WildfrostBirthday
                canBeBoosted: true
            );
 
-            AddFamilyUnit("kaylee", "Kaylee", "leaders/kaylee", 5, 4, 7, 50, "Sharp-witted and sharper-fanged, Kaylee boosts all allies' bite.", startSStacks: new[]
+            AddFamilyUnit("kaylee", "Kaylee", "leaders/kaylee", 7, 4, 7, 50, "Sharp-witted and sharper-fanged, Kaylee boosts all allies' bite.", startSStacks: new[]
                         {
                             SStack("When Deployed Apply Teeth To Self", 4), // Kaylee starts with 4 teeth
                              SStack("On Turn Apply Teeth To Allies", 2), // Applies +3 teeth to all allies
                         }
             );
-            AddFamilyUnit("kaylee", "Kaylee", "leaders/kaylee", 5, 4, 7, 50, "Sharp-witted and sharper-fanged, Kaylee boosts all allies' bite.", startSStacks: new[]
+            AddFamilyUnit("kaylee", "Kaylee", "leaders/kaylee", 7, 4, 7, 50, "Sharp-witted and sharper-fanged, Kaylee boosts all allies' bite.", startSStacks: new[]
                         {
                             SStack("When Deployed Apply Teeth To Self", 4), // Kaylee starts with 4 teeth
                              SStack("On Turn Apply Teeth To Allies", 2), // Applies +3 teeth to all allies
@@ -771,5 +772,43 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                 card.mainImage.gameObject.SetActive(true);               //And this line turns them on
             }
         }
+
+        private CardDataBuilder AddItemCard(
+            string id, string displayName, string spritePath,
+            string flavor, int blingValue,
+            CardData.StatusEffectStacks[]? startSStacks = null)
+        {
+            string cardId = "item-" + id;
+            string fullSprite = spritePath + ".png";
+            string fullBg = spritePath + "_bg.png";
+
+            var builder = new CardDataBuilder(this)
+                .CreateItem(cardId, displayName)
+                .SetSprites(fullSprite, fullBg)
+                .WithFlavour(flavor)
+                .WithCardType("Item")
+                .WithValue(blingValue)
+                .SubscribeToAfterAllBuildEvent(data =>
+                {
+                    data.attackEffects = startSStacks ?? new StatusEffectStacks[0];
+                });
+
+            assets.Add(builder);
+            return builder;
+        }
+
+        // Example usage of AddItemCard
+        private void CreateExampleItemCard()
+        {
+            AddItemCard(
+                "Snow_pillow", "Snow Pillow", "items/snow_pillow",
+                "A pillow made of snow.", 10,
+                startSStacks: new[] {
+                    SStack("Heal", 6),
+                    SStack("Snow", 1)
+                    }
+            );
+        }
     }
 }
+ 
