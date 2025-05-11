@@ -406,3 +406,12 @@ public class TargetConstraintHasCustomStatus : TargetConstraint
 - **Test Both Entity and CardData**: Ensure your constraints work correctly for both Entity and CardData targets
 - **Descriptive Naming**: Use clear, descriptive names for your constraint assets
 - **Use SerializeField**: Use the `[SerializeField]` attribute for properties that should be configurable in the Unity editor
+
+## Related Documentation
+
+- [Enhanced Charm Creation Guide](EnhancedCharmCreation.md): How to use target constraints with charms
+- [CardUpgradeData Documentation](CardUpgradeData.md): Understanding the CardUpgradeData system
+- [Charm Creation Guide](CharmCreation.md): Basic charm creation techniques
+
+## Last Updated
+May 11, 2025

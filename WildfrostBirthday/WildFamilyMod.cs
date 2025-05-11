@@ -587,9 +587,16 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
 
             assets.Add(builder);
             return builder;
-        }
-
-        private CardUpgradeDataBuilder AddCharm(string id, string title, string cardText, string charmPool, string spritePath, int tier, StatusEffectStacks[]? effects = null)
+        }        private CardUpgradeDataBuilder AddCharm(
+            string id, 
+            string title, 
+            string cardText, 
+            string charmPool, 
+            string spritePath, 
+            int tier, 
+            StatusEffectStacks[]? effects = null,
+            TargetConstraint[]? constraints = null,
+            TraitStacks[]? traits = null)
         {
             string cardId = "charm-" + id;
 
@@ -602,8 +609,17 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                 .WithText(cardText)
                 .WithTier(tier);
 
-            if (effects != null)
-                builder.SubscribeToAfterAllBuildEvent(data => data.effects = effects);
+            builder.SubscribeToAfterAllBuildEvent(data => 
+            {
+                if (effects != null)
+                    data.effects = effects;
+                
+                if (constraints != null)
+                    data.targetConstraints = constraints;
+                
+                if (traits != null)
+                    data.giveTraits = traits;
+            });
 
             assets.Add(builder);
             return builder;
