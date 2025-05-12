@@ -1,4 +1,5 @@
 ﻿// MadFamily Tribe Mod - Wildfrost
+using Dead;
 using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using System;
@@ -138,14 +139,17 @@ namespace WildfrostBirthday
                 type: "Increase Max Health",
                 canBeBoosted: true
             );
+
             AddCopiedStatusEffect<StatusEffectApplyXWhenUnitIsKilled>(
                 "When Enemy Is Killed Apply Shell To Attacker",
                 "When Enemy Is Killed Apply Health To Attacker",
                 data =>
                 {
                     data.effectToApply = TryGet<StatusEffectData>("Increase Max Health");
-                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Allies;
-                }
+                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Attacker;
+                },
+                text: "When an enemy is killed, apply <{a}><keyword=health> to the attacker",
+                textInsert: "<keyword=health>"
             );
 
             AddStatusEffect<StatusEffectApplyXOnKill>(
@@ -172,7 +176,7 @@ namespace WildfrostBirthday
                 "When an enemy is killed, apply 4 health to the attacker"
             ).SubscribeToAfterAllBuildEvent(data =>
             {
-                data.attackEffects = new[] {
+                data.startWithEffects = new[] {
                     SStack( "When Enemy Is Killed Apply Health To Attacker", 4)
                 };
             });
@@ -186,16 +190,7 @@ namespace WildfrostBirthday
                 },
                 text: "{0}",
                 textInsert: "<card=madfamilymod.wildfrost.madhouse.companion-soulrose>"
-            );
-            AddCopiedStatusEffect<StatusEffectSummon>(
-                "Summon Fallow", "On Turn Summon Wisp",
-                data =>
-                {
-                    data.summonCard = TryGet<CardData>("companion-wisp");
-                },
-                text: "{0}",
-                textInsert: "<card=madfamilymod.wildfrost.madhouse.companion-wisp>"
-            );
+            );        
             AddCopiedStatusEffect<StatusEffectSummon>(
                 "Summon Fallow", "Summon Soulrose",
                 data =>
@@ -204,11 +199,12 @@ namespace WildfrostBirthday
                 }
             );
             AddCopiedStatusEffect<StatusEffectSummon>(
-                "Summon Fallow", "Summon Wisp",
-                data =>
+                "Summon Beepop", "Summon Wisp", data =>
                 {
                     data.summonCard = TryGet<CardData>("companion-wisp");
-                }
+                },
+                text: "{0}",
+                textInsert: "<card=madfamilymod.wildfrost.madhouse.companion-wisp>"
             );
 
             AddCopiedStatusEffect<StatusEffectInstantSummon>(
@@ -216,13 +212,6 @@ namespace WildfrostBirthday
                 data =>
                 {
                     data.targetSummon = TryGet<StatusEffectData>("Summon Soulrose") as StatusEffectSummon;
-                }
-            );
-            AddCopiedStatusEffect<StatusEffectInstantSummon>(
-                "Instant Summon Fallow", "Instant Summon Wisp",
-                data =>
-                {
-                    data.targetSummon = TryGet<StatusEffectData>("Summon Wisp") as StatusEffectSummon;
                 }
             );
 
@@ -608,9 +597,16 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
             CardData.StatusEffectStacks[]? startSStacks = null,
             bool isLeader = false)
         {
+
+            if (id=="alison" || id=="caleb" || id=="lulu" || id=="poppy")
+            {
+                int randomNumber = Dead.Random.Range(0,3);
+                spritePath = spritePath + randomNumber.ToString();
+                 
+            }
             string cardId = (isLeader ? "leader-" : "companion-") + id;
             string fullSprite = spritePath + ".png";
-            string fullBg = spritePath + "_bg.png";
+            string fullBg = "bg.png";
             string poolName = isLeader ? "LeaderPool" : "GeneralUnitPool";
 
             var builder = new CardDataBuilder(this)
@@ -663,16 +659,19 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                 .WithText(cardText)
                 .WithTier(tier);
 
-            builder.SubscribeToAfterAllBuildEvent(data => 
+            builder.SubscribeToAfterAllBuildEvent(data =>
             {
                 if (effects != null)
                     data.effects = effects;
-                
+
                 if (constraints != null)
                     data.targetConstraints = constraints;
-                
+
                 if (traits != null)
                     data.giveTraits = traits;
+
+                    CardScriptChangeMain script = ScriptableObject.CreateInstance<CardScriptChangeMain>(); // new line: creates the card script                    
+                    data.scripts = new CardScript[1] { script }; // new line: attaches the script to the charm.
             });
 
             assets.Add(builder);
@@ -809,6 +808,12 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
             }
         }
 
+        public class CardScriptChangeMain : CardScript
+        {
+            public string imagePath = string.Empty;
+           
+        }
+
         internal CardScript GiveUpgrade(string name = "Crown") //Give a crown
         {
             CardScriptGiveUpgrade script = ScriptableObject.CreateInstance<CardScriptGiveUpgrade>(); //This is the standard way of creating a ScriptableObject
@@ -874,6 +879,7 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                 .WithFlavour(flavor)
                 .WithCardType("Item")
                 .WithValue(blingValue)
+                .AddPool("GeneralItemPool")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.startWithEffects = startSStacks ?? new StatusEffectStacks[0];
@@ -889,16 +895,16 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
         private void CreateItemCards()
         {
             AddItemCard(
-                "Snow_pillow", "Snow Pillow", "items/snow_pillow",
-                "A pillow made of snow.", 10,
-                startSStacks: new[] {
+                "Snow_pillow", "Snow Pillow", "items/snowpillow",
+                "A pillow made of snow.", 50,
+                attackSStacks: new[] {
                     SStack("Heal", 6),
                     SStack("Snow", 1)
                     }
             );
             AddItemCard(
-                "refreshing_water", "Refreshing Water", "items/refreshing_water",
-                "A bottle of refreshing water.", 10,
+                "refreshing_water", "Refreshing Water", "items/refreshingwater",
+                "A bottle of refreshing water.", 40,
                 traitSStacks: new List<CardData.TraitStacks> {
                         TStack("Consume", 1),
                         TStack("Zoomlin", 1)
@@ -911,18 +917,22 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
             });
 
             AddItemCard(
-                "wisp_mask", "Wisp Mask", "items/wisp_mask",
-                "A mask with the ability to summon wisps.", 10,
+                "wisp_mask", "Wisp Mask", "items/wispmask",
+                "A mask with the ability to summon wisps.", 60,
                 traitSStacks: new List<CardData.TraitStacks> {
                         TStack("Consume", 1),
                         TStack("Zoomlin", 1)
                 }
             ).SubscribeToAfterAllBuildEvent(data =>
             {
-                data.attackEffects = new[] {
+                data.startWithEffects = new[] {
                     SStack("Summon Wisp", 1)
                 };
-            });
+                data.canPlayOnHand = false;
+                data.canPlayOnEnemy = false;
+                data.playOnSlot = true;
+
+            }).SetDamage(null);
         }
     }
 }
