@@ -90,6 +90,7 @@ namespace WildfrostBirthday
             }
 
             base.Load();
+             
             Events.OnEntityCreated += FixImage;
             GameMode gameMode = TryGet<GameMode>("GameModeNormal"); //GameModeNormal is the standard game mode. 
             gameMode.classes = gameMode.classes.Append(TryGet<ClassData>("MadFamily")).ToArray();
@@ -115,6 +116,16 @@ namespace WildfrostBirthday
 
         private void CreateFamilyUnits()
         {
+            // Register base Cleanse effect if not present
+            AddCopiedStatusEffect<StatusEffectInstantCleanse>(
+                "Cleanse", "Cleanse With Text",
+                data =>
+                {
+                },
+                text: "{0}",
+                textInsert: "<keyword=cleanse>"
+            );
+
             // === 1. Register Base Effects First ===
             AddStatusEffect<StatusEffectApplyXWhenDestroyed>(
                 "When Destroyed Add Health To Allies",
@@ -682,6 +693,21 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
             return builder;
         }
 
+    private StatusEffectDataBuilder AddInstantStatusEffect<T>(string id, string text, Action<T> modify, string type = null, bool canBeBoosted = false, string textInsert = null) where T : StatusEffectData
+        {
+            var builder = new StatusEffectDataBuilder(this)
+                .Create<T>(id)
+                .WithText(text);
+
+            if (!string.IsNullOrEmpty(type)) builder.WithType(type);
+            if (canBeBoosted) builder.WithCanBeBoosted(true);
+            if (!string.IsNullOrEmpty(textInsert)) builder.WithTextInsert(textInsert);
+
+            builder.SubscribeToAfterAllBuildEvent(data => modify((T)data));
+            assets.Add(builder);
+            return builder;
+        }
+
         private StatusEffectDataBuilder AddCopiedStatusEffect<T>(string from, string to, Action<T> modify, string? text = null, string? textInsert = null) where T : StatusEffectData
         {
             var builder = StatusCopy(from, to);
@@ -871,14 +897,16 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
             AddItemCard(
                 "refreshing_water", "Refreshing Water", "items/refreshing_water",
                 "A bottle of refreshing water.", 10,
-                startSStacks: new[] {
-                    SStack("Cleanse", 1)
-                    
-                }, traitSStacks: new List<CardData.TraitStacks> {
+                traitSStacks: new List<CardData.TraitStacks> {
                         TStack("Consume", 1),
                         TStack("Zoomlin", 1)
                 }
-            );
+            ).SubscribeToAfterAllBuildEvent(data =>
+            {
+                data.attackEffects = new[] {
+                    SStack("Cleanse With Text", 1)
+                };
+            });
         }
     }
 }
