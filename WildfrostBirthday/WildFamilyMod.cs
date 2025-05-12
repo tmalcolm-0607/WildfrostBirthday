@@ -127,6 +127,17 @@ namespace WildfrostBirthday
                 type: "Increase Max Health",
                 canBeBoosted: true
             );
+            AddStatusEffect<StatusEffectApplyXWhenUnitIsKilled>(
+                "When an Enemy is killed, apply shell to the attacker",
+                "When an enemy is killed, apply health to the attacker (Max)",
+                data =>
+                {
+                    data.effectToApply = TryGet<StatusEffectData>("Increase Health");
+                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Enemies;
+                },
+                type: "Increase Health",
+                canBeBoosted: true
+            );
 
             AddStatusEffect<StatusEffectApplyXOnKill>(
                 "On Kill Heal To Self",
@@ -148,9 +159,9 @@ namespace WildfrostBirthday
             );
             AddFamilyUnit(
                 "wisp", "Wisp", "companions/wisp",
-                1, 0, 0, 0,
-                "When destroyed, add +1 health to all allies",
-                startSStacks: new[] { SStack("When Destroyed Add Health To Allies", 1) }
+                5, 4, 6, 0,
+                "When an enemy is killed, apply 4 health to the attacker",
+                startSStacks: new[] { SStack( "When an enemy is killed, apply <keyword=health> to the attacker", 4) }
             );
 
             // === 3. Register Copied Effects (can now reference Soulrose) ===
@@ -861,7 +872,7 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                 "refreshing_water", "Refreshing Water", "items/refreshing_water",
                 "A bottle of refreshing water.", 10,
                 startSStacks: new[] {
-                    SStack("Cleanse", 4)
+                    SStack("Cleanse", 1)
                     
                 }, traitSStacks: new List<CardData.TraitStacks> {
                         TStack("Consume", 1),
