@@ -907,6 +907,20 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                     SStack("Cleanse With Text", 1)
                 };
             });
+
+            AddItemCard(
+                "whisp_mask", "Whisp Mask", "items/whisp_mask",
+                "A mask with the ability to summon whisps.", 10,
+                traitSStacks: new List<CardData.TraitStacks> {
+                        TStack("Consume", 1),
+                        TStack("Zoomlin", 1)
+                }
+            ).SubscribeToAfterAllBuildEvent(data =>
+            {
+                data.attackEffects = new[] {
+                    SStack("Summon Whisps", 1)
+                };
+            });
         }
     }
 }
