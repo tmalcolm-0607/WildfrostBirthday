@@ -139,12 +139,12 @@ namespace WildfrostBirthday
                 canBeBoosted: true
             );
             AddStatusEffect<StatusEffectApplyXWhenUnitIsKilled>(
-                "When an Enemy is killed, apply shell to the attacker",
-                "When an enemy is killed, apply health to the attacker (Max)",
+                "When Enemy Is Killed Apply Health To Attacker",
+                "When Enemy Is Killed Apply Health To Attacker",
                 data =>
                 {
-                    data.effectToApply = TryGet<StatusEffectData>("Increase Health");
-                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Enemies;
+                    data.effectToApply = TryGet<StatusEffectData>("Increase Max Health");
+                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Allies;
                 },
                 type: "Increase Health",
                 canBeBoosted: true
@@ -171,9 +171,13 @@ namespace WildfrostBirthday
             AddFamilyUnit(
                 "wisp", "Wisp", "companions/wisp",
                 5, 4, 6, 0,
-                "When an enemy is killed, apply 4 health to the attacker",
-                startSStacks: new[] { SStack( "When an enemy is killed, apply <keyword=health> to the attacker", 4) }
-            );
+                "When an enemy is killed, apply 4 health to the attacker"
+            ).SubscribeToAfterAllBuildEvent(data =>
+            {
+                data.attackEffects = new[] {
+                    SStack( "When Enemy Is Killed Apply Health To Attacker", 4)
+                };
+            });
 
             // === 3. Register Copied Effects (can now reference Soulrose) ===
             AddCopiedStatusEffect<StatusEffectSummon>(
