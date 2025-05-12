@@ -138,16 +138,14 @@ namespace WildfrostBirthday
                 type: "Increase Max Health",
                 canBeBoosted: true
             );
-            AddStatusEffect<StatusEffectApplyXWhenUnitIsKilled>(
-                "When Enemy Is Killed Apply Health To Attacker",
+            AddCopiedStatusEffect<StatusEffectApplyXWhenUnitIsKilled>(
+                "When Enemy Is Killed Apply Shell To Attacker",
                 "When Enemy Is Killed Apply Health To Attacker",
                 data =>
                 {
                     data.effectToApply = TryGet<StatusEffectData>("Increase Max Health");
                     data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Allies;
-                },
-                type: "Increase Health",
-                canBeBoosted: true
+                }
             );
 
             AddStatusEffect<StatusEffectApplyXOnKill>(
@@ -913,8 +911,8 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
             });
 
             AddItemCard(
-                "whisp_mask", "Whisp Mask", "items/whisp_mask",
-                "A mask with the ability to summon whisps.", 10,
+                "wisp_mask", "Wisp Mask", "items/wisp_mask",
+                "A mask with the ability to summon wisps.", 10,
                 traitSStacks: new List<CardData.TraitStacks> {
                         TStack("Consume", 1),
                         TStack("Zoomlin", 1)
@@ -922,7 +920,7 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
             ).SubscribeToAfterAllBuildEvent(data =>
             {
                 data.attackEffects = new[] {
-                    SStack("Summon Whisps", 1)
+                    SStack("Summon Wisp", 1)
                 };
             });
         }
