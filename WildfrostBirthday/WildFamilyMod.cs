@@ -821,7 +821,9 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
         private CardDataBuilder AddItemCard(
             string id, string displayName, string spritePath,
             string flavor, int blingValue,
-            CardData.StatusEffectStacks[]? startSStacks = null, CardData.StatusEffectStacks[]? attackSStacks = null)
+            CardData.StatusEffectStacks[]? startSStacks = null,
+            CardData.StatusEffectStacks[]? attackSStacks = null,
+           List<CardData.TraitStacks>? traitSStacks = null)
         {
             string cardId = "item-" + id;
             string fullSprite = spritePath + ".png";
@@ -837,6 +839,7 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                 {
                     data.startWithEffects = startSStacks ?? new StatusEffectStacks[0];
                     data.attackEffects = attackSStacks ?? new StatusEffectStacks[0];
+                    data.traits = traitSStacks ?? new List<TraitStacks>();
                 });
 
             assets.Add(builder);
@@ -858,7 +861,11 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                 "refreshing_water", "Refreshing Water", "items/refreshing_water",
                 "A bottle of refreshing water.", 10,
                 startSStacks: new[] {
-                    SStack("Cleanse", 4) 
+                    SStack("Cleanse", 4)
+                    
+                }, traitSStacks: new List<CardData.TraitStacks> {
+                        TStack("Consume", 1),
+                        TStack("Zoomlin", 1)
                 }
             );
         }
