@@ -116,7 +116,7 @@ This plan is intended for contributors, testers, and advanced modders. For hands
 **Custom Charms:**  
   - **Pug Charm:** When an ally is hit, apply 1 frost to them (When Ally is Hit Apply Frost To Attacker x1)
   - **Golden Vial Charm:** Gain 1 Bling when triggered (Collect Bling On Trigger x1)
-  - **Frost Moon Charm:** Gain +2 Counter and apply 5 Frostburn on attack (FrostMoon Increase Max Counter x2, FrostMoon Apply Frostburn On Attack x5)
+  - **Frost Moon Charm:** Gain +2 Counter and apply 5 Frost on attack (FrostMoon Increase Max Counter x2, FrostMoon Apply Frost On Attack x5)
   - **Soda Charm:** Gain Barrage, Frenzy x3, Consume. Halve all current effects. (Reduce Effects x2, MultiHit x3, Barrage, Consume, TargetConstraint: IsItem)
   - **Pizza Charm:** Hits all enemies. Consume. (Barrage, Consume, TargetConstraint: IsItem)
   - **Plant Charm:** Gain +1 Attack after attacking (On Turn Add Attack To Self x1)

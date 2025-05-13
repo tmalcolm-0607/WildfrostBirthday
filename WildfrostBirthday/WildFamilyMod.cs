@@ -74,18 +74,32 @@ public List<object> assets = new List<object>();
         {
             // Register base Cleanse effect if not present
 
-
-            // Register modularized effects
+            // Register modularized effects (all modular status effects used by cards/charms/items)
             StatusEffect_Cleanse.Register(this);
             StatusEffect_WhenDestroyedAddHealthToAllies.Register(this);
             StatusEffect_WhenEnemyIsKilledApplyHealthToAttacker.Register(this);
             StatusEffect_OnKillHealToSelf.Register(this);
+            Effects.StatusEffect_CollectBlingOnTrigger.Register(this);
+            Effects.StatusEffect_FrostMoonApplyFrostburnOnAttack.Register(this);
+            Effects.StatusEffect_FrostMoonIncreaseMaxCounter.Register(this);
+            Effects.StatusEffect_OnTurnApplyTeethToAllies.Register(this);
+            Effects.StatusEffect_OnTurnApplyTeethToSelf.Register(this);
+            Effects.StatusEffect_WhenAllyIsHitApplyFrostToAttacker.Register(this);
+            Effects.StatusEffect_WhenDeployedApplyTeethToSelf.Register(this);
+            Effects.StatusEffect_WhenDeployedSummonWowee.Register(this);
+            Effects.StatusEffect_WhenHitApplyDemonizeToAttacker.Register(this);
+            Effects.StatusEffect_WhenHitApplyOverloadToAttacker.Register(this);
+            Effects.StatusEffect_WhenHitGainAttackToSelfNoPing.Register(this);
             Effects.StatusEffect_SummonBeepop.Register(this);
             Effects.StatusEffect_SummonFallow.Register(this);
             Effects.StatusEffect_SummonBeepopWisp.Register(this);
             Effects.StatusEffect_InstantSummonFallow.Register(this);
-            Effects.StatusEffect_WhenDeployedSummonWowee.Register(this);
             Effects.StatusEffect_OnTurnAddAttackToAllies.Register(this);
+            Effects.StatusEffect_OnTurnApplyInkToRandomEnemy.Register(this);
+            StatusEffect_OnTurnSummonSoulrose.Register(this);
+            StatusEffect_SummonSoulrose.Register(this);
+            StatusEffect_SummonWisp.Register(this);
+            StatusEffect_WhenDeployedSummonSoulrose.Register(this);
 
             // Register all modular cards/units
             Cards.Card_Soulrose.Register(this);
@@ -204,21 +218,6 @@ public List<object> assets = new List<object>();
 
 
         public StatusEffectDataBuilder AddStatusEffect<T>(string id, string text, Action<T> modify, string? type = null, bool canBeBoosted = false, string? textInsert = null) where T : StatusEffectData
-        {
-            var builder = new StatusEffectDataBuilder(this)
-                .Create<T>(id)
-                .WithText(text);
-
-            if (!string.IsNullOrEmpty(type)) builder.WithType(type);
-            if (canBeBoosted) builder.WithCanBeBoosted(true);
-            if (!string.IsNullOrEmpty(textInsert)) builder.WithTextInsert(textInsert);
-
-            builder.SubscribeToAfterAllBuildEvent(data => modify((T)data));
-            assets.Add(builder);
-            return builder;
-        }
-
-    private StatusEffectDataBuilder AddInstantStatusEffect<T>(string id, string text, Action<T> modify, string? type = null, bool canBeBoosted = false, string? textInsert = null) where T : StatusEffectData
         {
             var builder = new StatusEffectDataBuilder(this)
                 .Create<T>(id)
@@ -387,7 +386,7 @@ public List<object> assets = new List<object>();
             }
         }
 
-        private CardDataBuilder AddItemCard(
+public CardDataBuilder AddItemCard(
             string id, string displayName, string spritePath,
             string flavor, int blingValue,
             CardData.StatusEffectStacks[]? startSStacks = null,
@@ -419,73 +418,11 @@ public List<object> assets = new List<object>();
         // Example usage of AddItemCard
         private void CreateItemCards()
         {
-            AddItemCard(
-                "Snow_pillow", "Snow Pillow", "items/snowpillow",
-                "A pillow made of snow.", 50,
-                attackSStacks: new[] {
-                    SStack("Heal", 6),
-                    SStack("Snow", 1)
-                    }
-            );
-            AddItemCard(
-                "refreshing_water", "Refreshing Water", "items/refreshingwater",
-                "A bottle of refreshing water.", 40,
-                traitSStacks: new List<CardData.TraitStacks> {
-                        TStack("Consume", 1),
-                        TStack("Zoomlin", 1)
-                }
-            ).SubscribeToAfterAllBuildEvent(data =>
-            {
-                data.attackEffects = new[] {
-                    SStack("Cleanse With Text", 1)
-                };
-            });
-
-            AddItemCard(
-                "wisp_mask", "Wisp Mask", "items/wispmask",
-                "A mask with the ability to summon wisps.", 60,
-                traitSStacks: new List<CardData.TraitStacks> {
-                        TStack("Consume", 1),
-                        TStack("Zoomlin", 1)
-                }
-            ).SubscribeToAfterAllBuildEvent(data =>
-            {
-                data.startWithEffects = new[] {
-                    SStack("Summon Wisp", 1)
-                };
-                data.canPlayOnHand = false;
-                data.canPlayOnEnemy = false;
-                data.playOnSlot = true;
-
-            }).SetDamage(null);AddItemCard(
-                "cheese_crackers", "Cheese Crackers", "items/cheese_crackers",
-                "A pack of cheese crackers.", 10,
-                startSStacks: new[] {
-                    SStack("MultiHit", 2)
-                },
-                           traitSStacks: new List<CardData.TraitStacks>
-                           {
-                               TStack("Aimless", 1)
-                           }
-            ).SubscribeToAfterAllBuildEvent(data =>
-    {
-        data.attackEffects = new CardData.StatusEffectStacks[]
-        {
-            new CardData.StatusEffectStacks(Get<StatusEffectData>("Increase Attack"), 1),
-        };
-        ;
-    });
-            AddItemCard(
-                     "foam_bullets", "Foam Bullets", "items/foam_bullets",
-                     "A pack of foam bullets.", 10,
-                     startSStacks: new[] {
-                         SStack("Hit All Enemies", 1)
-                     },
-                     traitSStacks: new List<CardData.TraitStacks>
-                     {
-                         TStack("Noomlin", 1)
-                     }
-                 );
+            Cards.Item_SnowPillow.Register(this);
+            Cards.Item_RefreshingWater.Register(this);
+            Cards.Item_WispMask.Register(this);
+            Cards.Item_CheeseCrackers.Register(this);
+            Cards.Item_FoamBullets.Register(this);
         }
     }
 }

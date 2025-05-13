@@ -409,7 +409,8 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /Y &quot;$(TargetDir)WildfrostBirthday.dll&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday\&quot;&#xA;     " />
+    <Exec Command="xcopy /Y &quot;$(TargetDir)WildfrostBirthday.dll&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday\&quot;" />
+    <Exec Command="xcopy /Y /E /I &quot;$(ProjectDir)assets\*&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday\&quot;" />
   </Target>
 
 </Project>

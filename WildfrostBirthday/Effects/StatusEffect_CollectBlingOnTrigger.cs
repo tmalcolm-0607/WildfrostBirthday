@@ -11,7 +11,7 @@ namespace WildfrostBirthday.Effects
                 "Gain 1 Bling when triggered",
                 data =>
                 {
-                    data.effectToApply = mod.TryGet<StatusEffectData>("Bling");
+                    data.effectToApply = mod.TryGet<StatusEffectData>("Gain Gold");
                     data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
                 },
                 canBeBoosted: false
