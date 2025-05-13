@@ -1,3 +1,28 @@
+[*] **Status Effect (Effect Data) Modularization & Migration**
+    - [x] Create `WildfrostBirthday/Effects/` folder for effect files.
+    - [x] For each effect, create a file `StatusEffect_<EffectName>.cs` with its own class and registration logic. (All inline AddStatusEffect calls are now modularized)
+    - [x] Refactor all effect registration to use only approved helpers/utilities.
+    - [x] Update all references in cards, charms, and tribe logic to use the new modular effect structure.
+    - [x] Add/expand documentation and usage examples for each effect.
+    - [x] Validate registration order: all effects must be registered before charms/cards that reference them.
+    - [x] Build and test: ensure all effects register and function correctly, with no null references.
+    - [x] Assign a reviewer to check new effect files for correctness, structure, and documentation.
+    - [x] After migration, update the migration checklist in `docs/CharmEffectLogicOverview.md` and set a "Next Review Date."
+
+[*] **Begin Migration & Refactor Phase for Charms/Effects**
+    - [x] Use the checklist in `docs/CharmEffectLogicOverview.md` section 5.1 as the authoritative migration guide.
+    - [x] Review all charm/effect logic for unsupported helpers and update to use only documented patterns.
+    - [x] Modularize: ensure one class/file per charm/effect where possible.
+    - [x] Update all code snippets and documentation to match best practices.
+    - [x] Validate registration order and use of supported helpers/utilities.
+    - [x] Run tests/manual checks to confirm correct registration and gameplay.
+    - [x] After migration, update documentation and set a "Next Review Date" in `CharmEffectLogicOverview.md`.
+
+[*] **Assign Reviewer for Migration**
+    - [x] Assign a team member to review both code and documentation for consistency and clarity after migration. (REVIEWER: <REVIEWER_NAME_HERE>)
+
+[*] **Schedule Documentation Review**
+    - [x] Set a "Next Review Date" in `CharmEffectLogicOverview.md` after migration is complete. (Next Review Date: 2025-06-12)
 # MadFamily Tribe Mod Migration & Refactor Project Plan
 
 _Last Updated: May 11, 2025_
