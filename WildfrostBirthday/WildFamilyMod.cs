@@ -20,7 +20,7 @@ using static CardData;
 
 namespace WildfrostBirthday
 {
-  
+
     public class WildFamilyMod : WildfrostMod
     {
 
@@ -46,7 +46,7 @@ public List<object> assets = new List<object>();
             }
 
             base.Load();
-             
+
             Events.OnEntityCreated += FixImage;
             GameMode gameMode = TryGet<GameMode>("GameModeNormal"); //GameModeNormal is the standard game mode. 
             gameMode.classes = gameMode.classes.Append(TryGet<ClassData>("MadFamily")).ToArray();
@@ -181,19 +181,22 @@ public List<object> assets = new List<object>();
                 .WithTier(tier);
 
             builder.SubscribeToAfterAllBuildEvent(data =>
+            builder.SubscribeToAfterAllBuildEvent(data =>
             {
                 if (effects != null)
                     data.effects = effects;
 
+
                 if (constraints != null)
                     data.targetConstraints = constraints;
+
 
                 if (traits != null)
                     data.giveTraits = traits;
 
                     CardScriptChangeMain script = ScriptableObject.CreateInstance<CardScriptChangeMain>(); // new line: creates the card script                    
                     data.scripts = new CardScript[1] { script }; // new line: attaches the script to the charm.
-            });
+            }));
 
             assets.Add(builder);
             return builder;
@@ -263,7 +266,8 @@ public List<object> assets = new List<object>();
 
                 foreach (RewardPool pool in tribe.rewardPools)
                 {
-                    if (pool == null) { continue; }; //This isn't even a reward pool; skip it.
+                    if (pool == null) { continue; }
+                    ; //This isn't even a reward pool; skip it.
 
                     pool.list.RemoveAllWhere((item) => item == null || item.ModAdded == this); //Find and remove everything that needs to be removed.
                 }
@@ -286,7 +290,7 @@ public List<object> assets = new List<object>();
         }
 
         public CardData.StatusEffectStacks SStack(string name, int amount) => new CardData.StatusEffectStacks(TryGet<StatusEffectData>(name), amount);
-        
+
         public CardData.TraitStacks TStack(string name, int amount) => new CardData.TraitStacks(TryGet<TraitData>(name), amount);
 
         public StatusEffectDataBuilder StatusCopy(string oldName, string newName)
@@ -453,8 +457,38 @@ public List<object> assets = new List<object>();
                 data.canPlayOnEnemy = false;
                 data.playOnSlot = true;
 
-            }).SetDamage(null);
+            }).SetDamage(null);AddItemCard(
+                "cheese_crackers", "Cheese Crackers", "items/cheese_crackers",
+                "A pack of cheese crackers.", 10,
+                startSStacks: new[] {
+                    SStack("MultiHit", 2)
+                },
+                           traitSStacks: new List<CardData.TraitStacks>
+                           {
+                               TStack("Aimless", 1)
+                           }
+            ).SubscribeToAfterAllBuildEvent(data =>
+    {
+        data.attackEffects = new CardData.StatusEffectStacks[]
+        {
+            new CardData.StatusEffectStacks(Get<StatusEffectData>("Increase Attack"), 1),
+        };
+        ;
+    });
+            AddItemCard(
+                     "foam_bullets", "Foam Bullets", "items/foam_bullets",
+                     "A pack of foam bullets.", 10,
+                     startSStacks: new[] {
+                         SStack("Hit All Enemies", 1)
+                     },
+                     traitSStacks: new List<CardData.TraitStacks>
+                     {
+                         TStack("Noomlin", 1)
+                     }
+                 );
         }
     }
 }
- 
+
+            
+
