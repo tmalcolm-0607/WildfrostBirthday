@@ -676,7 +676,7 @@ namespace WildfrostBirthday
 
                     CardScriptChangeMain script = ScriptableObject.CreateInstance<CardScriptChangeMain>(); // new line: creates the card script                    
                     data.scripts = new CardScript[1] { script }; // new line: attaches the script to the charm.
-            });
+            }));
 
             assets.Add(builder);
             return builder;
@@ -937,12 +937,7 @@ namespace WildfrostBirthday
                 data.canPlayOnEnemy = false;
                 data.playOnSlot = true;
 
-            }).SetDamage(null);
-        }
-    }
-
- 
-            AddItemCard(
+            }).SetDamage(null);AddItemCard(
                 "cheese_crackers", "Cheese Crackers", "items/cheese_crackers",
                 "A pack of cheese crackers.", 10,
                 startSStacks: new[] {
@@ -974,4 +969,6 @@ namespace WildfrostBirthday
         }
     }
 }
+
+            
 
