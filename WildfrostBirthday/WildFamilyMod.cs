@@ -19,7 +19,7 @@ using static CardData;
 
 namespace WildfrostBirthday
 {
-  
+
     public class WildFamilyMod : WildfrostMod
     {
 
@@ -74,23 +74,23 @@ namespace WildfrostBirthday
                                         //    "CardUpgradeMime", "CardUpgradeShellBecomesSpice",
                                         //    "CardUpgradeAimless"));
 
-                                    //    data.rewardPools = new RewardPool[]
-                                    //    {
-                                    //        Extensions.GetRewardPool("GeneralUnitPool"),
-                                    //        Extensions.GetRewardPool("GeneralItemPool"),
-                                    //        Extensions.GetRewardPool("GeneralCharmPool"),
-                                    //        Extensions.GetRewardPool("GeneralModifierPool"),
-                                    //        Extensions.GetRewardPool("SnowUnitPool"),         //
-                                    //        Extensions.GetRewardPool("SnowItemPool"),         //The snow pools are not Snowdwellers, there are general snow units/cards/charms.
-                                    //        Extensions.GetRewardPool("SnowCharmPool"),        //
-                                    //                                            };
+                                        //    data.rewardPools = new RewardPool[]
+                                        //    {
+                                        //        Extensions.GetRewardPool("GeneralUnitPool"),
+                                        //        Extensions.GetRewardPool("GeneralItemPool"),
+                                        //        Extensions.GetRewardPool("GeneralCharmPool"),
+                                        //        Extensions.GetRewardPool("GeneralModifierPool"),
+                                        //        Extensions.GetRewardPool("SnowUnitPool"),         //
+                                        //        Extensions.GetRewardPool("SnowItemPool"),         //The snow pools are not Snowdwellers, there are general snow units/cards/charms.
+                                        //        Extensions.GetRewardPool("SnowCharmPool"),        //
+                                        //                                            };
                                     })
                                    );
                 preLoaded = true;
             }
 
             base.Load();
-             
+
             Events.OnEntityCreated += FixImage;
             GameMode gameMode = TryGet<GameMode>("GameModeNormal"); //GameModeNormal is the standard game mode. 
             gameMode.classes = gameMode.classes.Append(TryGet<ClassData>("MadFamily")).ToArray();
@@ -263,7 +263,7 @@ namespace WildfrostBirthday
             AddFamilyUnit("alison", "Alison", "leaders/alison", 9, 3, 3, 50, "Restore 2 HP on kill", attackSStacks: new[]
            {
                 SStack("On Kill Heal To Self", 2)
-            },isLeader: true
+            }, isLeader: true
            );
 
             AddFamilyUnit("tony", "Tony", "leaders/tony", 8, 2, 4, 50, "Summon Soulrose")
@@ -400,7 +400,7 @@ namespace WildfrostBirthday
                                 SStack("MultiHit", 2), // Frenzy x2
                                 SStack("On Turn Apply Ink To RandomEnemy", 2)
                 }
-            ,isLeader:true)
+            , isLeader: true)
             .SetTraits(new CardData.TraitStacks[]
             {
                             new CardData.TraitStacks(TryGet<TraitData>("Aimless"), 1)
@@ -571,44 +571,44 @@ namespace WildfrostBirthday
         };
     }).WithText("On Turn Add {0} Attack To Self");
 
-var bookCharm = AddCharm("book_charm", "Book Charm", "Draw 1 on deploy and each turn", "GeneralCharmPool", "charms/book_charm", 2)
-    .SubscribeToAfterAllBuildEvent(data =>
-    {
-        data.effects = new StatusEffectStacks[]
-        {
-           
-        };
-        data.giveTraits = new TraitStacks[]
-        {
-            TStack("Draw", 1)
-        };
-    });
+            var bookCharm = AddCharm("book_charm", "Book Charm", "Draw 1 on deploy and each turn", "GeneralCharmPool", "charms/book_charm", 2)
+                .SubscribeToAfterAllBuildEvent(data =>
+                {
+                    data.effects = new StatusEffectStacks[]
+                    {
 
-var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and set Attack to 1", "GeneralCharmPool", "charms/duck_charm", 2)
-    .SubscribeToAfterAllBuildEvent(data =>
-    {
-        data.effects = new StatusEffectStacks[]
-        {
+                    };
+                    data.giveTraits = new TraitStacks[]
+                    {
+            TStack("Draw", 1)
+                    };
+                });
+
+            var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and set Attack to 1", "GeneralCharmPool", "charms/duck_charm", 2)
+                .SubscribeToAfterAllBuildEvent(data =>
+                {
+                    data.effects = new StatusEffectStacks[]
+                    {
             SStack("When Hit Add Frenzy To Self", 1),
             SStack("Set Attack", 1),
             SStack("MultiHit", 1)
-        };
+                    };
 
-        data.giveTraits = new TraitStacks[]
-        {
+                    data.giveTraits = new TraitStacks[]
+                    {
             TStack("Aimless", 1)
-        };
-    });
+                    };
+                });
         }
 
 
 
-    private CardDataBuilder AddFamilyUnit(
-            string id, string displayName, string spritePath,
-            int hp, int atk, int counter, int blingvalue, string flavor,
-            CardData.StatusEffectStacks[]? attackSStacks = null,
-            CardData.StatusEffectStacks[]? startSStacks = null,
-            bool isLeader = false)
+        private CardDataBuilder AddFamilyUnit(
+                string id, string displayName, string spritePath,
+                int hp, int atk, int counter, int blingvalue, string flavor,
+                CardData.StatusEffectStacks[]? attackSStacks = null,
+                CardData.StatusEffectStacks[]? startSStacks = null,
+                bool isLeader = false)
         {
             string cardId = (isLeader ? "leader-" : "companion-") + id;
             string fullSprite = spritePath + ".png";
@@ -643,13 +643,14 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
 
             assets.Add(builder);
             return builder;
-        }        private CardUpgradeDataBuilder AddCharm(
-            string id, 
-            string title, 
-            string cardText, 
-            string charmPool, 
-            string spritePath, 
-            int tier, 
+        }
+        private CardUpgradeDataBuilder AddCharm(
+            string id,
+            string title,
+            string cardText,
+            string charmPool,
+            string spritePath,
+            int tier,
             StatusEffectStacks[]? effects = null,
             TargetConstraint[]? constraints = null,
             TraitStacks[]? traits = null)
@@ -665,14 +666,14 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                 .WithText(cardText)
                 .WithTier(tier);
 
-            builder.SubscribeToAfterAllBuildEvent(data => 
+            builder.SubscribeToAfterAllBuildEvent(data =>
             {
                 if (effects != null)
                     data.effects = effects;
-                
+
                 if (constraints != null)
                     data.targetConstraints = constraints;
-                
+
                 if (traits != null)
                     data.giveTraits = traits;
             });
@@ -697,7 +698,7 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
             return builder;
         }
 
-    private StatusEffectDataBuilder AddInstantStatusEffect<T>(string id, string text, Action<T> modify, string type = null, bool canBeBoosted = false, string textInsert = null) where T : StatusEffectData
+        private StatusEffectDataBuilder AddInstantStatusEffect<T>(string id, string text, Action<T> modify, string type = null, bool canBeBoosted = false, string textInsert = null) where T : StatusEffectData
         {
             var builder = new StatusEffectDataBuilder(this)
                 .Create<T>(id)
@@ -745,7 +746,8 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
 
                 foreach (RewardPool pool in tribe.rewardPools)
                 {
-                    if (pool == null) { continue; }; //This isn't even a reward pool; skip it.
+                    if (pool == null) { continue; }
+                    ; //This isn't even a reward pool; skip it.
 
                     pool.list.RemoveAllWhere((item) => item == null || item.ModAdded == this); //Find and remove everything that needs to be removed.
                 }
@@ -768,7 +770,7 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
         }
 
         public CardData.StatusEffectStacks SStack(string name, int amount) => new CardData.StatusEffectStacks(TryGet<StatusEffectData>(name), amount);
-        
+
         public CardData.TraitStacks TStack(string name, int amount) => new CardData.TraitStacks(TryGet<TraitData>(name), amount);
 
         public StatusEffectDataBuilder StatusCopy(string oldName, string newName)
@@ -911,7 +913,36 @@ var duckCharm = AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and 
                     SStack("Cleanse With Text", 1)
                 };
             });
+            AddItemCard(
+                "cheese_crackers", "Cheese Crackers", "items/cheese_crackers",
+                "A pack of cheese crackers.", 10,
+                startSStacks: new[] {
+                    SStack("MultiHit", 2)
+                },
+                           traitSStacks: new List<CardData.TraitStacks>
+                           {
+                               TStack("Aimless", 1)
+                           }
+            ).SubscribeToAfterAllBuildEvent(data =>
+    {
+        data.attackEffects = new CardData.StatusEffectStacks[]
+        {
+            new CardData.StatusEffectStacks(Get<StatusEffectData>("Increase Attack"), 1),
+        };
+        ;
+    });
+            AddItemCard(
+                     "foam_bullets", "Foam Bullets", "items/foam_bullets",
+                     "A pack of foam bullets.", 10,
+                     startSStacks: new[] {
+                         SStack("Hit All Enemies", 1)
+                     },
+                     traitSStacks: new List<CardData.TraitStacks>
+                     {
+                         TStack("Noomlin", 1)
+                     }
+                 );
         }
     }
 }
- 
+
