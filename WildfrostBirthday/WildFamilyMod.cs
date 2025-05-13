@@ -939,7 +939,7 @@ namespace WildfrostBirthday
 
             }).SetDamage(null);AddItemCard(
                 "cheese_crackers", "Cheese Crackers", "items/cheese_crackers",
-                "A pack of cheese crackers.", 10,
+                "A pack of cheese crackers.", 70,
                 startSStacks: new[] {
                     SStack("MultiHit", 2)
                 },
@@ -957,7 +957,7 @@ namespace WildfrostBirthday
     });
             AddItemCard(
                      "foam_bullets", "Foam Bullets", "items/foam_bullets",
-                     "A pack of foam bullets.", 10,
+                     "A pack of foam bullets.", 25,
                      startSStacks: new[] {
                          SStack("Hit All Enemies", 1)
                      },
