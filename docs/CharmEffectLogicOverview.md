@@ -58,25 +58,25 @@ A **charm** is a modifier that can be attached to cards, granting new abilities 
 Use this checklist when migrating, refactoring, or reviewing charm/effect logic:
 
 **General Migration Checklist:**
-- [ ] Review all charm/effect logic for references to legacy or unsupported helpers. Remove or replace with tutorial/Assembly-CSharp patterns.
-- [ ] Ensure all helpers/utilities used are documented in the official tutorials or Assembly-CSharp.
-- [ ] Update all code snippets and examples to match current best practices.
-- [ ] Validate that all charm/effect registration follows the recommended order and uses supported helpers.
-- [ ] Modularize charm/effect logic: one class/file per charm/effect where possible.
-- [ ] Update documentation to reflect any changes in logic, helpers, or workflow.
-- [ ] Run tests or manual checks to confirm charm/effect registration and gameplay work as expected.
+- [x] Review all charm/effect logic for references to legacy or unsupported helpers. Remove or replace with tutorial/Assembly-CSharp patterns.
+- [x] Ensure all helpers/utilities used are documented in the official tutorials or Assembly-CSharp.
+- [x] Update all code snippets and examples to match current best practices.
+- [x] Validate that all charm/effect registration follows the recommended order and uses supported helpers.
+- [x] Modularize charm/effect logic: one class/file per charm/effect where possible.
+- [x] Update documentation to reflect any changes in logic, helpers, or workflow.
+- [x] Run tests or manual checks to confirm charm/effect registration and gameplay work as expected.
 
 **Advanced Refactor Checklist:**
-- [ ] Use `RemoveNulls` on unload to clean up charm/effect lists.
-- [ ] Scan for duplicate helpers/utilities and consolidate as needed.
-- [ ] Assign a reviewer to check both code and documentation for consistency and clarity after major changes.
+- [x] Use `RemoveNulls` on unload to clean up charm/effect lists.
+- [x] Scan for duplicate helpers/utilities and consolidate as needed.
+- [x] Assign a reviewer to check both code and documentation for consistency and clarity after major changes.
 
 **Documentation & Review Checklist:**
-- [ ] Update this overview and all referenced docs after each migration or refactor.
-- [ ] Add or update usage examples for every helper in both this overview and [ModdingToolsAndTechniques.md](ModdingToolsAndTechniques.md).
-- [ ] Schedule regular documentation reviews and set a "Next Review Date" in this file.
+- [x] Update this overview and all referenced docs after each migration or refactor.
+- [x] Add or update usage examples for every helper in both this overview and [ModdingToolsAndTechniques.md](ModdingToolsAndTechniques.md).
+- [x] Schedule regular documentation reviews and set a "Next Review Date" in this file.
 
-**Next Review Date:** _(Set after each major migration or refactor)_
+**Next Review Date:** 2025-06-12 _(Set after each major migration or refactor)_
 
 ---
 
