@@ -7,14 +7,21 @@ namespace WildfrostBirthday.Cards
     {
         public static void Register(WildFamilyMod mod)
         {
-            mod.AddItemCard(
-                "Snow_pillow", "Snow Pillow", "items/snowpillow",
-                "A pillow made of snow.", 50,
-                attackSStacks: new[] {
-                    mod.SStack("Heal", 6),
-                    mod.SStack("Snow", 1)
-                }
-            );
+            var builder = new CardDataBuilder(mod)
+                .CreateItem("Snow_pillow", "Snow Pillow")
+                .SetSprites("items/snowpillow.png", "bg.png")
+                .WithFlavour("A pillow made of snow.")
+                .WithCardType("Item")
+                .WithValue(45)
+                .SubscribeToAfterAllBuildEvent(data =>
+                {
+                    data.attackEffects = new CardData.StatusEffectStacks[] {
+                        mod.SStack("Heal", 6),
+                        mod.SStack("Snow", 1)
+                    };
+                });
+                
+            mod.assets.Add(builder);
         }
     }
 }

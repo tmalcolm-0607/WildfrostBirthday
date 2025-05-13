@@ -7,17 +7,24 @@ namespace WildfrostBirthday.Cards
     {
         public static void Register(WildFamilyMod mod)
         {
-            mod.AddItemCard(
-                "foam_bullets", "Foam Bullets", "items/foam_bullets",
-                "A pack of foam bullets.", 10,
-                startSStacks: new[] {
-                    mod.SStack("Hit All Enemies", 1)
-                },
-                traitSStacks: new List<CardData.TraitStacks>
+            var builder = new CardDataBuilder(mod)
+                .CreateItem("foam_bullets", "Foam Bullets")
+                .SetSprites("items/foambullets.png", "bg.png")
+                .WithFlavour("A pack of foam bullets.")
+                .WithCardType("Item")
+                .WithValue(25)
+                .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    mod.TStack("Noomlin", 1)
-                }
-            );
+                    data.startWithEffects = new[] {
+                        mod.SStack("Hit All Enemies", 1)
+                    };
+                    
+                    data.traits = new List<CardData.TraitStacks> {
+                        mod.TStack("Noomlin", 1)
+                    };
+                });
+                
+            mod.assets.Add(builder);
         }
     }
 }

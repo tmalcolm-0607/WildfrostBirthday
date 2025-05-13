@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using WildfrostBirthday;
+using WildfrostBirthday.Helpers;
 
 namespace WildfrostBirthday.Cards
 {
@@ -8,25 +10,56 @@ namespace WildfrostBirthday.Cards
     {
         public static void Register(WildFamilyMod mod)
         {
-            // Companion version
-            mod.AddFamilyUnit("cassie", "Cassie", "leaders/cassie", 5, 1, 3, 50, "Joyful and chaotic, Cassie bounces through battle with ink and impulse.",
-                startSStacks: new[] {
-                    mod.SStack("MultiHit", 2),
-                    mod.SStack("On Turn Apply Ink To RandomEnemy", 2)
-                }
-            ).SetTraits(new CardData.TraitStacks[] {
-                new CardData.TraitStacks(mod.TryGet<TraitData>("Aimless"), 1)
-            });
-            // Leader version
-            mod.AddFamilyUnit("cassie", "Cassie", "leaders/cassie", 5, 1, 3, 50, "Joyful and chaotic, Cassie bounces through battle with ink and impulse.",
-                startSStacks: new[] {
-                    mod.SStack("MultiHit", 2),
-                    mod.SStack("On Turn Apply Ink To RandomEnemy", 2)
-                },
-                isLeader: true
-            ).SetTraits(new CardData.TraitStacks[] {
-                new CardData.TraitStacks(mod.TryGet<TraitData>("Aimless"), 1)
-            });
+            string cardId = "cassie";
+            string spritePath = "leaders/cassie";
+            
+            // COMPANION VERSION
+            var companionBuilder = new CardDataBuilder(mod)
+                .CreateUnit(cardId, "Cassie")
+                .SetSprites(spritePath + ".png", "bg.png")
+                .SetStats(5, 1, 3)  // HP, ATK, Counter
+                .WithFlavour("Joyful and chaotic, Cassie bounces through battle with ink and impulse.")
+                .WithCardType("Friendly")
+                .WithValue(50)
+                .SubscribeToAfterAllBuildEvent(data =>
+                {
+                    // Start with effects
+                    data.startWithEffects = new[] {
+                        mod.SStack("MultiHit", 2),
+                        mod.SStack("On Turn Apply Ink To RandomEnemy", 2)
+                    };
+                    
+                    // Set traits
+                    data.traits = new List<CardData.TraitStacks> {
+                        new CardData.TraitStacks(mod.TryGet<TraitData>("Aimless"), 1)
+                    };
+                });
+                
+            mod.assets.Add(companionBuilder);
+            
+            // LEADER VERSION
+            var leaderBuilder = new CardDataBuilder(mod)
+                .CreateUnit(cardId, "Cassie")
+                .SetSprites(spritePath + ".png", "bg.png")
+                .SetStats(5, 1, 3)  // HP, ATK, Counter
+                .WithFlavour("Joyful and chaotic, Cassie bounces through battle with ink and impulse.")
+                .WithCardType("Leader")
+                .WithValue(50)
+                .SubscribeToAfterAllBuildEvent(data =>
+                {
+                    // Start with effects
+                    data.startWithEffects = new[] {
+                        mod.SStack("MultiHit", 2),
+                        mod.SStack("On Turn Apply Ink To RandomEnemy", 2)
+                    };
+                    
+                    // Set traits
+                    data.traits = new List<CardData.TraitStacks> {
+                        new CardData.TraitStacks(mod.TryGet<TraitData>("Aimless"), 1)
+                    };
+                });
+                
+            mod.assets.Add(leaderBuilder);
         }
     }
 }

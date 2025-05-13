@@ -1,7 +1,5 @@
 
-using System;
-using UnityEngine;
-using WildfrostBirthday;
+// No usings needed; all required namespaces are provided by GlobalUsings.cs
 
 namespace WildfrostBirthday.Charms
 {
@@ -9,7 +7,14 @@ namespace WildfrostBirthday.Charms
     {
         public static void Register(WildFamilyMod mod)
         {
-            var bookCharm = mod.AddCharm("book_charm", "Book Charm", "Draw 1 on deploy and each turn", "GeneralCharmPool", "charms/book_charm", 2)
+            var builder = new CardUpgradeDataBuilder(mod)
+                .Create("book_charm")
+                .AddPool("GeneralCharmPool")
+                .WithType(CardUpgradeData.Type.Charm)
+                .WithImage("charms/book_charm")
+                .WithTitle("Book Charm")
+                .WithText("Draw 1 on deploy and each turn")
+                .WithTier(2)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.effects = new CardData.StatusEffectStacks[]
@@ -21,6 +26,7 @@ namespace WildfrostBirthday.Charms
                         mod.TStack("Draw", 1)
                     };
                 });
+            mod.assets.Add(builder);
         }
     }
 }

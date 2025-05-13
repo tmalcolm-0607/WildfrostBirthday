@@ -130,21 +130,20 @@ This plan is intended for contributors, testers, and advanced modders. For hands
   - **Wisp Mask:** Traits: Consume, Zoomlin; Attack: —; Ability: Summon Wisp x1 (Can only be played on slot)
   - **Soulrose Mask:** Traits: Consume; Attack: —; Ability: Summon Soulrose x1, No Damage (Can only be played on slot)
   - **Cheese Crackers:** Traits: Aimless; Attack: —; Ability: Increase Attack by 1, MultiHit x2
-  - **Rubber Bullets:** Traits: Noomlin; Attack: 0; Ability: Hits all enemies
-  - **Stock of Rubber Bullets:** Traits: Consume; Attack: —; Ability: Add 4 Rubber Bullets to your hand
+  - **Foam Bullets:** Traits: Noomlin; Attack: 0; Ability: Hits all enemies
+  - **Stock of Foam Bullets:** Traits: Consume; Attack: —; Ability: Add 4 Foam Bullets to your hand
   - **Tack Spray:** Traits: —; Attack: 1; Ability: Hits all enemies
   - **Ink Egg:** Traits: Consume, Zoomlin; Attack: 1; Ability: Apply 7 Ink
   - **Detonation Strike:** Traits: Trash 1, Recycle 2; Attack: 16; Ability: Target must have Shell
   - **Dynamo Roller:** Traits: Recycle 3; Attack: 10; Ability: Barrage
   - **Berry Cake:** Traits: Consume; Attack: —; Ability: Increase HP of all allies by 3
-  - **Water Balloon:** Traits: Noomlin; Attack: —; Ability: Cleanse
   - **Foam Rocket:** Traits: Noomlin; Attack: 2; Ability: —
   - **Freezing Treat:** Traits: Consume; Attack: 4; Ability: Apply 2 Shell and 2 Snow
   - **Plywood Sheet:** Traits: Consume; Attack: —; Ability: Add 3 Junk
-  - **Azul Book:** Traits: Barrage; Attack: 0; Ability: Apply 1 Overburn
+  - **Azul Book:** Traits: Barrage; Attack: 0; Ability: Apply 1 Overload
   - **Blaze Berry:** Traits: Consume; Attack: —; Ability: Reduce Max HP by 4 and MultiHit
   - **Dice of Destiny:** Traits: —; Attack: 0; Ability: MultiHit x2, before attacking randomize attacks between 1–6
-  - **Azul Torch:** Traits: —; Attack: 0; Ability: Apply 4 Overburn
+  - **Azul Torch:** Traits: —; Attack: 0; Ability: Apply 4 Overload
   - **Junk Pile:** Traits: Trash 10, Consume, Zoomlin; Attack: —; Ability: —
   - **Haze Tacks:** Traits: Barrage, Consume; Attack: 3; Ability: Apply 3 Teeth and 2 Haze  
   _See: `docs/Tutorial2_CardsAndStatusEffects.md` and `docs/data/Reward Pools.md` for item/effect integration and reward pool info._

@@ -7,23 +7,27 @@ namespace WildfrostBirthday.Cards
     {
         public static void Register(WildFamilyMod mod)
         {
-            mod.AddItemCard(
-                "cheese_crackers", "Cheese Crackers", "items/cheese_crackers",
-                "A pack of cheese crackers.", 10,
-                startSStacks: new[] {
-                    mod.SStack("MultiHit", 2)
-                },
-                traitSStacks: new List<CardData.TraitStacks>
+            var builder = new CardDataBuilder(mod)
+                .CreateItem("cheese_crackers", "Cheese Crackers")
+                .SetSprites("items/cheesecrackers.png", "bg.png")
+                .WithFlavour("A pack of cheese crackers.")
+                .WithCardType("Item")
+                .WithValue(70)
+                .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    mod.TStack("Aimless", 1)
-                }
-            ).SubscribeToAfterAllBuildEvent(data =>
-            {
-                data.attackEffects = new CardData.StatusEffectStacks[]
-                {
-                    new CardData.StatusEffectStacks(mod.Get<StatusEffectData>("Increase Attack"), 1),
-                };
-            });
+                    data.startWithEffects = new[] {
+                        mod.SStack("MultiHit", 2)
+                    };
+                    
+                    data.traits = new List<CardData.TraitStacks> {
+                        mod.TStack("Aimless", 1)
+                    };
+                      data.attackEffects = new CardData.StatusEffectStacks[] {
+                        new CardData.StatusEffectStacks(mod.Get<StatusEffectData>("Increase Attack"), 1),
+                    };
+                });
+                
+            mod.assets.Add(builder);
         }
     }
 }

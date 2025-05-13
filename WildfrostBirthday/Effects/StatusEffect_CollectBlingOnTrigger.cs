@@ -1,4 +1,4 @@
-using System;
+// No usings needed; all required namespaces are provided by GlobalUsings.cs
 
 namespace WildfrostBirthday.Effects
 {
@@ -6,16 +6,25 @@ namespace WildfrostBirthday.Effects
     {
         public static void Register(WildFamilyMod mod)
         {
-            mod.AddStatusEffect<StatusEffectApplyXOnTurn>(
-                "Collect Bling On Trigger",
-                "Gain 1 Bling when triggered",
-                data =>
+            var builder = new StatusEffectDataBuilder(mod)
+                .Create<StatusEffectApplyXOnTurn>("Collect Bling On Trigger")
+                .WithText("Gain 1 Bling when triggered", SystemLanguage.English)
+                .WithText("Gain 1 Bling when triggered", SystemLanguage.ChineseSimplified)
+                .WithText("Gain 1 Bling when triggered", SystemLanguage.ChineseTraditional)
+                .WithText("Gain 1 Bling when triggered", SystemLanguage.Korean)
+                .WithText("Gain 1 Bling when triggered", SystemLanguage.Japanese)
+                .WithTextInsert("<+1><keyword=bling>")
+                .WithStackable(true)
+                .WithCanBeBoosted(false)
+                .WithOffensive(false)
+                .WithMakesOffensive(false)
+                .WithDoesDamage(false)
+                .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnTurn>(data =>
                 {
-                    data.effectToApply = mod.TryGet<StatusEffectData>("Gain Gold");
+                    data.effectToApply = mod.TryGet<StatusEffectInstantGainGold>("Gain Gold");
                     data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
-                },
-                canBeBoosted: false
-            );
+                });
+            mod.assets.Add(builder);
         }
     }
 }

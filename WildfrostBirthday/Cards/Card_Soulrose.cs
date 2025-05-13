@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using WildfrostBirthday;
+using WildfrostBirthday.Helpers;
 
 namespace WildfrostBirthday.Cards
 {
@@ -8,10 +10,26 @@ namespace WildfrostBirthday.Cards
     {
         public static void Register(WildFamilyMod mod)
         {
-            mod.AddFamilyUnit("soulrose", "Soulrose", "companions/soulrose", 1, 0, 0, 0,
-                "When destroyed, add +1 health to all allies",
-                startSStacks: new[] { mod.SStack("When Destroyed Add Health To Allies", 1) }
-            );
+            string cardId = "soulrose";
+            string spritePath = "companions/soulrose";
+            
+            // COMPANION VERSION
+            var companionBuilder = new CardDataBuilder(mod)
+                .CreateUnit(cardId, "Soulrose")
+                .SetSprites(spritePath + ".png", "bg.png")
+                .SetStats(1, 0, 0)  // HP, ATK, Counter
+                .WithFlavour("When destroyed, add +1 health to all allies")
+                .WithCardType("Friendly")
+                .WithValue(0)
+                .SubscribeToAfterAllBuildEvent(data =>
+                {
+                    // Start with effects
+                    data.startWithEffects = new[] {
+                        mod.SStack("When Destroyed Add Health To Allies", 1)
+                    };
+                });
+                
+            mod.assets.Add(companionBuilder);
         }
     }
 }

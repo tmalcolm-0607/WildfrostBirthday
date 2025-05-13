@@ -1,7 +1,6 @@
 
 using System;
 using UnityEngine;
-using WildfrostBirthday;
 
 namespace WildfrostBirthday.Charms
 {
@@ -9,7 +8,14 @@ namespace WildfrostBirthday.Charms
     {
         public static void Register(WildFamilyMod mod)
         {
-            var goldenVialCharm = mod.AddCharm("golden_vial", "Golden Vial Charm", "Gain 1 Bling when triggered", "GeneralCharmPool", "charms/golden_vial_charm", 2)
+            var builder = new CardUpgradeDataBuilder(mod)
+                .Create("golden_vial")
+                .AddPool("GeneralCharmPool")
+                .WithType(CardUpgradeData.Type.Charm)
+                .WithImage("charms/golden_vial_charm.png")
+                .WithTitle("Golden Vial Charm")
+                .WithText("Gain 1 Bling when triggered")
+                .WithTier(2)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.effects = new CardData.StatusEffectStacks[]
@@ -17,6 +23,8 @@ namespace WildfrostBirthday.Charms
                         mod.SStack("Collect Bling On Trigger", 1)
                     };
                 });
+                
+            mod.assets.Add(builder);
         }
     }
 }

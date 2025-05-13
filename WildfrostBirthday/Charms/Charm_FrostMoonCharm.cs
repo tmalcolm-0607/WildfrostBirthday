@@ -1,7 +1,6 @@
 
 using System;
 using UnityEngine;
-using WildfrostBirthday;
 
 namespace WildfrostBirthday.Charms
 {
@@ -9,8 +8,14 @@ namespace WildfrostBirthday.Charms
     {
         public static void Register(WildFamilyMod mod)
         {
-            var frostMoonCharm = mod.AddCharm("frost_moon", "Frost Moon Charm", "Gain +2 Counter and apply 5 Frost on attack", "GeneralCharmPool", "charms/frost_moon_charm", 3)
-                .SubscribeToAfterAllBuildEvent(data =>
+            var builder = new CardUpgradeDataBuilder(mod)
+                .Create("frost_moon")
+                .AddPool("GeneralCharmPool")
+                .WithType(CardUpgradeData.Type.Charm)
+                .WithImage("charms/frost_moon_charm.png")
+                .WithTitle("Frost Moon Charm")
+                .WithText("Gain +2 Counter and apply 5 Frost on attack")
+                .WithTier(3)                .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.effects = new CardData.StatusEffectStacks[]
                     {
@@ -18,6 +23,8 @@ namespace WildfrostBirthday.Charms
                         mod.SStack("FrostMoon Apply Frost On Attack", 5)
                     };
                 });
+                
+            mod.assets.Add(builder);
         }
     }
 }

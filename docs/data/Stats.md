@@ -1,55 +1,73 @@
-# Stats
 
-| Name                   | Corresponding Stat       | Key (Sub-stat)   | Text                        | Type      |   Par |   Priority |   PriorityAddOverPar |   PrioritySubUnderPar |
-|:-----------------------|:-------------------------|:-----------------|:----------------------------|:----------|------:|-----------:|---------------------:|----------------------:|
-| StatApplyBlock         | statusesApplied          | block            | Block Applied: {0}          | Normal    |     1 |          0 |                 0.1  |                   0   |
-| StatApplyBom           | statusesApplied          | vim              | Bom Applied: {0}            | Normal    |     1 |          0 |                 0.1  |                   0   |
-| StatApplyDemonize      | statusesApplied          | demonize         | Demonize Applied: {0}       | Normal    |     1 |          0 |                 0.1  |                   0   |
-| StatApplyFrost         | statusesApplied          | frost            | Frost Applied: {0}          | Normal    |     1 |          0 |                 0.1  |                   0   |
-| StatApplyHaze          | statusesApplied          | haze             | Haze Applied: {0}           | Normal    |     1 |          0 |                 0.1  |                   0   |
-| StatApplyInk           | statusesApplied          | ink              | Ink Applied: {0}            | Normal    |     1 |          0 |                 0.1  |                   0   |
-| StatApplyOverload      | statusesApplied          | overload         | Overburn Applied: {0}       | Normal    |    10 |          0 |                 0.1  |                   0   |
-| StatApplyScrap         | statusesApplied          | scrap            | Scrap Added: {0}            | Normal    |     1 |          0 |                 0.1  |                   0   |
-| StatApplyShell         | statusesApplied          | shell            | Shell Applied: {0}          | Normal    |    10 |          0 |                 0.1  |                   0   |
-| StatApplyShroom        | statusesApplied          | shroom           | Shroom Applied: {0}         | Normal    |    10 |          0 |                 0.1  |                   0   |
-| StatApplySnow          | statusesApplied          | snow             | Snow Applied: {0}           | Normal    |    10 |          0 |                 0.1  |                   0   |
-| StatApplySpice         | statusesApplied          | spice            | Spice Applied: {0}          | Normal    |    10 |          0 |                 0.1  |                   0   |
-| StatApplyTeeth         | statusesApplied          | teeth            | Teeth Applied: {0}          | Normal    |     1 |          0 |                 0.1  |                   0   |
-| StatBattlesWon         | battlesWon               | nan              | Battles Won: {0}            | Count     |     1 |          0 |                 0    |                   0   |
-| StatBestCardRename     | bestRename               | nan              | Best Rename: {0}            | RandomKey |     1 |          1 |                 1    |                   0   |
-| StatBestCombo          | highestKillCombo         | nan              | Highest Kill Combo: {0}     | Best      |     2 |          0 |                 1    |                   0   |
-| StatBestDamage         | highestDamageDealt       | nan              | Highest Damage Hit: {0}     | BestAny   |    10 |          0 |                 0.5  |                   0.1 |
-| StatBestFrenzy         | highestStatusEffect      | frenzy           | Highest Frenzy Reached: {0} | Best      |     2 |          0 |                 1    |                   0   |
-| StatBestSpice          | highestStatusEffect      | spice            | Highest Spice Reached: {0}  | Best      |     8 |          0 |                 0.5  |                   0.1 |
-| StatBoughtDiscounts    | discountsBought          | nan              | Discounts Bought: {0}       | Normal    |     2 |          0 |                 1    |                   0   |
-| StatCardsMunched       | cardsMunched             | nan              | Cards Munched: {0}          | Count     |     2 |          0 |                 1    |                   0   |
-| StatCardsSummoned      | cardsSummoned            | nan              | Total Summons: {0}          | Count     |     8 |          0 |                 0.1  |                   0   |
-| StatCharmsGained       | charmsGained             | nan              | Charms Gained: {0}          | Count     |     2 |          0 |                 1    |                   0   |
-| StatCompanionsRecalled | friendliesRecalled       | nan              | Companions Recalled: {0}    | Count     |     5 |          0 |                 0.5  |                   0   |
-| StatCrownsGained       | crownsGained             | nan              | Crowns Gained: {0}          | Count     |     1 |          0 |                 1    |                   0   |
-| StatDamageBlocked      | damageBlocked            | nan              | Damage Blocked: {0}         | Count     |    10 |          0 |                 0.1  |                   0.1 |
-| StatDamageDealt        | damageDealt              | nan              | Damage Dealt: {0}           | Count     |    10 |          0 |                 0.05 |                   0   |
-| StatDamageFriendly     | friendlyDamageDealt      | nan              | Friendly Damage: {0}        | Count     |    10 |          0 |                 0.1  |                   0.1 |
-| StatDamageTaken        | damageTaken              | nan              | Damage Taken: {0}           | Count     |     1 |          0 |                 0    |                   0   |
-| StatGoblingEscaped     | enemiesEscaped           | Gobling          | Goblings Escaped: {0}       | Normal    |     1 |          0 |                 1    |                   0   |
-| StatGoblingHits        | cardsHit                 | Gobling          | Gobling Hits: {0}           | Normal    |     1 |          0 |                 0.1  |                   0   |
-| StatGoldFromCombos     | goldGained               | Combo            | Blings From Combos: {0}     | Normal    |    10 |          0 |                 0.1  |                   0   |
-| StatGoldFromGoblings   | goldGained               | Gobling          | Blings From Goblings: {0}   | Normal    |    10 |          0 |                 0.1  |                   0   |
-| StatGoldGained         | goldGained               | nan              | Blings Gained: {0}          | Count     |     1 |          0 |                 0    |                   0   |
-| StatGoldSpent          | goldSpent                | nan              | Blings Spent: {0}           | Normal    |     1 |          0 |                 0    |                   0   |
-| StatHealthHealed       | amountHealedFrom         | nan              | Amount Healed: {0}          | Count     |     1 |          0 |                 0.05 |                   0   |
-| StatInjuries           | friendliesInjured        | nan              | Injuries: {0}               | Count     |     1 |          0 |                 1    |                   0   |
-| StatKillBosses         | bossesKilled             | nan              | Bosses Defeated: {0}        | Count     |     1 |          0 |                 0    |                   0   |
-| StatKillEnemies        | enemiesKilled            | nan              | Enemies Killed: {0}         | Count     |     1 |          0 |                 0    |                   0   |
-| StatKillFriendlies     | friendliesDied           | nan              | Friendly Kills: {0}         | Count     |     1 |          0 |                 0    |                   0   |
-| StatKillsWithOverload  | enemiesKilledDamageType  | overload         | Overburn Kills: {0}         | Normal    |     5 |          0 |                 0.5  |                   0   |
-| StatKillsWithShroom    | enemiesKilledDamageType  | shroom           | Shroom Kills: {0}           | Normal    |     5 |          0 |                 0.5  |                   0   |
-| StatKillsWithSmackback | enemiesKilledTriggerType | smackback        | Smackback Kills: {0}        | Normal    |     5 |          0 |                 0.5  |                   0   |
-| StatKillsWithTeeth     | enemiesKilledDamageType  | spikes           | Teeth Kills: {0}            | Normal    |     5 |          0 |                 0.5  |                   0   |
-| StatNakedGnomesKilled  | enemiesKilled            | NakedGnome       | Naked Gnomes Killed: {0}    | Normal    |     1 |          1 |                 1    |                   0   |
-| StatNakedGnomesSpared  | enemiesEscaped           | NakedGnome       | Naked Gnomes Spared: {0}    | Normal    |     1 |         50 |                 1    |                   0   |
-| StatRedrawBellHits     | redrawBellHits           | nan              | Redraw Bell Rings: {0}      | Normal    |     1 |          0 |                 0    |                   0   |
-| StatRenames            | renames                  | nan              | Cards Renamed: {0}          | Count     |     1 |          0 |                 0    |                   0   |
-| StatSmackback          | totalTriggers            | smackback        | Total Smackbacks: {0}       | Normal    |     5 |          0 |                 0.25 |                   0   |
-| StatTime               | nan                      | nan              | Time Played: {0}            | Time      |     1 |          0 |                 0    |                   0   |
-| StatTurns              | turnsTaken               | nan              | Turns Taken: {0}            | Normal    |     1 |          0 |                 0    |                   0   |
+---
+title: Stats
+description: |
+  This file lists all tracked stats in Wildfrost, including their keys, display text, type, and priority values. Useful for analytics, achievements, and UI display.
+file_type: table
+updated: 2025-05-12
+---
+
+## Summary
+This file lists all tracked stats in Wildfrost, including their keys, display text, type, and priority values. Useful for analytics, achievements, and UI display.
+
+Below is the stat data in JSON format for easy programmatic use:
+
+```json
+{
+  "title": "Stats",
+  "description": "This file lists all tracked stats in Wildfrost, including their keys, display text, type, and priority values. Useful for analytics, achievements, and UI display.",
+  "stats": [
+    {"name": "StatApplyBlock", "corresponding_stat": "statusesApplied", "key": "block", "text": "Block Applied: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyBom", "corresponding_stat": "statusesApplied", "key": "vim", "text": "Bom Applied: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyDemonize", "corresponding_stat": "statusesApplied", "key": "demonize", "text": "Demonize Applied: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyFrost", "corresponding_stat": "statusesApplied", "key": "frost", "text": "Frost Applied: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyHaze", "corresponding_stat": "statusesApplied", "key": "haze", "text": "Haze Applied: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyInk", "corresponding_stat": "statusesApplied", "key": "ink", "text": "Ink Applied: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyOverload", "corresponding_stat": "statusesApplied", "key": "overload", "text": "Overburn Applied: {0}", "type": "Normal", "par": 10, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyScrap", "corresponding_stat": "statusesApplied", "key": "scrap", "text": "Scrap Added: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyShell", "corresponding_stat": "statusesApplied", "key": "shell", "text": "Shell Applied: {0}", "type": "Normal", "par": 10, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyShroom", "corresponding_stat": "statusesApplied", "key": "shroom", "text": "Shroom Applied: {0}", "type": "Normal", "par": 10, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplySnow", "corresponding_stat": "statusesApplied", "key": "snow", "text": "Snow Applied: {0}", "type": "Normal", "par": 10, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplySpice", "corresponding_stat": "statusesApplied", "key": "spice", "text": "Spice Applied: {0}", "type": "Normal", "par": 10, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatApplyTeeth", "corresponding_stat": "statusesApplied", "key": "teeth", "text": "Teeth Applied: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatBattlesWon", "corresponding_stat": "battlesWon", "key": "nan", "text": "Battles Won: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatBestCardRename", "corresponding_stat": "bestRename", "key": "nan", "text": "Best Rename: {0}", "type": "RandomKey", "par": 1, "priority": 1, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatBestCombo", "corresponding_stat": "highestKillCombo", "key": "nan", "text": "Highest Kill Combo: {0}", "type": "Best", "par": 2, "priority": 0, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatBestDamage", "corresponding_stat": "highestDamageDealt", "key": "nan", "text": "Highest Damage Hit: {0}", "type": "BestAny", "par": 10, "priority": 0, "priority_add_over_par": 0.5, "priority_sub_under_par": 0.1},
+    {"name": "StatBestFrenzy", "corresponding_stat": "highestStatusEffect", "key": "frenzy", "text": "Highest Frenzy Reached: {0}", "type": "Best", "par": 2, "priority": 0, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatBestSpice", "corresponding_stat": "highestStatusEffect", "key": "spice", "text": "Highest Spice Reached: {0}", "type": "Best", "par": 8, "priority": 0, "priority_add_over_par": 0.5, "priority_sub_under_par": 0.1},
+    {"name": "StatBoughtDiscounts", "corresponding_stat": "discountsBought", "key": "nan", "text": "Discounts Bought: {0}", "type": "Normal", "par": 2, "priority": 0, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatCardsMunched", "corresponding_stat": "cardsMunched", "key": "nan", "text": "Cards Munched: {0}", "type": "Count", "par": 2, "priority": 0, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatCardsSummoned", "corresponding_stat": "cardsSummoned", "key": "nan", "text": "Total Summons: {0}", "type": "Count", "par": 8, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatCharmsGained", "corresponding_stat": "charmsGained", "key": "nan", "text": "Charms Gained: {0}", "type": "Count", "par": 2, "priority": 0, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatCompanionsRecalled", "corresponding_stat": "friendliesRecalled", "key": "nan", "text": "Companions Recalled: {0}", "type": "Count", "par": 5, "priority": 0, "priority_add_over_par": 0.5, "priority_sub_under_par": 0},
+    {"name": "StatCrownsGained", "corresponding_stat": "crownsGained", "key": "nan", "text": "Crowns Gained: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatDamageBlocked", "corresponding_stat": "damageBlocked", "key": "nan", "text": "Damage Blocked: {0}", "type": "Count", "par": 10, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0.1},
+    {"name": "StatDamageDealt", "corresponding_stat": "damageDealt", "key": "nan", "text": "Damage Dealt: {0}", "type": "Count", "par": 10, "priority": 0, "priority_add_over_par": 0.05, "priority_sub_under_par": 0},
+    {"name": "StatDamageFriendly", "corresponding_stat": "friendlyDamageDealt", "key": "nan", "text": "Friendly Damage: {0}", "type": "Count", "par": 10, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0.1},
+    {"name": "StatDamageTaken", "corresponding_stat": "damageTaken", "key": "nan", "text": "Damage Taken: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatGoblingEscaped", "corresponding_stat": "enemiesEscaped", "key": "Gobling", "text": "Goblings Escaped: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatGoblingHits", "corresponding_stat": "cardsHit", "key": "Gobling", "text": "Gobling Hits: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatGoldFromCombos", "corresponding_stat": "goldGained", "key": "Combo", "text": "Blings From Combos: {0}", "type": "Normal", "par": 10, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatGoldFromGoblings", "corresponding_stat": "goldGained", "key": "Gobling", "text": "Blings From Goblings: {0}", "type": "Normal", "par": 10, "priority": 0, "priority_add_over_par": 0.1, "priority_sub_under_par": 0},
+    {"name": "StatGoldGained", "corresponding_stat": "goldGained", "key": "nan", "text": "Blings Gained: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatGoldSpent", "corresponding_stat": "goldSpent", "key": "nan", "text": "Blings Spent: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatHealthHealed", "corresponding_stat": "amountHealedFrom", "key": "nan", "text": "Amount Healed: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 0.05, "priority_sub_under_par": 0},
+    {"name": "StatInjuries", "corresponding_stat": "friendliesInjured", "key": "nan", "text": "Injuries: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatKillBosses", "corresponding_stat": "bossesKilled", "key": "nan", "text": "Bosses Defeated: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatKillEnemies", "corresponding_stat": "enemiesKilled", "key": "nan", "text": "Enemies Killed: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatKillFriendlies", "corresponding_stat": "friendliesDied", "key": "nan", "text": "Friendly Kills: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatKillsWithOverload", "corresponding_stat": "enemiesKilledDamageType", "key": "overload", "text": "Overburn Kills: {0}", "type": "Normal", "par": 5, "priority": 0, "priority_add_over_par": 0.5, "priority_sub_under_par": 0},
+    {"name": "StatKillsWithShroom", "corresponding_stat": "enemiesKilledDamageType", "key": "shroom", "text": "Shroom Kills: {0}", "type": "Normal", "par": 5, "priority": 0, "priority_add_over_par": 0.5, "priority_sub_under_par": 0},
+    {"name": "StatKillsWithSmackback", "corresponding_stat": "enemiesKilledTriggerType", "key": "smackback", "text": "Smackback Kills: {0}", "type": "Normal", "par": 5, "priority": 0, "priority_add_over_par": 0.5, "priority_sub_under_par": 0},
+    {"name": "StatKillsWithTeeth", "corresponding_stat": "enemiesKilledDamageType", "key": "spikes", "text": "Teeth Kills: {0}", "type": "Normal", "par": 5, "priority": 0, "priority_add_over_par": 0.5, "priority_sub_under_par": 0},
+    {"name": "StatNakedGnomesKilled", "corresponding_stat": "enemiesKilled", "key": "NakedGnome", "text": "Naked Gnomes Killed: {0}", "type": "Normal", "par": 1, "priority": 1, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatNakedGnomesSpared", "corresponding_stat": "enemiesEscaped", "key": "NakedGnome", "text": "Naked Gnomes Spared: {0}", "type": "Normal", "par": 1, "priority": 50, "priority_add_over_par": 1, "priority_sub_under_par": 0},
+    {"name": "StatRedrawBellHits", "corresponding_stat": "redrawBellHits", "key": "nan", "text": "Redraw Bell Rings: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatRenames", "corresponding_stat": "renames", "key": "nan", "text": "Cards Renamed: {0}", "type": "Count", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatSmackback", "corresponding_stat": "totalTriggers", "key": "smackback", "text": "Total Smackbacks: {0}", "type": "Normal", "par": 5, "priority": 0, "priority_add_over_par": 0.25, "priority_sub_under_par": 0},
+    {"name": "StatTime", "corresponding_stat": "nan", "key": "nan", "text": "Time Played: {0}", "type": "Time", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0},
+    {"name": "StatTurns", "corresponding_stat": "turnsTaken", "key": "nan", "text": "Turns Taken: {0}", "type": "Normal", "par": 1, "priority": 0, "priority_add_over_par": 0, "priority_sub_under_par": 0}
+  ]
+}
+```

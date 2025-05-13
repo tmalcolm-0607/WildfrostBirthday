@@ -1,7 +1,6 @@
 
 using System;
 using UnityEngine;
-using WildfrostBirthday;
 
 namespace WildfrostBirthday.Charms
 {
@@ -9,7 +8,14 @@ namespace WildfrostBirthday.Charms
     {
         public static void Register(WildFamilyMod mod)
         {
-            var duckCharm = mod.AddCharm("duck_charm", "Duck Charm", "Gain Frenzy, Aimless, and set Attack to 1", "GeneralCharmPool", "charms/duck_charm", 2)
+            var builder = new CardUpgradeDataBuilder(mod)
+                .Create("duck_charm")
+                .AddPool("GeneralCharmPool")
+                .WithType(CardUpgradeData.Type.Charm)
+                .WithImage("charms/duck_charm.png")
+                .WithTitle("Duck Charm")
+                .WithText("Gain Frenzy, Aimless, and set Attack to 1")
+                .WithTier(2)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.effects = new CardData.StatusEffectStacks[]
@@ -18,11 +24,13 @@ namespace WildfrostBirthday.Charms
                         mod.SStack("Set Attack", 1),
                         mod.SStack("MultiHit", 1)
                     };
-                    data.giveTraits = new CardData.TraitStacks[]
+                      data.giveTraits = new CardData.TraitStacks[]
                     {
                         mod.TStack("Aimless", 1)
                     };
                 });
+                
+            mod.assets.Add(builder);
         }
     }
 }
