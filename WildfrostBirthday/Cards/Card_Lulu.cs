@@ -10,7 +10,7 @@ namespace WildfrostBirthday.Cards
     {
         public static void Register(WildFamilyMod mod)
         {
-            string cardId = "lulu";
+            string cardId = "companion-lulu";
             string spritePath = "companions/lulu";
             
             // COMPANION VERSION

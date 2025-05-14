@@ -12,7 +12,7 @@ public static class StatusEffect_Cleanse
     public static void Register(WildfrostBirthday.WildFamilyMod mod)
     {
         var builder = new StatusEffectDataBuilder(mod)
-            .Create<StatusEffectInstantCleanse>("Cleanse")
+            .Create<StatusEffectInstantCleanse>("Cleanse With Text")
             .WithText("{0}", SystemLanguage.English)
             .WithText("{0}", SystemLanguage.ChineseSimplified)
             .WithText("{0}", SystemLanguage.ChineseTraditional)

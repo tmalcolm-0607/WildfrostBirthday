@@ -2,17 +2,17 @@
 
 namespace WildfrostBirthday.Effects
 {
-	public static class StatusEffect_FrostMoonApplyFrostburnOnAttack
+	public static class StatusEffect_FrostMoonApplyFrostOnAttack
 	{
 		public static void Register(WildFamilyMod mod)
 		{
 			var builder = new StatusEffectDataBuilder(mod)
-				.Create<StatusEffectApplyXOnTurn>("FrostMoon Apply Frostburn On Attack")
-				.WithText("On attack, apply 5 Frostburn", SystemLanguage.English)
-				.WithText("On attack, apply 5 Frostburn", SystemLanguage.ChineseSimplified)
-				.WithText("On attack, apply 5 Frostburn", SystemLanguage.ChineseTraditional)
-				.WithText("On attack, apply 5 Frostburn", SystemLanguage.Korean)
-				.WithText("On attack, apply 5 Frostburn", SystemLanguage.Japanese)
+				.Create<StatusEffectApplyXOnTurn>("FrostMoon Apply Frost On Attack")
+				.WithText("On attack, apply 5 Frost", SystemLanguage.English)
+				.WithText("On attack, apply 5 Frost", SystemLanguage.ChineseSimplified)
+				.WithText("On attack, apply 5 Frost", SystemLanguage.ChineseTraditional)
+				.WithText("On attack, apply 5 Frost", SystemLanguage.Korean)
+				.WithText("On attack, apply 5 Frost", SystemLanguage.Japanese)
 				.WithStackable(true)
 				.WithCanBeBoosted(false)
 				.WithOffensive(false)

@@ -6,4 +6,3 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Reflection;
 global using static CardData;
-global using WildfrostBirthday.Helpers;
