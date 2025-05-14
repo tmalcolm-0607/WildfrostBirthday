@@ -19,14 +19,13 @@ namespace WildfrostBirthday.Cards
                 }
                 return basePath + ".png";
             }
-            
             // COMPANION VERSION
             string cardId = "alison";
             string spritePath = "leaders/alison";
             
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit("companion-" + cardId, "Alison")
-                .SetSprites(getSpritePath(spritePath, cardId), "bg.png")
+                .SetSprites("companions/alison0.png", "bg.png")
                 .SetStats(9, 3, 3)  // HP, ATK, Counter
                 .WithFlavour("Restore 2 HP on kill")
                 .WithCardType("Friendly")
@@ -37,6 +36,17 @@ namespace WildfrostBirthday.Cards
                     data.attackEffects = new[] {
                         mod.SStack("On Kill Heal To Self", 2)
                     };
+                    // Attach dynamic sprite change script
+                    var script = new CardScriptChangeMainOnCounter { baseImagePath = "companions/alison" };
+                    if (data.createScripts != null)
+                    {
+                        var scripts = new List<CardScript>(data.createScripts) { script };
+                        data.createScripts = scripts.ToArray();
+                    }
+                    else
+                    {
+                        data.createScripts = new CardScript[] { script };
+                    }
                 });
 
             mod.assets.Add(companionBuilder);

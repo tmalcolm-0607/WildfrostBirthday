@@ -11,7 +11,7 @@ namespace WildfrostBirthday.Charms
                 .Create("charm-bookcharm")
                 .AddPool("GeneralCharmPool")
                 .WithType(CardUpgradeData.Type.Charm)
-                .WithImage("charms/book_charm")
+                .WithImage("charms/book_charm.png")
                 .WithTitle("Book Charm")
                 .WithText("Draw 1 on deploy and each turn")
                 .WithTier(2)

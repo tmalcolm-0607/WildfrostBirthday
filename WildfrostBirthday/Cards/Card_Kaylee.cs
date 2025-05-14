@@ -12,7 +12,7 @@ namespace WildfrostBirthday.Cards
         {
             string cardId = "kaylee";
             string spritePath = "leaders/kaylee";
-            
+
             // COMPANION VERSION
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit("companion-" + cardId, "Kaylee")
@@ -28,8 +28,11 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("When Deployed Apply Teeth To Self", 4),
                         mod.SStack("On Turn Apply Teeth To Allies", 2)
                     };
+                    // Attach dynamic sprite change script if needed in the future
+                    // Example for reference:
+                    // data.createScripts = new CardScript[] { new CardScriptChangeMainOnCounter("images/companions/kaylee0.png", "images/companions/kaylee1.png", "images/companions/kaylee2.png", "images/companions/kaylee3.png") };
                 });
-                
+
             mod.assets.Add(companionBuilder);
             
             // LEADER VERSION

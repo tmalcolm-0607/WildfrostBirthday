@@ -239,8 +239,6 @@ namespace WildfrostBirthday.Tribes
             additionalUnitsPool.copies = 1;
             additionalUnitsPool.list = new List<DataFile>
             {
-                mod.TryGet<CardData>("companion-lulu"),
-                mod.TryGet<CardData>("companion-poppy"),
                 mod.TryGet<CardData>("companion-alison"),
                 mod.TryGet<CardData>("companion-tony"),
                 mod.TryGet<CardData>("companion-cassie"),

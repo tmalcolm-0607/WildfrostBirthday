@@ -11,12 +11,11 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             string cardId = "companion-lulu";
-            string spritePath = "companions/lulu";
             
             // COMPANION VERSION
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Lulu")
-                .SetSprites(spritePath + ".png", "bg.png")
+                .SetSprites("companions/lulu0.png", "bg.png")
                 .SetStats(6, 2, 3)  // HP, ATK, Counter
                 .WithFlavour("Lulu defends her family with snowy retaliation.")
                 .WithCardType("Friendly")
@@ -27,6 +26,17 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[] {
                         mod.SStack("When Ally is Hit Apply Frost To Attacker", 2)
                     };
+                    // Attach dynamic sprite change script
+                    var script = new CardScriptChangeMainOnCounter { baseImagePath = "companions/lulu" };
+                    if (data.createScripts != null)
+                    {
+                        var scripts = new List<CardScript>(data.createScripts) { script };
+                        data.createScripts = scripts.ToArray();
+                    }
+                    else
+                    {
+                        data.createScripts = new CardScript[] { script };
+                    }
                 });
                 
             mod.assets.Add(companionBuilder);

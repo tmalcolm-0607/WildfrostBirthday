@@ -26,7 +26,7 @@ namespace WildfrostBirthday.Cards
             
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit("companion-" + cardId, "Caleb")
-                .SetSprites(getSpritePath(spritePath, cardId), "bg.png")
+                .SetSprites("companions/caleb0.png", "bg.png")
                 .SetStats(8, 0, 6)  // HP, ATK, Counter
                 .WithFlavour("When attacked, apply 1 overload to attacker. Gain +1 attack on hit.")
                 .WithCardType("Friendly")
@@ -38,6 +38,17 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("When Hit Apply Overload To Attacker", 2),
                         mod.SStack("When Hit Gain Attack To Self (No Ping)", 1)
                     };
+                    // Attach dynamic sprite change script
+                    var script = new CardScriptChangeMainOnCounter { baseImagePath = "companions/caleb" };
+                    if (data.createScripts != null)
+                    {
+                        var scripts = new List<CardScript>(data.createScripts) { script };
+                        data.createScripts = scripts.ToArray();
+                    }
+                    else
+                    {
+                        data.createScripts = new CardScript[] { script };
+                    }
                 });
                 
             mod.assets.Add(companionBuilder);
