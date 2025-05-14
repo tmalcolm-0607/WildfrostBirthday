@@ -3,24 +3,25 @@ using UnityEngine;
 
 namespace WildfrostBirthday.Cards
 {
-    public static class Item_PlywoodSheet
+    public static class Item_FreezingTreat
     {
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("item-plywoodsheet", "Plywood Sheet")
-                .SetSprites("items/plywood.png", "bg.png")
-                .WithFlavour("Add 3 Junk to your hand.")
+                .CreateItem("item-freezingtreat", "Freezing Treat")
+                .SetSprites("items/freezingtreat.png", "bg.png")
+                .WithFlavour("A treat that chills and protects.")
                 .WithCardType("Item")
-                .WithValue(45)
+                .WithValue(40)
+                .SetDamage(4)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
                     };
-                    // Add 3 Junk to hand on play
-                    data.startWithEffects = new[] {
-                        mod.SStack("On Card Played Add Junk To Hand", 3)
+                    data.attackEffects = new[] {
+                        mod.SStack("Shell", 2),
+                        mod.SStack("Snow", 2)
                     };
                     data.canPlayOnHand = false;
                     data.canPlayOnEnemy = false;

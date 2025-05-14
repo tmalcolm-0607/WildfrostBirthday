@@ -16,16 +16,13 @@ namespace WildfrostBirthday.Cards
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.attackEffects = new[] {
-                        mod.SStack("MultiHit", 1)
+                        mod.SStack("MultiHit", 1),
+                        mod.SStack("On Card Played Reduce Max Health", 4)
                     };
-                    
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
                     };
-                    
-                    // Add custom script to reduce Max HP by 4
                 });
-                
             mod.assets.Add(builder);
         }
     }

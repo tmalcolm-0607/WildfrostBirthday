@@ -16,13 +16,12 @@ namespace WildfrostBirthday.Cards
                 .SetDamage(0)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
+                    // On play, randomize MultiHit between 1 and 6
                     data.startWithEffects = new[] {
-                        mod.SStack("MultiHit", 2)
+                        mod.SStack("On Card Played Randomize MultiHit", 6)                        
                     };
                 });
-                
             mod.assets.Add(builder);
-            // Add custom script for randomizing attacks if needed
         }
     }
 }

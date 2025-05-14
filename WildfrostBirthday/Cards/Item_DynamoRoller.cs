@@ -17,12 +17,11 @@ namespace WildfrostBirthday.Cards
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.traits = new List<CardData.TraitStacks> {
-                        mod.TStack("Recycle", 3)
+                        mod.TStack("Recycle", 3),
+                        mod.TStack("Barrage", 1)
                     };
                 });
-                
             mod.assets.Add(builder);
-            // Add custom logic for Barrage if needed
         }
     }
 }

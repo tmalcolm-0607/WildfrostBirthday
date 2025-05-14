@@ -24,10 +24,9 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Barrage", 1)
                     };
-                    data.canPlayOnBoard = true;
-                    data.canPlayOnHand = false;                    
-                    data.canPlayOnFriendly = false;
+                    data.canPlayOnHand = false;
                     data.canPlayOnEnemy = false;
+                    data.playOnSlot = true;
                 });
             mod.assets.Add(builder);
         }
