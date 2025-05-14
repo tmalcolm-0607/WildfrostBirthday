@@ -15,11 +15,14 @@ namespace WildfrostBirthday.Cards
                 .WithValue(45)
                 .SetDamage(1)
                 .SubscribeToAfterAllBuildEvent(data =>
-                {                    data.startWithEffects = new[] {
+                {
+                    data.startWithEffects = new[] {
                         mod.SStack("Hit All Enemies", 1)
                     };
+                    data.canPlayOnHand = false;
+                    data.canPlayOnEnemy = false;
+                    data.playOnSlot = true;
                 });
-                
             mod.assets.Add(builder);
         }
     }

@@ -19,11 +19,10 @@ namespace WildfrostBirthday.Cards
                         mod.TStack("Consume", 1),
                         mod.TStack("Zoomlin", 1)
                     };
-                      data.attackEffects = new[] {
+                    data.attackEffects = new[] {
                         mod.SStack("Cleanse With Text", 1)
                     };
                 });
-                
             mod.assets.Add(builder);
         }
     }

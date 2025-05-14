@@ -18,12 +18,13 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[] {
                         mod.SStack("Hit All Enemies", 1)
                     };
-                    
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Noomlin", 1)
                     };
+                    data.canPlayOnHand = false;
+                    data.canPlayOnEnemy = false;
+                    data.playOnSlot = true;
                 });
-                
             mod.assets.Add(builder);
         }
     }

@@ -3,51 +3,61 @@ using UnityEngine;
 
 namespace WildfrostBirthday.Tribes
 {
+    /// <summary>
+    /// Modular registration logic for the MadFamily tribe.
+    /// This class follows the best-practices pattern: one tribe per file, minimal entry point, and use of only approved/documented helpers.
+    /// See docs/TribeLogicOverview.md and docs/Tutorial5_CreatingATribe.md for rationale and migration details.
+    /// </summary>
     public static class Tribe_MadFamily
     {
+        /// <summary>
+        /// Registers the MadFamily tribe and all associated assets (leaders, inventory, reward pools).
+        /// </summary>
+        /// <param name="mod">The mod instance</param>
         public static void Register(WildFamilyMod mod)
         {
+            // Create the tribe asset using the builder pattern and subscribe to post-build customization.
             var builder = new ClassDataBuilder(mod)
                 .Create("MadFamily")
-                .WithFlag("Images/tribe_madfamily.png") 
+                .WithFlag("Images/tribe_madfamily.png")
                 .WithSelectSfxEvent(FMODUnity.RuntimeManager.PathToEventReference("event:/sfx/card/draw_multi"));
-                builder.SubscribeToAfterAllBuildEvent(data =>
-                    {
-                        // Set tribe ID and prepare character
-                        data.id = "MadFamily";
-                        GameObject gameObject = mod.TryGet<ClassData>("Basic").characterPrefab.gameObject.InstantiateKeepName();
-                        UnityEngine.Object.DontDestroyOnLoad(gameObject);
-                        gameObject.name = "Player (MadFamily)";
-                        data.characterPrefab = gameObject.GetComponent<Character>();
-                        
-                        // Set leaders
-                        data.leaders = new CardData[]
-                        {
-                            mod.TryGet<CardData>("leader-alison"),
-                            mod.TryGet<CardData>("leader-tony"),
-                            mod.TryGet<CardData>("leader-cassie"),
-                            mod.TryGet<CardData>("leader-caleb"),
-                            mod.TryGet<CardData>("leader-kaylee"),
-                        };
-                        
-                        // Create starting inventory
-                        Inventory inventory = ScriptableObject.CreateInstance<Inventory>();
-                        inventory.deck = new CardDataList
-                        {
-                            mod.TryGet<CardData>("SnowGlobe"),
-                            mod.TryGet<CardData>("Sword"),
-                            mod.TryGet<CardData>("Gearhammer"),
-                            mod.TryGet<CardData>("Sword"),
-                            mod.TryGet<CardData>("Gearhammer"),
-                            mod.TryGet<CardData>("SunlightDrum"),
-                            mod.TryGet<CardData>("Junkhead"),
-                            mod.TryGet<CardData>("companion-lulu"),
-                            mod.TryGet<CardData>("companion-poppy"),
-                        };
-                        inventory.reserve = new CardDataList{};
-                        inventory.upgrades = new List<CardUpgradeData>
-                        {
-                            mod.TryGet<CardUpgradeData>("charm-bookcharm"),
+            builder.SubscribeToAfterAllBuildEvent(data =>
+            {
+                // Set tribe ID and prepare character prefab (see Tutorial5_CreatingATribe.md)
+                data.id = "MadFamily";
+                GameObject gameObject = mod.TryGet<ClassData>("Basic").characterPrefab.gameObject.InstantiateKeepName();
+                UnityEngine.Object.DontDestroyOnLoad(gameObject);
+                gameObject.name = "Player (MadFamily)";
+                data.characterPrefab = gameObject.GetComponent<Character>();
+
+                // Set leaders (must be registered before tribe)
+                data.leaders = new CardData[]
+                {
+                    mod.TryGet<CardData>("leader-alison"),
+                    mod.TryGet<CardData>("leader-tony"),
+                    mod.TryGet<CardData>("leader-cassie"),
+                    mod.TryGet<CardData>("leader-caleb"),
+                    mod.TryGet<CardData>("leader-kaylee"),
+                };
+
+                // Create starting inventory (see Tutorial5_CreatingATribe.md#starting-inventory)
+                Inventory inventory = ScriptableObject.CreateInstance<Inventory>();
+                inventory.deck = new CardDataList
+                {
+                    mod.TryGet<CardData>("SnowGlobe"),
+                    mod.TryGet<CardData>("Sword"),
+                    mod.TryGet<CardData>("Gearhammer"),
+                    mod.TryGet<CardData>("Sword"),
+                    mod.TryGet<CardData>("Gearhammer"),
+                    mod.TryGet<CardData>("SunlightDrum"),
+                    mod.TryGet<CardData>("Junkhead"),
+                    mod.TryGet<CardData>("companion-lulu"),
+                    mod.TryGet<CardData>("companion-poppy"),
+                };
+                inventory.reserve = new CardDataList{};
+                inventory.upgrades = new List<CardUpgradeData>
+                {
+                    mod.TryGet<CardUpgradeData>("charm-bookcharm"),
                         };
                         inventory.goldOwed = 0;
                         data.startingInventory = inventory;

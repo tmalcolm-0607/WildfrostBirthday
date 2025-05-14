@@ -18,9 +18,11 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
                     };
-                      // Add custom script to add 3 Junk to hand
+                    // Add custom script to add 3 Junk to hand
+                    data.canPlayOnHand = false;
+                    data.canPlayOnEnemy = false;
+                    data.playOnSlot = true;
                 });
-                
             mod.assets.Add(builder);
         }
     }

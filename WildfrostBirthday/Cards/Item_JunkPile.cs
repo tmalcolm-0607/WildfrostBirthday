@@ -20,6 +20,9 @@ namespace WildfrostBirthday.Cards
                         mod.TStack("Consume", 1),
                         mod.TStack("Zoomlin", 1)
                     };
+                    data.canPlayOnHand = false;
+                    data.canPlayOnEnemy = false;
+                    data.playOnSlot = true;
                 });
             mod.assets.Add(builder);
         }

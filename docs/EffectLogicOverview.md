@@ -1,5 +1,18 @@
 # Effect Logic Overview
 
+_Last Updated: 2025-05-14_
+
+## Modularization & Registration Pattern (MadFamily Mod)
+
+All effects in the MadFamily mod are implemented in their own files (e.g., `StatusEffect_OnKillHealToSelf.cs`) as static classes with a `Register(WildFamilyMod mod)` method. This follows best practices:
+
+- **One effect per file:** Each effect is defined in its own file for clarity and maintainability.
+- **Minimal entry point:** The `Register` method only handles effect asset creation and registration, using only approved/documented helpers.
+- **Approved helpers only:** Only helpers/utilities documented in [ModdingToolsAndTechniques.md](ModdingToolsAndTechniques.md) and [UtilitiesOverview.md](UtilitiesOverview.md) are used (e.g., `TryGet`, `DataList`).
+- **Documentation:** Each file is commented to explain its structure and registration logic.
+
+See the file and comments for a full example. This pattern should be followed for all future effects.
+
 _Last Updated: May 12, 2025_
 
 ## Purpose

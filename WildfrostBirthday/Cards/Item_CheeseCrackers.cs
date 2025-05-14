@@ -22,11 +22,10 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Aimless", 1)
                     };
-                      data.attackEffects = new CardData.StatusEffectStacks[] {
+                    data.attackEffects = new CardData.StatusEffectStacks[] {
                         new CardData.StatusEffectStacks(mod.Get<StatusEffectData>("Increase Attack"), 1),
                     };
                 });
-                
             mod.assets.Add(builder);
         }
     }

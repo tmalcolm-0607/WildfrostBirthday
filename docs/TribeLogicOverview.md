@@ -194,7 +194,28 @@ Use this checklist when migrating, refactoring, or reviewing tribe logic to ensu
 - [ ] Add or update usage examples for every helper in both this overview and [ModdingToolsAndTechniques.md](ModdingToolsAndTechniques.md).
 - [ ] Schedule regular documentation reviews and set a "Next Review Date" in this file.
 
-**Next Review Date:** _(Set after each major migration or refactor)_
+
+**Next Review Date:** 2025-06-14 _(Set after tribe migration and documentation update)_
+
+---
+
+## 10. MadFamily Tribe Modularization & Registration Example
+
+The MadFamily tribe is implemented in `WildfrostBirthday/Tribes/Tribe_MadFamily.cs` using a modular, best-practices approach:
+
+- **One tribe per file:** All tribe logic is contained in a single static class with a `Register(WildFamilyMod mod)` method.
+- **Minimal entry point:** The `Register` method only handles tribe asset creation, leader assignment, starting inventory, and reward pool setup. All helpers/utilities are called from centralized files.
+- **Approved helpers only:** Only helpers/utilities documented in [ModdingToolsAndTechniques.md](ModdingToolsAndTechniques.md) and [UtilitiesOverview.md](UtilitiesOverview.md) are used (e.g., `TryGet`, `DataList`, `CreateRewardPool`).
+- **Documentation:** The file is fully commented to explain each step, and this overview is updated after each migration/refactor.
+
+**Registration Flow:**
+1. Create the tribe asset with `ClassDataBuilder` and set flag, SFX, and ID.
+2. Assign leaders (must be registered before tribe).
+3. Set up starting inventory and upgrades.
+4. Create and assign reward pools using helpers.
+5. Add the tribe asset to the mod's asset list for registration.
+
+See the file and comments for a full example. This pattern should be followed for all future tribes.
 
 ---
 

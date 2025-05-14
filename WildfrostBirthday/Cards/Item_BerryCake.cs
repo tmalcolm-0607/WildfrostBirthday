@@ -18,10 +18,14 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
                     };
-                    
-                    // Add custom script to increase HP of all allies by 3
+                    // Use on-play effect to increase max health of all allies by 3
+                    data.startWithEffects = new[] {
+                        mod.SStack("On Card Played Increase Max Health To Allies", 3),
+                    };
+                    data.canPlayOnHand = false;
+                    data.canPlayOnEnemy = false;
+                    data.playOnSlot = true;
                 });
-                
             mod.assets.Add(builder);
         }
     }

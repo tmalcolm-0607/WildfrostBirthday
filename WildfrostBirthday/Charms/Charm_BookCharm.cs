@@ -3,8 +3,17 @@
 
 namespace WildfrostBirthday.Charms
 {
+    /// <summary>
+    /// Modular registration logic for the BookCharm charm.
+    /// Follows best-practices: one charm per file, minimal entry, approved helpers only.
+    /// See docs/CharmLogicOverview.md for rationale and migration details.
+    /// </summary>
     public static class Charm_BookCharm
     {
+        /// <summary>
+        /// Registers the BookCharm charm.
+        /// </summary>
+        /// <param name="mod">The mod instance</param>
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardUpgradeDataBuilder(mod)

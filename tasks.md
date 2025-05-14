@@ -23,7 +23,13 @@
 
 [*] **Schedule Documentation Review**
     - [x] Set a "Next Review Date" in `CharmEffectLogicOverview.md` after migration is complete. (Next Review Date: 2025-06-12)
-# MadFamily Tribe Mod Migration & Refactor Project Plan
+
+# Cards, Charms, Effects Modularization & Documentation (2025-05-14)
+- [x] Audit all card, charm, and effect files for modular structure (one per file, static Register method).
+- [x] Ensure only approved/documented helpers/utilities are used in all files.
+- [x] Add/expand comments and XML summaries to clarify modular structure and registration logic.
+- [x] Update CardLogicOverview.md, CharmLogicOverview.md, and EffectLogicOverview.md with modularization pattern and best practices.
+- [x] Mark completed items in tasks.md and update tracking.md.
 
 _Last Updated: May 11, 2025_
 
@@ -85,10 +91,10 @@ This document tracks the migration and refactor of the MadFamily Tribe Mod to a 
 ---
 
 ## Task List
-- [ ] Review and document current tribe logic
-- [ ] Design and create new folder/file structure for tribes
-- [ ] Migrate tribe logic to new structure
-- [ ] Refactor and document tribe helpers/utilities
++ [x] Review and document current tribe logic (2025-05-14)
++ [x] Design and create new folder/file structure for tribes (2025-05-14)
++ [x] Migrate tribe logic to new structure (2025-05-14)
++ [x] Refactor and document tribe helpers/utilities (2025-05-14)
 - [ ] Review and document current card logic
 - [ ] Migrate cards to Cards/ folder, one class per file
 - [ ] Refactor and document card helpers/utilities

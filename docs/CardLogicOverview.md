@@ -1,4 +1,17 @@
-# 9. Advanced Builder Patterns & Automation
+# Card Logic Overview
+
+_Last Updated: 2025-05-14_
+
+## Modularization & Registration Pattern (MadFamily Mod)
+
+All cards in the MadFamily mod are implemented in their own files (e.g., `Card_Alison.cs`) as static classes with a `Register(WildFamilyMod mod)` method. This follows best practices:
+
+- **One card per file:** Each card (unit, item, etc.) is defined in its own file for clarity and maintainability.
+- **Minimal entry point:** The `Register` method only handles card asset creation, effects, traits, and scripts, using only approved/documented helpers.
+- **Approved helpers only:** Only helpers/utilities documented in [ModdingToolsAndTechniques.md](ModdingToolsAndTechniques.md) and [UtilitiesOverview.md](UtilitiesOverview.md) are used (e.g., `TryGet`, `SStack`, `TStack`, `CardScriptHelpers`).
+- **Documentation:** Each file is commented to explain its structure and registration logic.
+
+See the file and comments for a full example. This pattern should be followed for all future cards.
 
 ## Overview
 This section provides a comprehensive guide to advanced usage of `CardDataBuilder` for cards and `StatusEffectDataBuilder` for status effects, including extensibility, automation, and helper patterns. It is intended for modders who want to go beyond basic tutorial usage and create maintainable, scalable, and data-driven card and effect systems.

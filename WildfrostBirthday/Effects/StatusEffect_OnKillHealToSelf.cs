@@ -2,6 +2,11 @@
 // Registers the "On Kill Heal To Self" effect for the mod.
 // No usings needed; all required namespaces are provided by GlobalUsings.cs
 
+/// <summary>
+/// Modular registration logic for the OnKillHealToSelf status effect.
+/// Follows best-practices: one effect per file, minimal entry, approved helpers only.
+/// See docs/EffectLogicOverview.md for rationale and migration details.
+/// </summary>
 public static class StatusEffect_OnKillHealToSelf
 {
 	/// <summary>

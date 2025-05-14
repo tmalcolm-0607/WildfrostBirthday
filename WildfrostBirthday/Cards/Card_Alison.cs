@@ -5,8 +5,17 @@ using WildfrostBirthday.Helpers;
 
 namespace WildfrostBirthday.Cards
 {
+    /// <summary>
+    /// Modular registration logic for the Alison card (companion and leader).
+    /// Follows best-practices: one card per file, minimal entry, approved helpers only.
+    /// See docs/CardLogicOverview.md for rationale and migration details.
+    /// </summary>
     public static class Card_Alison
     {
+        /// <summary>
+        /// Registers both the companion and leader versions of Alison.
+        /// </summary>
+        /// <param name="mod">The mod instance</param>
         public static void Register(WildFamilyMod mod)
         {
             // Helper method to get sprite path with potential random variation

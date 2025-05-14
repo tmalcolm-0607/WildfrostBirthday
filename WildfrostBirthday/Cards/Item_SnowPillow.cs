@@ -20,7 +20,6 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("Snow", 1)
                     };
                 });
-                
             mod.assets.Add(builder);
         }
     }

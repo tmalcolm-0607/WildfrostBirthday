@@ -28,13 +28,17 @@ This document tracks the progress, tasks, and references for the Wildfrost MadFa
 - Develop a testing plan for validating charm functionality.
 - Document best practices for balancing new charms and units.
 
-## Tasks
 - Create a guide for using the debugging tools for testing the mod.
 - Diagram the workflow for adding new content to the mod.
 - Document the `TraitData` class and its usages in the mod.
 - Create a guide for modifying and extending existing game assets.
 - Finalize and document a comprehensive testing plan for all features, including edge cases and troubleshooting steps. (See docs/TestingPlan.md, added 2025-05-14)
 - Validate all migrated features and document issues as they are found. (Ongoing)
+
+## Recent Progress (2025-05-14)
+- Tribe/unit logic for MadFamily audited and confirmed modular (see WildfrostBirthday/Tribes/Tribe_MadFamily.cs).
+- Tribe registration, structure, and helpers fully documented in docs/TribeLogicOverview.md.
+- All tribe migration/refactor tasks marked complete in tasks.md.
 
 ## Updates
 - Expanded `CardUpgradeData.md` with examples, interactions, and related links.
@@ -43,17 +47,14 @@ This document tracks the progress, tasks, and references for the Wildfrost MadFa
 - Created comprehensive documentation for `StatusEffectData.md`.
 - Created detailed documentation for `CardData.md`, including inner classes and usage examples.
 - Created a detailed guide for the `AddFamilyUnit` method with examples and best practices.
-- Created an enhanced charm creation guide with recommendations for using target constraints.
-- Created an example implementation of enhanced charms with target constraints.
-- Created a summary document for the enhanced charm system recommendations.
-- Created a comprehensive guide for charm creation and balancing with examples and tips.
-- Created an `index.md` file to serve as a landing page for the documentation.
-- Created a comprehensive guide for implementing new status effects with examples and best practices.
-- Added detailed examples document showcasing different types of status effects with real code samples.
-- Updated backlog and task lists to reflect current progress.
-- Improved documentation structure with cross-links between documents.
-- Added "Last Updated" sections to all documentation files.
-- Updated project README.md with links to documentation resources.
+
+## Recent Progress (2025-05-14)
+- Tribe/unit logic for MadFamily audited and confirmed modular (see WildfrostBirthday/Tribes/Tribe_MadFamily.cs).
+- Tribe registration, structure, and helpers fully documented in docs/TribeLogicOverview.md.
+- All tribe migration/refactor tasks marked complete in tasks.md.
+- Cards, charms, and effects audited for modular structure and helper usage.
+- Modularization/documentation pattern added to CardLogicOverview.md, CharmLogicOverview.md, and EffectLogicOverview.md.
+- All relevant migration tasks marked complete in tasks.md.
 
 ## References
 - **Wildfrost Modding Wiki**: [Link Placeholder]

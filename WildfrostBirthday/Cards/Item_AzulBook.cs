@@ -10,7 +10,7 @@ namespace WildfrostBirthday.Cards
         {
             var builder = new CardDataBuilder(mod)
                 .CreateItem("item-azulbook", "Azul Book")
-                .SetSprites("items/azulbook", "bg.png")
+                .SetSprites("items/azulbook.png", "bg.png")
                 .WithFlavour("A book that applies Overload.")
                 .WithCardType("Item")
                 .WithValue(45)
@@ -24,6 +24,10 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Barrage", 1)
                     };
+                    data.canPlayOnBoard = true;
+                    data.canPlayOnHand = false;                    
+                    data.canPlayOnFriendly = false;
+                    data.canPlayOnEnemy = false;
                 });
             mod.assets.Add(builder);
         }
