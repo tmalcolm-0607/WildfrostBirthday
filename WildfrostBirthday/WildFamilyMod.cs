@@ -47,7 +47,7 @@ public List<object> assets = new List<object>();
 
             base.Load();
 
-            //Events.OnEntityCreated += FixImage;
+            Events.OnEntityCreated += FixImage;
             GameMode gameMode = TryGet<GameMode>("GameModeNormal"); //GameModeNormal is the standard game mode. 
             gameMode.classes = gameMode.classes.Append(TryGet<ClassData>("MadFamily")).ToArray();
         }
