@@ -13,11 +13,13 @@ This document provides an overview of shared utilities and helpers used in the M
 ---
 
 ## 2. Key Utilities & Helpers (Tutorial/Assembly-CSharp Only)
-- `TribeCopy`: Duplicates a base tribe for safe, modular customization.
-- `DataList`: Batch asset lookup for cards, units, effects, etc.
-- `RemoveNulls`: Cleans up nulls from arrays/lists after asset removal/unload.
-- `UnloadFromClasses`: Cleans up reward pools and class lists on unload.
-- `TryGet`: Safe asset lookup by name/type.
+- `SStack`/`TStack` (StackHelpers): Create status effect or trait stacks for cards/effects.
+- `DataList`/`RemoveNulls` (DataUtilities): Batch asset lookup and null cleanup.
+- `StatusCopy`, `CardCopy`, `TribeCopy`, `DataCopy` (DataCopyHelpers): Clone and customize effects, cards, and tribes.
+- `CreateRewardPool`, `UnloadFromClasses`, `FixImage` (RewardPoolHelpers): Reward pool creation, cleanup, and image fixes.
+- `TryGet`, `IsAlreadyRegistered` (AssetHelpers): Safe asset lookup and registration checks.
+- `RegisterAll*` (ComponentRegistration): Automated registration for all modular components.
+- Card script helpers (CardScriptHelpers): Generate scripts for random stat assignment and upgrades.
 
 ---
 

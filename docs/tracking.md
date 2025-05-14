@@ -33,6 +33,8 @@ This document tracks the progress, tasks, and references for the Wildfrost MadFa
 - Diagram the workflow for adding new content to the mod.
 - Document the `TraitData` class and its usages in the mod.
 - Create a guide for modifying and extending existing game assets.
+- Finalize and document a comprehensive testing plan for all features, including edge cases and troubleshooting steps. (See docs/TestingPlan.md, added 2025-05-14)
+- Validate all migrated features and document issues as they are found. (Ongoing)
 
 ## Updates
 - Expanded `CardUpgradeData.md` with examples, interactions, and related links.

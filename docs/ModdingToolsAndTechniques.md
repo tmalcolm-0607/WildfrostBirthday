@@ -91,3 +91,33 @@ The Mod Uploader lets you add tags when publishing your mod, making it easier to
 
 ## Last Updated
 May 11, 2025
+---
+
+## Core Utilities & Helpers (MadFamily Mod)
+
+The following helpers/utilities are used throughout the MadFamily Tribe Mod. All are centralized in the `WildfrostBirthday/Helpers/` folder:
+
+- `SStack`/`TStack` (StackHelpers): Create status effect or trait stacks for cards/effects.
+- `DataList`/`RemoveNulls` (DataUtilities): Batch asset lookup and null cleanup.
+- `StatusCopy`, `CardCopy`, `TribeCopy`, `DataCopy` (DataCopyHelpers): Clone and customize effects, cards, and tribes.
+- `CreateRewardPool`, `UnloadFromClasses`, `FixImage` (RewardPoolHelpers): Reward pool creation, cleanup, and image fixes.
+- `TryGet`, `IsAlreadyRegistered` (AssetHelpers): Safe asset lookup and registration checks.
+- `RegisterAll*` (ComponentRegistration): Automated registration for all modular components.
+- Card script helpers (CardScriptHelpers): Generate scripts for random stat assignment and upgrades.
+
+**Usage Examples:**
+
+```csharp
+mod.SStack("OnKillHealToSelf", 2)
+mod.TStack("Frenzy", 1)
+mod.DataList<CardData>("Alison", "Tony")
+mod.StatusCopy("OnKillHealToSelf", "OnKillHealToSelf_Copy")
+mod.CreateRewardPool("MadFamilyItems", "Items", mod.DataList<CardData>(...))
+mod.TryGet<CardData>("leader-alison")
+mod.RegisterAllStatusEffects()
+mod.RegisterAllCards()
+mod.RegisterAllCharms()
+mod.RegisterAllTribes()
+```
+
+See also: [UtilitiesOverview.md](UtilitiesOverview.md) for a full list and migration checklist.

@@ -106,6 +106,20 @@ This document tracks the migration and refactor of the MadFamily Tribe Mod to a 
 
 ---
 
+## Deep Investigation & Next Steps (2025-05-14)
+
+- [ ] **Audit all tribe/unit logic:** Ensure all tribe and unit registration is modularized (one class/file per tribe/unit), and that registration logic is minimal in the entry point. Update docs/Tutorial5_CreatingATribe.md as needed.
+- [ ] **Cards modularization:** Confirm all cards are in Cards/ folder, one class per file, using only approved helpers/utilities. Refactor and document as needed.
+- [ ] **Charms review:** Ensure all charms are in their own files, use only documented helpers, and registration order is correct. Expand docs/Tutorial3_CharmsAndKeywords.md and docs/EnhancedCharmCreation.md.
+- [ ] **Effects audit:** Confirm all effects are modularized, registered before use, and use only centralized/documented helpers. Update docs/ImplementingStatusEffects.md and docs/EffectLogicOverview.md.
+- [ ] **Items system:** Ensure all items are modular, use only approved helpers, and are documented in docs/Tutorial2_CardsAndStatusEffects.md and docs/data/Reward Pools.md. Integrate with units/charms as needed.
+- [ ] **Utilities centralization:** Scan for duplicate helpers/utilities, centralize in Utilities/, and document with usage examples in docs/ModdingToolsAndTechniques.md.
+- [ ] **Documentation audit:** Review and update all documentation for migrated features, maintain tasks.md and tracking.md, and set/update "Next Review Date" after each migration phase.
+- [ ] **Testing plan:** Finalize and document a comprehensive testing plan for all features, including edge cases and troubleshooting steps.
+- [ ] **Best practices enforcement:** Ensure no files are added/modified in Reference/Assembly-CSharp or decompiled folders, keep mod entry point minimal, and document rationale for each migration/refactor.
+
+---
+
 ## Notes
 - All changes must follow the rules in copilot_instructions.md.
 - Discuss and document rationale for each migration/refactor.

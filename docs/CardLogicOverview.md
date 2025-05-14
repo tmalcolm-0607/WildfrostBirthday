@@ -241,6 +241,7 @@ Use this checklist when migrating, refactoring, or reviewing card logic:
 ---
 
 ## 7. Feedback & Review
+- Testing plan and validation steps are now tracked in `docs/TestingPlan.md` (added 2025-05-14). All card logic and registration should be validated using this plan after each migration or refactor.
 - Share this document with collaborators for feedback.
 - Revise as card logic evolves.
 
