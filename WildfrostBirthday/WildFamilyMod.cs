@@ -37,19 +37,19 @@ public List<object> assets = new List<object>();
 
         public override void Load()
         {
+
             if (!preLoaded)
             {
-                CreateFamilyUnits();
-                CreateItemCards();
-                //WildfrostBirthday.Tribes.Tribe_MadFamily.Register(this);
+                // Automatically register all components (status effects, cards, charms, items, tribes)
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllComponents(this);
                 preLoaded = true;
             }
 
             base.Load();
 
             //Events.OnEntityCreated += FixImage;
-            //GameMode gameMode = TryGet<GameMode>("GameModeNormal"); //GameModeNormal is the standard game mode. 
-            //gameMode.classes = gameMode.classes.Append(TryGet<ClassData>("MadFamily")).ToArray();
+            GameMode gameMode = TryGet<GameMode>("GameModeNormal"); //GameModeNormal is the standard game mode. 
+            gameMode.classes = gameMode.classes.Append(TryGet<ClassData>("MadFamily")).ToArray();
         }
 
         public override void Unload()
@@ -70,54 +70,7 @@ public List<object> assets = new List<object>();
             return assets.OfType<T>().ToList();
         }
 
-        private void CreateFamilyUnits()
-        {
-            // Register base Cleanse effect if not present
-
-            // Register modularized effects (all modular status effects used by cards/charms/items)
-            Effects.StatusEffect_Cleanse.Register(this);
-            StatusEffect_WhenDestroyedAddHealthToAllies.Register(this);
-            StatusEffect_WhenEnemyIsKilledApplyHealthToAttacker.Register(this);
-            StatusEffect_OnKillHealToSelf.Register(this);
-            Effects.StatusEffect_CollectBlingOnTrigger.Register(this);
-            Effects.StatusEffect_FrostMoonApplyFrostOnAttack.Register(this);
-            Effects.StatusEffect_FrostMoonIncreaseMaxCounter.Register(this);
-            Effects.StatusEffect_OnTurnApplyTeethToAllies.Register(this);
-            Effects.StatusEffect_OnTurnApplyTeethToSelf.Register(this);
-            Effects.StatusEffect_WhenAllyIsHitApplyFrostToAttacker.Register(this);
-            Effects.StatusEffect_WhenDeployedApplyTeethToSelf.Register(this);
-            Effects.StatusEffect_WhenHitApplyDemonizeToAttacker.Register(this);
-            Effects.StatusEffect_WhenHitApplyOverloadToAttacker.Register(this);
-            Effects.StatusEffect_WhenHitGainAttackToSelfNoPing.Register(this);
-            Effects.StatusEffect_OnTurnAddAttackToSelf.Register(this);
-            Effects.StatusEffect_OnTurnApplyInkToRandomEnemy.Register(this);
-            Effects.StatusEffect_OnTurnSummonSoulrose.Register(this);
-            Effects.StatusEffect_SummonSoulrose.Register(this);
-            StatusEffect_InstantSummonSoulrose.Register(this);
-            StatusEffect_SummonWisp.Register(this);
-            StatusEffect_WhenDeployedSummonSoulrose.Register(this);
-
-            // Register all modular cards/units
-            Cards.Card_Soulrose.Register(this);
-            Cards.Card_Wisp.Register(this);
-            Cards.Card_Alison.Register(this);
-            Cards.Card_Tony.Register(this);
-            Cards.Card_Caleb.Register(this);
-            Cards.Card_Kaylee.Register(this);
-            Cards.Card_Cassie.Register(this);
-            Cards.Card_Lulu.Register(this);
-            Cards.Card_Poppy.Register(this);
-
-            // Register all modular charms
-            Charms.Charm_PugCharm.Register(this);
-            Charms.Charm_GoldenVialCharm.Register(this);
-            Charms.Charm_FrostMoonCharm.Register(this);
-            Charms.Charm_SodaCharm.Register(this);
-            Charms.Charm_PizzaCharm.Register(this);
-            Charms.Charm_PlantCharm.Register(this);
-            Charms.Charm_BookCharm.Register(this);
-            Charms.Charm_DuckCharm.Register(this);
-        }
+        // The CreateFamilyUnits method is no longer needed; registration is now automatic.
 
 
 
@@ -409,16 +362,6 @@ public CardDataBuilder AddItemCard(
 
             assets.Add(builder);
             return builder;
-        }
-
-        // Example usage of AddItemCard
-        private void CreateItemCards()
-        {
-            Cards.Item_SnowPillow.Register(this);
-            Cards.Item_RefreshingWater.Register(this);
-            Cards.Item_WispMask.Register(this);
-            Cards.Item_CheeseCrackers.Register(this);
-            Cards.Item_FoamBullets.Register(this);
         }
     }
 }

@@ -161,11 +161,12 @@ namespace WildfrostBirthday.Helpers
         public static void RegisterAllComponents(this WildFamilyMod mod)
         {
             UnityEngine.Debug.Log($"[{mod.Title}] Registering all components");
-            mod.RegisterAllTribes();
+
             mod.RegisterAllStatusEffects();
             mod.RegisterAllCards();
-            mod.RegisterAllCharms();
             mod.RegisterAllItems();
+            mod.RegisterAllCharms();            
+            mod.RegisterAllTribes();
         }
     }
 }

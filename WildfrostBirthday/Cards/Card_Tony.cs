@@ -15,7 +15,7 @@ namespace WildfrostBirthday.Cards
             
             // COMPANION VERSION
             var companionBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Tony")
+                .CreateUnit("companion-" + cardId, "Tony")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(8, 2, 4)  // HP, ATK, Counter
                 .WithFlavour("Summon Soulrose")
@@ -34,7 +34,7 @@ namespace WildfrostBirthday.Cards
             
             // LEADER VERSION
             var leaderBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Tony")
+                .CreateUnit("leader-" + cardId, "Tony")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(8, 2, 4)  // HP, ATK, Counter
                 .WithFlavour("Summon Soulrose")

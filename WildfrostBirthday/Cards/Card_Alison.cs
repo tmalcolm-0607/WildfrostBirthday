@@ -25,7 +25,7 @@ namespace WildfrostBirthday.Cards
             string spritePath = "leaders/alison";
             
             var companionBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Alison")
+                .CreateUnit("companion-" + cardId, "Alison")
                 .SetSprites(getSpritePath(spritePath, cardId), "bg.png")
                 .SetStats(9, 3, 3)  // HP, ATK, Counter
                 .WithFlavour("Restore 2 HP on kill")
@@ -43,7 +43,7 @@ namespace WildfrostBirthday.Cards
 
             // LEADER VERSION
             var leaderBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Alison")
+                .CreateUnit("leader-" + cardId, "Alison")
                 .SetSprites(getSpritePath(spritePath, cardId), "bg.png")
                 .SetStats(9, 3, 3)  // HP, ATK, Counter
                 .WithFlavour("Restore 2 HP on kill")

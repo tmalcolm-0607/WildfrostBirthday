@@ -9,51 +9,52 @@ namespace WildfrostBirthday.Tribes
         {
             var builder = new ClassDataBuilder(mod)
                 .Create("MadFamily")
-                .WithSelectSfxEvent(FMODUnity.RuntimeManager.PathToEventReference("event:/sfx/card/draw_multi"))
-                .SubscribeToAfterAllBuildEvent(data =>
-                {
-                    // Set tribe ID and prepare character
-                    data.id = "MadFamily";
-                    GameObject gameObject = mod.TryGet<ClassData>("Basic").characterPrefab.gameObject.InstantiateKeepName();
-                    UnityEngine.Object.DontDestroyOnLoad(gameObject);
-                    gameObject.name = "Player (MadFamily)";
-                    data.characterPrefab = gameObject.GetComponent<Character>();
-                    
-                    // Set leaders
-                    data.leaders = new CardData[]
+                .WithSelectSfxEvent(FMODUnity.RuntimeManager.PathToEventReference("event:/sfx/card/draw_multi"));
+                builder.SubscribeToAfterAllBuildEvent(data =>
                     {
-                        mod.TryGet<CardData>("leader-alison"),
-                        mod.TryGet<CardData>("leader-tony"),
-                        mod.TryGet<CardData>("leader-cassie"),
-                        mod.TryGet<CardData>("leader-caleb"),
-                        mod.TryGet<CardData>("leader-kaylee"),
-                    };
-                    
-                    // Create starting inventory
-                    Inventory inventory = ScriptableObject.CreateInstance<Inventory>();
-                    inventory.deck = new CardDataList
-                    {
-                        mod.TryGet<CardData>("SnowGlobe"),
-                        mod.TryGet<CardData>("Sword"),
-                        mod.TryGet<CardData>("Gearhammer"),
-                        mod.TryGet<CardData>("Sword"),
-                        mod.TryGet<CardData>("Gearhammer"),
-                        mod.TryGet<CardData>("SunlightDrum"),
-                        mod.TryGet<CardData>("Junkhead"),
-                        mod.TryGet<CardData>("companion-lulu"),
-                        mod.TryGet<CardData>("companion-poppy"),
-                    };
-                    inventory.reserve = new CardDataList{};
-                    inventory.upgrades = new List<CardUpgradeData>
-                    {
-                        mod.TryGet<CardUpgradeData>("charm-book_charm"),
-                    };
-                    inventory.goldOwed = 0;
-                    data.startingInventory = inventory;
-                    
-                    // Create reward pools
-                    data.rewardPools = CreateRewardPools(mod);
-                });
+                        // Set tribe ID and prepare character
+                        data.id = "MadFamily";
+                        GameObject gameObject = mod.TryGet<ClassData>("Basic").characterPrefab.gameObject.InstantiateKeepName();
+                        UnityEngine.Object.DontDestroyOnLoad(gameObject);
+                        gameObject.name = "Player (MadFamily)";
+                        data.characterPrefab = gameObject.GetComponent<Character>();
+                        
+                        // Set leaders
+                        data.leaders = new CardData[]
+                        {
+                            mod.TryGet<CardData>("leader-alison"),
+                            mod.TryGet<CardData>("leader-tony"),
+                            mod.TryGet<CardData>("leader-cassie"),
+                            mod.TryGet<CardData>("leader-caleb"),
+                            mod.TryGet<CardData>("leader-kaylee"),
+                        };
+                        
+                        // Create starting inventory
+                        Inventory inventory = ScriptableObject.CreateInstance<Inventory>();
+                        inventory.deck = new CardDataList
+                        {
+                            mod.TryGet<CardData>("SnowGlobe"),
+                            mod.TryGet<CardData>("Sword"),
+                            mod.TryGet<CardData>("Gearhammer"),
+                            mod.TryGet<CardData>("Sword"),
+                            mod.TryGet<CardData>("Gearhammer"),
+                            mod.TryGet<CardData>("SunlightDrum"),
+                            mod.TryGet<CardData>("Junkhead"),
+                            mod.TryGet<CardData>("companion-lulu"),
+                            mod.TryGet<CardData>("companion-poppy"),
+                        };
+                        inventory.reserve = new CardDataList{};
+                        inventory.upgrades = new List<CardUpgradeData>
+                        {
+                            mod.TryGet<CardUpgradeData>("charm-book_charm"),
+                        };
+                        inventory.goldOwed = 0;
+                        data.startingInventory = inventory;
+                        
+                        // Create reward pools
+                        data.rewardPools = CreateRewardPools(mod);
+                    });
+                
 
             // Add the tribe to the mod assets
             mod.assets.Add(builder);

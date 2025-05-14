@@ -15,7 +15,7 @@ namespace WildfrostBirthday.Cards
             
             // COMPANION VERSION
             var companionBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Kaylee")
+                .CreateUnit("companion-" + cardId, "Kaylee")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(7, 4, 7)  // HP, ATK, Counter
                 .WithFlavour("Sharp-witted and sharper-fanged, Kaylee boosts all allies' bite.")
@@ -34,7 +34,7 @@ namespace WildfrostBirthday.Cards
             
             // LEADER VERSION
             var leaderBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Kaylee")
+                .CreateUnit("leader-" + cardId, "Kaylee")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(7, 4, 7)  // HP, ATK, Counter
                 .WithFlavour("Sharp-witted and sharper-fanged, Kaylee boosts all allies' bite.")

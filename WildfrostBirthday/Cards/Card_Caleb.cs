@@ -25,7 +25,7 @@ namespace WildfrostBirthday.Cards
             string spritePath = "leaders/caleb";
             
             var companionBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Caleb")
+                .CreateUnit("companion-" + cardId, "Caleb")
                 .SetSprites(getSpritePath(spritePath, cardId), "bg.png")
                 .SetStats(8, 0, 6)  // HP, ATK, Counter
                 .WithFlavour("When attacked, apply 1 overload to attacker. Gain +1 attack on hit.")
@@ -44,7 +44,7 @@ namespace WildfrostBirthday.Cards
             
             // LEADER VERSION
             var leaderBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Caleb")
+                .CreateUnit("leader-" + cardId, "Caleb")
                 .SetSprites(getSpritePath(spritePath, cardId), "bg.png")
                 .SetStats(8, 0, 6)  // HP, ATK, Counter
                 .WithFlavour("When attacked, apply 1 overload to attacker. Gain +1 attack on hit.")

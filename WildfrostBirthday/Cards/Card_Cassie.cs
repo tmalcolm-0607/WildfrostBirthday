@@ -15,7 +15,7 @@ namespace WildfrostBirthday.Cards
             
             // COMPANION VERSION
             var companionBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Cassie")
+                .CreateUnit("companion-" + cardId, "Cassie")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(5, 1, 3)  // HP, ATK, Counter
                 .WithFlavour("Joyful and chaotic, Cassie bounces through battle with ink and impulse.")
@@ -39,7 +39,7 @@ namespace WildfrostBirthday.Cards
             
             // LEADER VERSION
             var leaderBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Cassie")
+                .CreateUnit("leader-" + cardId, "Cassie")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(5, 1, 3)  // HP, ATK, Counter
                 .WithFlavour("Joyful and chaotic, Cassie bounces through battle with ink and impulse.")

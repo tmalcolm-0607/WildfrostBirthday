@@ -13,12 +13,12 @@ namespace WildfrostBirthday.Effects
             // Create the status effect builder directly
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectApplyXOnTurn>("Auto-Registration Example")
-                .WithText("On turn, apply 1 Strength to all allies")
+                .WithText("On turn, apply 1 Spice to all allies")
                 .WithType("Support")
                 .WithCanBeBoosted(true)
                 .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnTurn>(data =>
                 {                    // Configure the effect's behavior
-                    data.effectToApply = mod.TryGet<StatusEffectData>("Strength");
+                    data.effectToApply = mod.TryGet<StatusEffectData>("Spice");
                     data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Allies;
                     // The amount is determined by the status effect itself
                 });

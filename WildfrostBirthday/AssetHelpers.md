@@ -19,7 +19,7 @@ public class MyComponent
         if (!mod.IsAlreadyRegistered<CardData>("my-card"))
         {
             // Try to get an existing asset
-            var effect = mod.TryGet<StatusEffectData>("Strength");
+            var effect = mod.TryGet<StatusEffectData>("Spice");
             
             // Create a new asset builder
             var builder = new CardDataBuilder(mod)
