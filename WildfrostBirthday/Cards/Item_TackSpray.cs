@@ -8,7 +8,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("tack_spray", "Tack Spray")
+                .CreateItem("item-tackspray", "Tack Spray")
                 .SetSprites("items/tackspray.png", "bg.png")
                 .WithFlavour("A spray that hits all enemies.")
                 .WithCardType("Item")

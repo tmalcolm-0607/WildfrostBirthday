@@ -9,6 +9,7 @@ namespace WildfrostBirthday.Tribes
         {
             var builder = new ClassDataBuilder(mod)
                 .Create("MadFamily")
+                .WithFlag("Images/tribe_madfamily.png") 
                 .WithSelectSfxEvent(FMODUnity.RuntimeManager.PathToEventReference("event:/sfx/card/draw_multi"));
                 builder.SubscribeToAfterAllBuildEvent(data =>
                     {
@@ -46,7 +47,7 @@ namespace WildfrostBirthday.Tribes
                         inventory.reserve = new CardDataList{};
                         inventory.upgrades = new List<CardUpgradeData>
                         {
-                            mod.TryGet<CardUpgradeData>("charm-book_charm"),
+                            mod.TryGet<CardUpgradeData>("charm-bookcharm"),
                         };
                         inventory.goldOwed = 0;
                         data.startingInventory = inventory;
@@ -72,12 +73,8 @@ namespace WildfrostBirthday.Tribes
             itemsPool.list = new List<DataFile>
             {
                 mod.TryGet<CardData>("Mimik"),
-                mod.TryGet<CardData>("HeartmistStation"),
-                mod.TryGet<CardData>("TotemOfTheGoat"),
                 mod.TryGet<CardData>("Blingo"),
                 mod.TryGet<CardData>("MegaMimik"),
-                mod.TryGet<CardData>("Bitebox"),
-                mod.TryGet<CardData>("Krono"),
                 mod.TryGet<CardData>("ZoomlinNest"),
                 mod.TryGet<CardData>("SunlightDrum"),
                 mod.TryGet<CardData>("Demonheart"),
@@ -85,18 +82,25 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("BerryBlade"),
                 mod.TryGet<CardData>("BerryBasket"),
                 mod.TryGet<CardData>("BlazeTea"),
-                mod.TryGet<CardData>("PomegranateBomb"),
                 mod.TryGet<CardData>("Hooker"),
-                mod.TryGet<CardData>("Slapcrackers"),
-                mod.TryGet<CardData>("FrostBloom"),
-                mod.TryGet<CardData>("FrostBell"),
                 mod.TryGet<CardData>("MoltenDip"),
                 mod.TryGet<CardData>("NoomlinBiscuit"),
                 mod.TryGet<CardData>("ZoomlinWafers"),
-                mod.TryGet<CardData>("IceDice"),
-                mod.TryGet<CardData>("item-Snow_pillow"),
-                mod.TryGet<CardData>("item-refreshing_water"),
-                mod.TryGet<CardData>("item-wisp_mask"),
+                mod.TryGet<CardData>("item-snowpillow"),
+                mod.TryGet<CardData>("item-refreshingwater"),
+                mod.TryGet<CardData>("item-wispmask"),
+                mod.TryGet<CardData>("item-azulbook"),
+                mod.TryGet<CardData>("item-azultorch"),
+                mod.TryGet<CardData>("item-berrycake"),
+                mod.TryGet<CardData>("item-blazeberry"),
+                mod.TryGet<CardData>("item-cheesecrackers"),
+                mod.TryGet<CardData>("item-diceofdestiny"),
+                mod.TryGet<CardData>("item-dynamoroller"),
+                mod.TryGet<CardData>("item-foambullets"),
+                mod.TryGet<CardData>("item-foamrocket"),
+                mod.TryGet<CardData>("item-hazetacks"),
+                mod.TryGet<CardData>("item-inkegg"),
+                mod.TryGet<CardData>("item-junkpile"),
             };
             itemsPool.isGeneralPool = true;
             pools.Add(itemsPool);
@@ -169,14 +173,14 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardUpgradeData>("CardUpgradeMuncher"),
                 mod.TryGet<CardUpgradeData>("CardUpgradePlink"),
                 mod.TryGet<CardUpgradeData>("CardUpgradeShadeClay"),
-                mod.TryGet<CardUpgradeData>("charm-pug_charm"),
-                mod.TryGet<CardUpgradeData>("charm-golden_vial"),
-                mod.TryGet<CardUpgradeData>("charm-frost_moon"),
-                mod.TryGet<CardUpgradeData>("charm-soda_charm"),
-                mod.TryGet<CardUpgradeData>("charm-pizza_charm"),
-                mod.TryGet<CardUpgradeData>("charm-plant_charm"),
-                mod.TryGet<CardUpgradeData>("charm-book_charm"),
-                mod.TryGet<CardUpgradeData>("charm-duck_charm"),
+                mod.TryGet<CardUpgradeData>("charm-pugcharm"),
+                mod.TryGet<CardUpgradeData>("charm-goldenvialcharm"),
+                mod.TryGet<CardUpgradeData>("charm-frostmooncharm"),
+                mod.TryGet<CardUpgradeData>("charm-sodacharm"),
+                mod.TryGet<CardUpgradeData>("charm-pizzacharm"),
+                mod.TryGet<CardUpgradeData>("charm-plantcharm"),
+                mod.TryGet<CardUpgradeData>("charm-bookcharm"),
+                mod.TryGet<CardUpgradeData>("charm-duckcharm"),
             };
             charmsPool.isGeneralPool = true;
             pools.Add(charmsPool);
@@ -222,23 +226,6 @@ namespace WildfrostBirthday.Tribes
             additionalItemsPool.copies = 1;
             additionalItemsPool.list = new List<DataFile>
             {
-                mod.TryGet<CardData>("Heartforge"),
-                mod.TryGet<CardData>("SpiceSparklers"),
-                mod.TryGet<CardData>("Shroomine"),
-                mod.TryGet<CardData>("Shroominator"),
-                mod.TryGet<CardData>("ShroomLauncher"),
-                mod.TryGet<CardData>("PepperFlag"),
-                mod.TryGet<CardData>("Peppermaton"),
-                mod.TryGet<CardData>("HongosHammer"),
-                mod.TryGet<CardData>("SporePack"),
-                mod.TryGet<CardData>("Peppering"),
-                mod.TryGet<CardData>("Peppereaper"),
-                mod.TryGet<CardData>("DragonflamePepper"),
-                mod.TryGet<CardData>("SpiceStones"),
-                mod.TryGet<CardData>("Shellbo"),
-                mod.TryGet<CardData>("NutshellCake"),
-                mod.TryGet<CardData>("ShellShield"),
-                mod.TryGet<CardData>("StormbearSpirit"),
                 mod.TryGet<CardData>("MobileCampfire"),
                 mod.TryGet<CardData>("Snowcracker"),
                 mod.TryGet<CardData>("ScrapPile"),
@@ -252,22 +239,15 @@ namespace WildfrostBirthday.Tribes
             additionalUnitsPool.copies = 1;
             additionalUnitsPool.list = new List<DataFile>
             {
-                mod.TryGet<CardData>("Yuki"),
-                mod.TryGet<CardData>("Wallop"),
-                mod.TryGet<CardData>("LilBerry"),
-                mod.TryGet<CardData>("Pyra"),
-                mod.TryGet<CardData>("Firefist"),
-                mod.TryGet<CardData>("Chompom"),
-                mod.TryGet<CardData>("Shelly"),
-                mod.TryGet<CardData>("Kernel"),
-                mod.TryGet<CardData>("Pootie"),
-                mod.TryGet<CardData>("TinyTyko"),
-                mod.TryGet<CardData>("Wort"),
-                mod.TryGet<CardData>("Fungoose"),
-                mod.TryGet<CardData>("Pimento"),
-                mod.TryGet<CardData>("Fulbert"),
+                mod.TryGet<CardData>("companion-lulu"),
+                mod.TryGet<CardData>("companion-poppy"),
+                mod.TryGet<CardData>("companion-alison"),
+                mod.TryGet<CardData>("companion-tony"),
+                mod.TryGet<CardData>("companion-cassie"),
+                mod.TryGet<CardData>("companion-caleb"),
+                mod.TryGet<CardData>("companion-kaylee"),
             };
-            additionalUnitsPool.isGeneralPool = false;
+            additionalUnitsPool.isGeneralPool = true;
             pools.Add(additionalUnitsPool);
             
             // Additional charms pool

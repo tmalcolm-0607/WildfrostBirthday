@@ -8,7 +8,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("wisp_mask", "Wisp Mask")
+                .CreateItem("item-wispmask", "Wisp Mask")
                 .SetSprites("items/wispmask.png", "bg.png")
                 .WithFlavour("A mask with the ability to summon wisps.")
                 .WithCardType("Item")

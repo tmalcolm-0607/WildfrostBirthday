@@ -9,7 +9,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("azul_book", "Azul Book")
+                .CreateItem("item-azulbook", "Azul Book")
                 .SetSprites("items/azulbook", "bg.png")
                 .WithFlavour("A book that applies Overload.")
                 .WithCardType("Item")

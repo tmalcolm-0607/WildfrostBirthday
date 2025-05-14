@@ -8,7 +8,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {            // Create the card builder directly
             var builder = new CardDataBuilder(mod)
-                .CreateItem("item-azul_torch", "Azul Torch")
+                .CreateItem("item-azultorch", "Azul Torch")
                 .SetSprites("items/azultorch.png", "bg.png")
                 .WithFlavour("A torch that applies Overload.")
                 .WithCardType("Item")

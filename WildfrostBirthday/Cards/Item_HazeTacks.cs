@@ -8,7 +8,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("haze_tacks", "Haze Tacks")
+                .CreateItem("item-hazetacks", "Haze Tacks")
                 .SetSprites("items/hazetacks.png", "bg.png")
                 .WithFlavour("Apply 3 Teeth and 2 Haze.")
                 .WithCardType("Item")

@@ -8,7 +8,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("soulrose_mask", "Soulrose Mask")
+                .CreateItem("item-soulrosemask", "Soulrose Mask")
                 .SetSprites("items/soulrosemask.png", "bg.png")
                 .WithFlavour("A mask that summons a Soulrose.")
                 .WithCardType("Item")

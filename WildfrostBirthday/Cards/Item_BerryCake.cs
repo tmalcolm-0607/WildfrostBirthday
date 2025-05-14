@@ -8,7 +8,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("berry_cake", "Berry Cake")
+                .CreateItem("item-berrycake", "Berry Cake")
                 .SetSprites("items/berrycake.png", "bg.png")
                 .WithFlavour("Increase HP of all allies by 3.")
                 .WithCardType("Item")

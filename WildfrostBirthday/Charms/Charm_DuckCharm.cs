@@ -9,7 +9,7 @@ namespace WildfrostBirthday.Charms
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardUpgradeDataBuilder(mod)
-                .Create("duck_charm")
+                .Create("charm-duckcharm")
                 .AddPool("GeneralCharmPool")
                 .WithType(CardUpgradeData.Type.Charm)
                 .WithImage("charms/duck_charm.png")

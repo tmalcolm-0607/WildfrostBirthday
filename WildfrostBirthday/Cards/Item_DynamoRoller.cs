@@ -8,7 +8,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("dynamo_roller", "Dynamo Roller")
+                .CreateItem("item-dynamoroller", "Dynamo Roller")
                 .SetSprites("items/dynamoroller.png", "bg.png")
                 .WithFlavour("A roller that hits all enemies.")
                 .WithCardType("Item")

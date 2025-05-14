@@ -10,7 +10,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("item-ink_egg", "Ink Egg")
+                .CreateItem("item-inkegg", "Ink Egg")
                 .SetSprites("items/inkegg.png", "bg.png")
                 .WithFlavour("An egg that applies 7 Ink.")
                 .WithCardType("Item")

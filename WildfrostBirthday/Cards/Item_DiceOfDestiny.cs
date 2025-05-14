@@ -8,7 +8,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("dice_of_destiny", "Dice of Destiny")
+                .CreateItem("item-diceofdestiny", "Dice of Destiny")
                 .SetSprites("items/diceofdestiny.png", "bg.png")
                 .WithFlavour("MultiHit x2, randomize attacks between 1–6.")
                 .WithCardType("Item")

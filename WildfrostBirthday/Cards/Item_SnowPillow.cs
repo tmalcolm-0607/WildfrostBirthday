@@ -8,7 +8,7 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             var builder = new CardDataBuilder(mod)
-                .CreateItem("Snow_pillow", "Snow Pillow")
+                .CreateItem("item-snowpillow", "Snow Pillow")
                 .SetSprites("items/snowpillow.png", "bg.png")
                 .WithFlavour("A pillow made of snow.")
                 .WithCardType("Item")
