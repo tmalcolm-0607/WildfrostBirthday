@@ -18,6 +18,7 @@ namespace WildfrostBirthday.Cards
                 {
                     // On play, deal random damage between 1 and 6
                     data.startWithEffects = new[] {
+                        mod.SStack("MultiHit", 1),
                         mod.SStack("On Card Played Deal Random Damage To Target (1-6)", 1)
                     };
                 });

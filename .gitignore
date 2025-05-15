@@ -407,4 +407,4 @@ node_modules/
 packages/
 
 # Ignore the Reference folder and its contents
-#/Reference/
+/Reference/
