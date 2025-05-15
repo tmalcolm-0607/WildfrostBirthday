@@ -10,15 +10,15 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateItem("item-diceofdestiny", "Dice of Destiny")
                 .SetSprites("items/diceofdestiny.png", "bg.png")
-                .WithFlavour("MultiHit x2, randomize attacks between 1–6.")
+                .WithFlavour("Deal 1–6 random damage.")
                 .WithCardType("Item")
                 .WithValue(45)
                 .SetDamage(0)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    // On play, randomize MultiHit between 1 and 6
-                    data.startWithEffects = new[] {
-                        mod.SStack("On Card Played Randomize MultiHit", 6)                        
+                    // On play, deal random damage between 1 and 6
+                    data.attackEffects = new[] {
+                        mod.SStack("On Card Played Deal Random Damage To Target (1-6)", 1)
                     };
                 });
             mod.assets.Add(builder);
