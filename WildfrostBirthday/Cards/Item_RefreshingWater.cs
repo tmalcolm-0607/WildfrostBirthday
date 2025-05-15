@@ -10,7 +10,7 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateItem("item-refreshingwater", "Refreshing Water")
                 .SetSprites("items/refreshingwater.png", "bg.png")
-                .WithFlavour("A bottle of refreshing water.")
+                .WithText("A bottle of refreshing water.")
                 .WithCardType("Item")
                 .WithValue(45)
                 .SubscribeToAfterAllBuildEvent(data =>

@@ -30,7 +30,7 @@ namespace WildfrostBirthday.Cards
                     };
                     // Attach dynamic sprite change script if needed in the future
                     // Example for reference:
-                    // data.createScripts = new CardScript[] { new CardScriptChangeMainOnCounter("images/companions/kaylee0.png", "images/companions/kaylee1.png", "images/companions/kaylee2.png", "images/companions/kaylee3.png") };
+                    // data.createScripts = new CardScript[] { ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>() };
                 });
 
             mod.assets.Add(companionBuilder);

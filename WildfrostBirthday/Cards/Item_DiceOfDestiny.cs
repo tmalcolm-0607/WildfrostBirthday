@@ -17,7 +17,7 @@ namespace WildfrostBirthday.Cards
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // On play, deal random damage between 1 and 6
-                    data.attackEffects = new[] {
+                    data.startWithEffects = new[] {
                         mod.SStack("On Card Played Deal Random Damage To Target (1-6)", 1)
                     };
                 });

@@ -18,7 +18,7 @@ namespace WildfrostBirthday.Cards
                 {
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Noomlin", 1)
-                    };
+                    };                    
                 });
                 
             mod.assets.Add(builder);

@@ -39,7 +39,8 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("When Hit Gain Attack To Self (No Ping)", 1)
                     };
                     // Attach dynamic sprite change script
-                    var script = new CardScriptChangeMainOnCounter { baseImagePath = "companions/caleb" };
+                    var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
+                    script.baseImagePath = "companions/caleb";
                     if (data.createScripts != null)
                     {
                         var scripts = new List<CardScript>(data.createScripts) { script };

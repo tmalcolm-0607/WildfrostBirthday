@@ -9,8 +9,8 @@ namespace WildfrostBirthday.Effects
         {
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectApplyXOnCardPlayed>("On Card Played Add Foam Bullets To Hand")
-                .WithText("Add {0} <card=FoamBullet> to your hand when played", SystemLanguage.English)
-                .WithTextInsert("<{a}> <card=FoamBullet>")
+                .WithText("Add {0} <card=item-foambullets> to your hand when played", SystemLanguage.English)
+                .WithTextInsert("<{a}> <card=item-foambullets>")
                 .WithStackable(false)
                 .WithCanBeBoosted(false)
                 .WithOffensive(false)

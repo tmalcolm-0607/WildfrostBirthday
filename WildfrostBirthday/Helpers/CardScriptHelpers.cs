@@ -13,7 +13,7 @@ namespace WildfrostBirthday.Helpers
             script.upgradeData = mod.TryGet<CardUpgradeData>(name);
             return script;
         }
-        
+
         public static CardScript GetRandomHealthScript(int min, int max)
         {
             var health = ScriptableObject.CreateInstance<CardScriptAddRandomHealth>();
@@ -21,7 +21,7 @@ namespace WildfrostBirthday.Helpers
             health.healthRange = new Vector2Int(min, max);
             return health;
         }
-        
+
         public static CardScript GetRandomDamageScript(int min, int max)
         {
             var damage = ScriptableObject.CreateInstance<CardScriptAddRandomDamage>();
@@ -29,13 +29,27 @@ namespace WildfrostBirthday.Helpers
             damage.damageRange = new Vector2Int(min, max);
             return damage;
         }
-        
+
         public static CardScript GetRandomCounterScript(int min, int max)
         {
             var counter = ScriptableObject.CreateInstance<CardScriptAddRandomCounter>();
             counter.name = "Give Counter";
             counter.counterRange = new Vector2Int(min, max);
             return counter;
+        }
+        
+        public class Scriptable<T> where T : ScriptableObject, new()
+        {
+            const string credit = "Credit to Hopeful";
+            readonly Action<T> modifier;
+            public Scriptable() { }
+            public Scriptable(Action<T> modifier) { this.modifier = modifier; }
+            public static implicit operator T(Scriptable<T> scriptable)
+            {
+                T result = ScriptableObject.CreateInstance<T>();
+                scriptable.modifier?.Invoke(result);
+                return result;
+            }
         }
     }
 }

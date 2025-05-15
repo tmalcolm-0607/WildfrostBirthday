@@ -27,7 +27,8 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("When Ally is Hit Apply Frost To Attacker", 2)
                     };
                     // Attach dynamic sprite change script
-                    var script = new CardScriptChangeMainOnCounter { baseImagePath = "companions/lulu" };
+                    var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
+                    script.baseImagePath = "companions/lulu";
                     if (data.createScripts != null)
                     {
                         var scripts = new List<CardScript>(data.createScripts) { script };

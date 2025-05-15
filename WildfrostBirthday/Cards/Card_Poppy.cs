@@ -31,7 +31,8 @@ namespace WildfrostBirthday.Cards
                         new CardData.TraitStacks(mod.TryGet<TraitData>("Smackback"), 1)
                     };
                     // Attach dynamic sprite change script
-                    var script = new CardScriptChangeMainOnCounter { baseImagePath = "companions/poppy" };
+                    var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
+                    script.baseImagePath = "companions/poppy";
                     if (data.createScripts != null)
                     {
                         var scripts = new List<CardScript>(data.createScripts) { script };

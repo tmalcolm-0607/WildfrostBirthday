@@ -122,6 +122,7 @@ This plan is intended for contributors, testers, and advanced modders. For hands
   - **Plant Charm:** Gain +1 Attack after attacking (On Turn Add Attack To Self x1)
   - **Book Charm:** Draw 1 on deploy and each turn (Draw x1)
   - **Duck Charm:** Gain Frenzy, Aimless, and set Attack to 1 (When Hit Add Frenzy To Self x1, Set Attack x1, MultiHit x1, Aimless)  
+  - **Family Charm:** Gain 2+ Health and +2 Attack for every Madfamily companion you have in Hand, Deck, Discard, Reserve
   _See: `docs/Tutorial3_CharmsAndKeywords.md` and `docs/EnhancedCharmCreation.md`._
 
 **Custom Items:**  

@@ -46,7 +46,8 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("On Kill Heal To Self", 2)
                     };
                     // Attach dynamic sprite change script
-                    var script = new CardScriptChangeMainOnCounter { baseImagePath = "companions/alison" };
+                    var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
+                    script.baseImagePath = "companions/alison";
                     if (data.createScripts != null)
                     {
                         var scripts = new List<CardScript>(data.createScripts) { script };
