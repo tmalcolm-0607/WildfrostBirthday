@@ -17,7 +17,7 @@ namespace WildfrostBirthday.Cards
                 {
                     data.attackEffects = new[] {
                         mod.SStack("MultiHit", 1),
-                        mod.SStack("On Card Played Reduce Max Health", 4)
+                        mod.SStack("Reduce Max Health", 4)
                     };
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
