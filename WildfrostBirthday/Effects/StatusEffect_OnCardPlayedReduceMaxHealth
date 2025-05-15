@@ -1,13 +1,13 @@
 namespace WildfrostBirthday.Effects
 {
-    public static class StatusEffect_OnCardPlayedIncreaseMaxHealthToAllies
+    public static class StatusEffect_OnCardPlayedReduceMaxHealth
     {
         public static void Register(WildFamilyMod mod)
         {
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectApplyXOnCardPlayed>("On Card Played Reduce Max Health")
-                .WithText("Reduce max health of all allies by {0}", SystemLanguage.English)
-                .WithTextInsert("<-{a}><keyword=health>")
+                .WithText("Reduce max health by +{0}", SystemLanguage.English)
+                .WithTextInsert("<{a}><keyword=health>")
                 .WithStackable(false)
                 .WithCanBeBoosted(false)
                 .WithOffensive(false)
@@ -16,7 +16,6 @@ namespace WildfrostBirthday.Effects
                 .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnCardPlayed>(data =>
                 {
                     data.effectToApply = mod.TryGet<StatusEffectData>("Reduce Max Health");
-                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Allies;
                 });
             mod.assets.Add(builder);
         }
