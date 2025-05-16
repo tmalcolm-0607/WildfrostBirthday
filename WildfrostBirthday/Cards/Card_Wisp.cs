@@ -18,17 +18,16 @@ namespace WildfrostBirthday.Cards
                 .CreateUnit(cardId, "Wisp")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(5, 4, 6)  // HP, ATK, Counter
-                .WithFlavour("When an enemy is killed, apply 4 health to the attacker")
+                .WithFlavour("When an enemy is killed, apply 2 health to the attacker")
                 .WithCardType("Friendly")
                 .WithValue(0)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Start with effects
                     data.startWithEffects = new[] {
-                        mod.SStack("When Enemy Is Killed Apply Health To Attacker", 4)
+                        mod.SStack("When Enemy Is Killed Apply Health To Attacker", 2) // Health reduced from 4 to 2
                     };
                 });
-                
             mod.assets.Add(companionBuilder);
         }
     }

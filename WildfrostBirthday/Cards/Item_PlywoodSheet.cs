@@ -10,7 +10,7 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateItem("item-plywoodsheet", "Plywood Sheet")
                 .SetSprites("items/plywood.png", "bg.png")
-                .WithFlavour("Add 3 Junk to your hand.")
+                .WithFlavour("Add 3 Scrap to your hand.")
                 .WithCardType("Item")
                 .WithValue(45)
                 .SubscribeToAfterAllBuildEvent(data =>
@@ -18,8 +18,9 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
                     };
-                    // Add 3 Junk to hand on play
+                    // Add 3 Scrap to hand on play
                     data.startWithEffects = new[] {
+                        mod.SStack("Instant Add Scrap", 3)
                         mod.SStack("Instant Add Scrap", 3)
                     };
                     data.canPlayOnHand = false;

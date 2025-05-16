@@ -28,15 +28,15 @@ namespace WildfrostBirthday.Cards
                 .CreateUnit("companion-" + cardId, "Caleb")
                 .SetSprites("companions/caleb0.png", "bg.png")
                 .SetStats(8, 0, 6)  // HP, ATK, Counter
-                .WithFlavour("When attacked, apply 1 overload to attacker. Gain +1 attack on hit.")
+                .WithFlavour("When triggered, gain +1 attack. When attacked, apply 1 overload to attacker.")
                 .WithCardType("Friendly")
                 .WithValue(50)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Start with effects
                     data.startWithEffects = new[] {
-                        mod.SStack("When Hit Apply Overload To Attacker", 2),
-                        mod.SStack("When Hit Gain Attack To Self (No Ping)", 1)
+                        mod.SStack("When Hit Apply Overload To Attacker", 1), // Overburn reduced from 2 to 1
+                        mod.SStack("On Turn Apply Attack To Self", 1) // Gain attack at the start of each turn
                     };
                     // Attach dynamic sprite change script
                     var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
@@ -51,7 +51,6 @@ namespace WildfrostBirthday.Cards
                         data.createScripts = new CardScript[] { script };
                     }
                 });
-                
             mod.assets.Add(companionBuilder);
             
             // LEADER VERSION
@@ -59,16 +58,17 @@ namespace WildfrostBirthday.Cards
                 .CreateUnit("leader-" + cardId, "Caleb")
                 .SetSprites(getSpritePath(spritePath, cardId), "bg.png")
                 .SetStats(8, 0, 6)  // HP, ATK, Counter
-                .WithFlavour("When attacked, apply 1 overload to attacker. Gain +1 attack on hit.")
+                .WithFlavour("When triggered, gain +1 attack. When attacked, apply 1 overload to attacker.")
                 .WithCardType("Leader")
                 .WithValue(50)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Start with effects
                     data.startWithEffects = new[] {
-                        mod.SStack("When Hit Apply Overload To Attacker", 2),
-                        mod.SStack("When Hit Gain Attack To Self (No Ping)", 1)
-                    };                                          // Leader-specific scripts
+                        mod.SStack("When Hit Apply Overload To Attacker", 1), // Overburn reduced from 2 to 1
+                        mod.SStack("On Turn Apply Attack To Self", 1) // Gain attack at the start of each turn
+                    };
+                    // Leader-specific scripts
                     data.createScripts = new CardScript[]
                     {
                         CardScriptHelpers.GetGiveUpgradeScript(mod),
@@ -77,7 +77,6 @@ namespace WildfrostBirthday.Cards
                         CardScriptHelpers.GetRandomCounterScript(-1, 1)
                     };
                 });
-                
             mod.assets.Add(leaderBuilder);
         }
     }

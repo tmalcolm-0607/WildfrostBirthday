@@ -13,7 +13,7 @@ namespace WildfrostBirthday.Effects
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectSummon>("Summon FoamBullet")
                 .WithText("Summon {0}", SystemLanguage.English)
-                .WithTextInsert("<card=FoamBullet>")
+                .WithTextInsert("<card=item-foambullets>")
                 .WithStackable(false)
                 .WithCanBeBoosted(false)
                 .WithOffensive(false)
