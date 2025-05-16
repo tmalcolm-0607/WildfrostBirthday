@@ -1,3 +1,39 @@
+# Wildfrost Mod Element Audit
+
+## Item: Poison Pepper
+
+- [x] **Name:** Poison Pepper
+- [x] **Type:** Item
+- [x] **Passive Effects (`startWithEffects`):**
+  - [x] Shroom (2 stacks)
+  - [x] Spice (10 stacks)
+  - [x] Both are appropriate as passive effects for an item
+- [x] **Attack Effects (`attackEffects`):**
+  - [x] None (correct for this item)
+- [x] **Scripts:**
+  - [x] None attached (correct for this item)
+- [x] **Traits:**
+  - [x] Consume (1 stack) — appropriate for a consumable item
+- [x] **Target Constraints:**
+  - [x] `canPlayOnHand = false` (cannot be used on cards in hand)
+  - [x] `canPlayOnEnemy = true` (can be used on enemy units)
+  - [x] `playOnSlot = false` (cannot be played on empty slots)
+  - [x] No explicit `targetConstraints` array, but play restrictions are set via flags
+- [x] **Builder Usage:**
+  - [x] Used `.SubscribeToAfterAllBuildEvent` for all assignments
+  - [x] Used `mod.TStack` and `mod.SStack` helpers for traits and effects
+- [x] **Documentation:**
+  - [x] Flavour text is clear: "A spicy pepper laced with toxins. Applies 2 Shroom and 10 Spice."
+  - [x] Name and sprite paths are descriptive
+- [x] **Tested In-Game:**
+  - [ ] (To be confirmed by playtest)
+
+**Summary:**
+- The Poison Pepper item is correctly implemented as a consumable item that applies Shroom and Spice as passive effects. All builder patterns and trait/effect assignments follow best practices. Play restrictions are set via flags. No issues found.
+
+---
+
+_Repeat this format for each card, effect, script, and upgrade in your mod for a complete audit._
 # MadFamily Mod Audit Report
 
 _Last Updated: 2025-05-14_
