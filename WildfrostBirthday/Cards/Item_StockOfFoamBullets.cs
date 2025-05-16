@@ -18,7 +18,7 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
                     };
-                    // On play, add 4 Foam Bullets to hand
+                    // On play, add 4 Foam Bullets to hand using the new effect chain
                     data.startWithEffects = new[] {
                         mod.SStack("On Card Played Add Foam Bullets To Hand", 4)
                     };

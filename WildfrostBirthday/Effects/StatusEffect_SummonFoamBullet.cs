@@ -12,8 +12,8 @@ namespace WildfrostBirthday.Effects
         {
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectSummon>("Summon FoamBullet")
-                .WithText("Summon {0}", SystemLanguage.English)
-                .WithTextInsert("<card=item-foambullets>")
+                .WithText("Summon Foam Bullets", SystemLanguage.English)
+                // Removed .WithTextInsert() because item tags are not supported
                 .WithStackable(false)
                 .WithCanBeBoosted(false)
                 .WithOffensive(false)
@@ -25,7 +25,7 @@ namespace WildfrostBirthday.Effects
                     data.summonCard = mod.TryGet<CardData>("item-foambullets");
                     data.gainTrait = mod.TryGet<StatusEffectTemporaryTrait>("Temporary Summoned");
                     data.setCardType = mod.TryGet<CardType>("Item");
-                    data.effectPrefabRef = new UnityEngine.AddressableAssets.AssetReference("SummonCreateCard");
+                    data.effectPrefabRef = new UnityEngine.AddressableAssets.AssetReference("SummonCreateCard");                    
                 });
             mod.assets.Add(builder);
         }
