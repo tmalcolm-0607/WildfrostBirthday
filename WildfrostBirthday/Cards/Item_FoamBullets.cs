@@ -21,8 +21,9 @@ namespace WildfrostBirthday.Cards
                     };
                     data.traits = new List<CardData.TraitStacks>();
                     data.canPlayOnHand = false;
-                    data.canPlayOnEnemy = false;
-                    data.playOnSlot = true;
+                    data.canPlayOnEnemy = true;
+                    data.canPlayOnFriendly = true;
+                    data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
         }

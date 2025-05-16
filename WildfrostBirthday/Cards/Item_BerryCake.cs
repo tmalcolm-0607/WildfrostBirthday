@@ -24,7 +24,7 @@ namespace WildfrostBirthday.Cards
                     };
                     data.canPlayOnHand = true;
                     data.canPlayOnEnemy = false;
-                    data.canPlayOnFriendly = false;
+                    data.canPlayOnFriendly = true;
                     data.playOnSlot = false;
                 });
             mod.assets.Add(builder);

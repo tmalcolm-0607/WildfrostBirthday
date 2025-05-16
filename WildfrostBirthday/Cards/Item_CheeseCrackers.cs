@@ -20,7 +20,8 @@ namespace WildfrostBirthday.Cards
                     };
                     
                     data.traits = new List<CardData.TraitStacks> {
-                        mod.TStack("Aimless", 1)
+                        mod.TStack("Aimless", 1),
+                        mod.TStack("Consume", 1)
                     };
                     data.attackEffects = new CardData.StatusEffectStacks[] {
                         new CardData.StatusEffectStacks(mod.Get<StatusEffectData>("Increase Attack"), 1),

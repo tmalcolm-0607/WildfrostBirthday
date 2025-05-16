@@ -16,15 +16,15 @@ namespace WildfrostBirthday.Cards
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Poppy")
                 .SetSprites("companions/poppy0.png", "bg.png")
-                .SetStats(11, 2, 4)  // HP, ATK, Counter
+                .SetStats(11, 4, 4)  // HP, ATK, Counter
                 .WithFlavour("Ferocious little guardian who fights back hard.")
                 .WithCardType("Friendly")
                 .WithValue(50)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Start with effects
-                    data.startWithEffects = new[] {
-                        mod.SStack("When Hit Apply Demonize To Attacker", 2)
+                    data.attackEffects = new[] {
+                        mod.SStack("Demonize", 1)
                     };
                     // Set traits
                     data.traits = new List<CardData.TraitStacks> {

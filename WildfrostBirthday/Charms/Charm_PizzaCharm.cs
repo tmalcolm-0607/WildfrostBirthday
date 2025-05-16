@@ -20,10 +20,12 @@ namespace WildfrostBirthday.Charms
                 .SubscribeToAfterAllBuildEvent(data =>
                 {                    data.giveTraits = new CardData.TraitStacks[]
                     {
-                        mod.TStack("Barrage", 1),
                         mod.TStack("Consume", 1)
                     };
-                    
+                      data.effects = new CardData.StatusEffectStacks[]
+                    {
+                        mod.SStack("Hits all enemies", 1), 
+                    };
                     data.targetConstraints = new TargetConstraint[]
                     {
                         ScriptableObject.CreateInstance<TargetConstraintIsItem>()
