@@ -17,7 +17,7 @@ namespace WildfrostBirthday.Cards
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit("companion-" + cardId, "Cassie")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(5, 1, 3)  // HP, ATK, Counter
+                .SetStats(5, 0, 3)  // HP, ATK, Counter (attack reduced from 1 to 0)
                 .WithFlavour("Joyful and chaotic, Cassie bounces through battle with ink and impulse.")
                 .WithCardType("Friendly")
                 .WithValue(50)
@@ -26,22 +26,20 @@ namespace WildfrostBirthday.Cards
                     // Start with effects
                     data.startWithEffects = new[] {
                         mod.SStack("MultiHit", 2),
-                        mod.SStack("On Turn Apply Ink To RandomEnemy", 2)
+                        mod.SStack("On Turn Apply Ink To RandomEnemy", 1) // Ink reduced from 2 to 1
                     };
-                    
                     // Set traits
                     data.traits = new List<CardData.TraitStacks> {
                         new CardData.TraitStacks(mod.TryGet<TraitData>("Aimless"), 1)
                     };
                 });
-                
             mod.assets.Add(companionBuilder);
             
             // LEADER VERSION
             var leaderBuilder = new CardDataBuilder(mod)
                 .CreateUnit("leader-" + cardId, "Cassie")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(5, 1, 3)  // HP, ATK, Counter
+                .SetStats(5, 0, 3)  // HP, ATK, Counter (attack reduced from 1 to 0)
                 .WithFlavour("Joyful and chaotic, Cassie bounces through battle with ink and impulse.")
                 .WithCardType("Leader")
                 .WithValue(50)
@@ -50,15 +48,13 @@ namespace WildfrostBirthday.Cards
                     // Start with effects
                     data.startWithEffects = new[] {
                         mod.SStack("MultiHit", 2),
-                        mod.SStack("On Turn Apply Ink To RandomEnemy", 2)
+                        mod.SStack("On Turn Apply Ink To RandomEnemy", 1) // Ink reduced from 2 to 1
                     };
-                    
                     // Set traits
                     data.traits = new List<CardData.TraitStacks> {
                         new CardData.TraitStacks(mod.TryGet<TraitData>("Aimless"), 1)
                     };
                 });
-                
             mod.assets.Add(leaderBuilder);
         }
     }

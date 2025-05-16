@@ -16,10 +16,8 @@ namespace WildfrostBirthday.Cards
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.traits = new List<CardData.TraitStacks> {
-                        mod.TStack("Consume", 1),
-                        mod.TStack("Zoomlin", 1)
+                        mod.TStack("Consume", 1)
                     };
-                    
                     data.startWithEffects = new[] {
                         mod.SStack("Summon Wisp", 1)
                     };
@@ -27,7 +25,6 @@ namespace WildfrostBirthday.Cards
                     data.canPlayOnEnemy = false;
                     data.playOnSlot = true;
                 });
-                
             mod.assets.Add(builder);
         }
     }

@@ -10,7 +10,7 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateItem("item-detonationstrike", "Detonation Strike")
                 .SetSprites("items/detonationstrike.png", "bg.png")
-                .WithFlavour("A powerful strike that requires a shell target.")
+                .WithText("A powerful strike that requires a {0} target.")                
                 .WithCardType("Item")
                 .WithValue(60)
                 .SetDamage(16)
