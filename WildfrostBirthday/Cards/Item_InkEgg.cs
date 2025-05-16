@@ -19,12 +19,11 @@ namespace WildfrostBirthday.Cards
                 .SetDamage(1)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    data.startWithEffects = new[] {
+                    data.attackEffects = new[] {
                         new CardData.StatusEffectStacks(mod.TryGet<StatusEffectData>("Null"), 7)
                     };
                     data.traits = new List<CardData.TraitStacks> {
-                        mod.TStack("Consume", 1),
-                        mod.TStack("Zoomlin", 1)
+                        mod.TStack("Consume", 1)
                     };
                 });
             mod.assets.Add(builder);

@@ -20,10 +20,11 @@ namespace WildfrostBirthday.Cards
                     };
                     // Use on-play effect to increase max health of all allies by 3
                     data.startWithEffects = new[] {
-                        mod.SStack("On Card Played Increase Max Health To Allies", 3),
+                        mod.SStack("On Card Played Increase Max Health To Allies", 3)
                     };
                     data.canPlayOnHand = true;
                     data.canPlayOnEnemy = false;
+                    data.canPlayOnFriendly = false;
                     data.playOnSlot = false;
                 });
             mod.assets.Add(builder);

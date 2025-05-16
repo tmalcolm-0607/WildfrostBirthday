@@ -17,11 +17,11 @@ namespace WildfrostBirthday.Cards
                 {
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Trash", 10),
-                        mod.TStack("Consume", 1),
-                        mod.TStack("Zoomlin", 1)
+                        mod.TStack("Consume", 1)
                     };
-                    data.canPlayOnHand = false;
+                    data.canPlayOnHand = true;
                     data.canPlayOnEnemy = false;
+                    data.canPlayOnFriendly = false;
                     data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
