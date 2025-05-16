@@ -25,8 +25,8 @@ namespace WildfrostBirthday.Cards
                         mod.TStack("Barrage", 1)
                     };
                     data.canPlayOnHand = false;
-                    data.canPlayOnEnemy = false;
-                    data.playOnSlot = true;
+                    data.canPlayOnEnemy = true;
+                    data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace WildfrostBirthday.Cards
@@ -10,7 +11,8 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateItem("item-detonationstrike", "Detonation Strike")
                 .SetSprites("items/detonationstrike.png", "bg.png")
-                .WithFlavour("A powerful strike that requires a shell target.")
+                .WithFlavour("powerful strike that requires a shell target.")
+                .WithText("Target must be {keyword:Shell}'d.")
                 .WithCardType("Item")
                 .WithValue(60)
                 .SetDamage(16)
@@ -20,6 +22,7 @@ namespace WildfrostBirthday.Cards
                         mod.TStack("Trash", 1),
                         mod.TStack("Recycle", 2)
                     };
+                    
                     // Constraint: can only play on targets with Shell
                     var shellConstraint = ScriptableObject.CreateInstance<TargetConstraintHasStatus>();
                     shellConstraint.status = mod.TryGet<StatusEffectData>("Shell");

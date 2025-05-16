@@ -20,8 +20,8 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("Hit All Enemies", 1)
                     };
                     data.canPlayOnHand = false;
-                    data.canPlayOnEnemy = false;
-                    data.playOnSlot = true;
+                    data.canPlayOnEnemy = true;
+                    data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
         }

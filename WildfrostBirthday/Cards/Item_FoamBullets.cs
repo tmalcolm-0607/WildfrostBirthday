@@ -13,6 +13,7 @@ namespace WildfrostBirthday.Cards
                 .WithFlavour("A pack of foam bullets.")
                 .WithCardType("Item")
                 .WithValue(25)
+                .SetDamage(0)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.startWithEffects = new[] {

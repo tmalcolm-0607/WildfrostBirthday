@@ -20,12 +20,12 @@ namespace WildfrostBirthday.Cards
                         mod.TStack("Consume", 1)
                     };
                     data.attackEffects = new[] {
-                        mod.SStack("Shell", 2),
+                        mod.SStack("Block", 2),
                         mod.SStack("Snow", 2)
                     };
                     data.canPlayOnHand = false;
-                    data.canPlayOnEnemy = false;
-                    data.playOnSlot = true;
+                    data.canPlayOnEnemy = true;
+                    data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
         }

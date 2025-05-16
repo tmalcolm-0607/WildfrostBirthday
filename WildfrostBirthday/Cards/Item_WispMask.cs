@@ -17,7 +17,6 @@ namespace WildfrostBirthday.Cards
                 {
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1),
-                        mod.TStack("Zoomlin", 1)
                     };
                     
                     data.startWithEffects = new[] {

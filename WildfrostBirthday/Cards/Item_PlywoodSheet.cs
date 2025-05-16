@@ -20,11 +20,11 @@ namespace WildfrostBirthday.Cards
                     };
                     // Add 3 Junk to hand on play
                     data.startWithEffects = new[] {
-                        mod.SStack("On Card Played Add Junk To Hand", 3)
+                        mod.SStack("Instant Add Scrap", 3)
                     };
                     data.canPlayOnHand = false;
                     data.canPlayOnEnemy = false;
-                    data.playOnSlot = true;
+                    data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
         }

@@ -22,9 +22,9 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[] {
                         mod.SStack("On Card Played Increase Max Health To Allies", 3),
                     };
-                    data.canPlayOnHand = false;
+                    data.canPlayOnHand = true;
                     data.canPlayOnEnemy = false;
-                    data.playOnSlot = true;
+                    data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
         }

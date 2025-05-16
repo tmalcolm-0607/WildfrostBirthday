@@ -16,9 +16,7 @@ namespace WildfrostBirthday.Cards
                 .SetDamage(null)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    data.traits = new List<CardData.TraitStacks> {
-                        mod.TStack("Consume", 1)
-                    };
+                   
                     
                     data.startWithEffects = new[] {
                         mod.SStack("Summon Soulrose", 1)
