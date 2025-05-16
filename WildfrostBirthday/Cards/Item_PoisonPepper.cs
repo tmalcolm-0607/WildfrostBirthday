@@ -18,7 +18,7 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
                     };
-                    data.startWithEffects = new[] {
+                    data.attackEffects = new[] {
                         mod.SStack("Shroom", 2),
                         mod.SStack("Spice", 10)
                     };
