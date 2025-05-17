@@ -11,11 +11,21 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             string cardId = "companion-lulu";
-            
+             string getSpritePath(string basePath, string cardId)
+            {
+                if (cardId == "companion-lulu")
+                {
+                    int randomNumber = Dead.Random.Range(0, 3);
+                    UnityEngine.Debug.Log("[FamilyCharm] Random number for sprite path: " + basePath + randomNumber + ".png");
+                    return basePath + randomNumber + ".png";
+                }
+                UnityEngine.Debug.Log("[FamilyCharm] Card ID not recognized, using default sprite path: " + basePath + ".png");
+                return basePath + ".png";
+            }
             // COMPANION VERSION
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Lulu")
-                .SetSprites("companions/lulu0.png", "bg.png")
+                .SetSprites(getSpritePath("companions/lulu", cardId), "bg.png")
                 .SetStats(6, 2, 3)  // HP, ATK, Counter
                 .WithFlavour("Lulu defends her family with snowy retaliation.")
                 .WithCardType("Friendly")

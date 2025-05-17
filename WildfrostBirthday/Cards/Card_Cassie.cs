@@ -54,6 +54,13 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         new CardData.TraitStacks(mod.TryGet<TraitData>("Aimless"), 1)
                     };
+                    data.createScripts = new CardScript[]
+                    {
+                        CardScriptHelpers.GetGiveUpgradeScript(mod),
+                        CardScriptHelpers.GetRandomHealthScript(-1, 3),
+                        CardScriptHelpers.GetRandomDamageScript(0, 2),
+                        CardScriptHelpers.GetRandomCounterScript(-1, 1)
+                    };
                 });
             mod.assets.Add(leaderBuilder);
         }

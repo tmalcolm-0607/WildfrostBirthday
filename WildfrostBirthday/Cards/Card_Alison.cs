@@ -18,23 +18,26 @@ namespace WildfrostBirthday.Cards
         /// <param name="mod">The mod instance</param>
         public static void Register(WildFamilyMod mod)
         {
+             string cardId = "alison";
             // Helper method to get sprite path with potential random variation
             string getSpritePath(string basePath, string cardId)
             {
                 if (cardId == "alison")
                 {
                     int randomNumber = Dead.Random.Range(0, 3);
+                    UnityEngine.Debug.Log("[FamilyCharm] Random number for sprite path: " + basePath + randomNumber + ".png");
                     return basePath + randomNumber + ".png";
                 }
+                UnityEngine.Debug.Log("[FamilyCharm] Card ID not recognized, using default sprite path: " + basePath + ".png");
                 return basePath + ".png";
             }
             // COMPANION VERSION
-            string cardId = "alison";
+           
             string spritePath = "leaders/alison";
             
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit("companion-" + cardId, "Alison")
-                .SetSprites("companions/alison0.png", "bg.png")
+                .SetSprites(getSpritePath("companions/alison", cardId), "bg.png")
                 .SetStats(9, 3, 3)  // HP, ATK, Counter
                 .WithFlavour("Restore 2 HP on kill")
                 .WithCardType("Friendly")

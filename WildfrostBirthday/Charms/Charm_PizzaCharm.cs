@@ -15,17 +15,16 @@ namespace WildfrostBirthday.Charms
                 .WithType(CardUpgradeData.Type.Charm)
                 .WithImage("charms/pizza_charm.png")
                 .WithTitle("Pizza Charm")
-                .WithText("Hits all enemies. Consume.")
+                .WithText("Gain Barrage. Consume.")
                 .WithTier(2)
                 .SubscribeToAfterAllBuildEvent(data =>
-                {                    data.giveTraits = new CardData.TraitStacks[]
+                {                    
+                    data.giveTraits = new CardData.TraitStacks[]
                     {
-                        mod.TStack("Consume", 1)
+                        mod.TStack("Consume", 1),
+                        mod.TStack("Barrage", 1)
                     };
-                      data.effects = new CardData.StatusEffectStacks[]
-                    {
-                        mod.SStack("Hits all enemies", 1), 
-                    };
+                    
                     data.targetConstraints = new TargetConstraint[]
                     {
                         ScriptableObject.CreateInstance<TargetConstraintIsItem>()

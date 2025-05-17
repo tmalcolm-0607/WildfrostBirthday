@@ -11,11 +11,21 @@ namespace WildfrostBirthday.Cards
         public static void Register(WildFamilyMod mod)
         {
             string cardId = "companion-poppy";
-            
+             string getSpritePath(string basePath, string cardId)
+            {
+                if (cardId == "companion-poppy")
+                {
+                    int randomNumber = Dead.Random.Range(0, 3);
+                    UnityEngine.Debug.Log("[FamilyCharm] Random number for sprite path: " + basePath + randomNumber + ".png");
+                    return basePath + randomNumber + ".png";
+                }
+                UnityEngine.Debug.Log("[FamilyCharm] Card ID not recognized, using default sprite path: " + basePath + ".png");
+                return basePath + ".png";
+            }
             // COMPANION VERSION
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Poppy")
-                .SetSprites("companions/poppy0.png", "bg.png")
+                .SetSprites(getSpritePath("companions/poppy", cardId), "bg.png")
                 .SetStats(11, 4, 4)  // HP, ATK, Counter
                 .WithFlavour("Ferocious little guardian who fights back hard.")
                 .WithCardType("Friendly")
