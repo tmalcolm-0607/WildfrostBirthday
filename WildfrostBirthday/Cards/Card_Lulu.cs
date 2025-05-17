@@ -16,10 +16,10 @@ namespace WildfrostBirthday.Cards
                 if (cardId == "companion-lulu")
                 {
                     int randomNumber = Dead.Random.Range(0, 3);
-                    UnityEngine.Debug.Log("[FamilyCharm] Random number for sprite path: " + basePath + randomNumber + ".png");
+                    UnityEngine.Debug.Log("[getSpritePath] Random number for sprite path: " + basePath + randomNumber + ".png");
                     return basePath + randomNumber + ".png";
                 }
-                UnityEngine.Debug.Log("[FamilyCharm] Card ID not recognized, using default sprite path: " + basePath + ".png");
+                UnityEngine.Debug.Log("[getSpritePath] Card ID not recognized, using default sprite path: " + basePath + ".png");
                 return basePath + ".png";
             }
             // COMPANION VERSION
@@ -35,10 +35,11 @@ namespace WildfrostBirthday.Cards
                     // Start with effects
                     data.startWithEffects = new[] {
                         mod.SStack("When Ally is Hit Apply Frost To Attacker", 2)
-                    };
-                    // Attach dynamic sprite change script
+                    };                    // Attach dynamic sprite change script
                     var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
-                    script.baseImagePath = "companions/lulu";
+                    // Add "images/" prefix to match the expected path format
+                    script.baseImagePath = "images/companions/lulu";
+                    UnityEngine.Debug.Log($"[CardScriptChangeMainOnCounter] Setting Lulu companion sprite path to {script.baseImagePath}");
                     if (data.createScripts != null)
                     {
                         var scripts = new List<CardScript>(data.createScripts) { script };

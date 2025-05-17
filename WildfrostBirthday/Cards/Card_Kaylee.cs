@@ -28,10 +28,7 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("When Deployed Apply Teeth To Self", 4),
                         mod.SStack("On Turn Apply Teeth To Allies", 2)
                     };
-                    // Attach dynamic sprite change script if needed in the future
-                    // Example for reference:
-                    // data.createScripts = new CardScript[] { ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>() };
-                });
+                   });
 
             mod.assets.Add(companionBuilder);
             

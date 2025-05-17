@@ -25,10 +25,10 @@ namespace WildfrostBirthday.Cards
                 if (cardId == "alison")
                 {
                     int randomNumber = Dead.Random.Range(0, 3);
-                    UnityEngine.Debug.Log("[FamilyCharm] Random number for sprite path: " + basePath + randomNumber + ".png");
+                    UnityEngine.Debug.Log("[getSpritePath] Random number for sprite path: " + basePath + randomNumber + ".png");
                     return basePath + randomNumber + ".png";
                 }
-                UnityEngine.Debug.Log("[FamilyCharm] Card ID not recognized, using default sprite path: " + basePath + ".png");
+                UnityEngine.Debug.Log("[getSpritePath] Card ID not recognized, using default sprite path: " + basePath + ".png");
                 return basePath + ".png";
             }
             // COMPANION VERSION
@@ -47,10 +47,11 @@ namespace WildfrostBirthday.Cards
                     // Attack effects
                     data.attackEffects = new[] {
                         mod.SStack("On Kill Heal To Self", 2)
-                    };
-                    // Attach dynamic sprite change script
+                    };                    // Attach dynamic sprite change script
                     var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
-                    script.baseImagePath = "companions/alison";
+                    // Add "images/" prefix to match the expected path format
+                    script.baseImagePath = "images/companions/alison";
+                    UnityEngine.Debug.Log($"[CardScriptChangeMainOnCounter] Setting Alison companion sprite path to {script.baseImagePath}");
                     if (data.createScripts != null)
                     {
                         var scripts = new List<CardScript>(data.createScripts) { script };

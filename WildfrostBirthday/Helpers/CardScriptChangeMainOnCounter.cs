@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.IO;
+using System.Reflection;
 
 namespace WildfrostBirthday.Helpers
 {
@@ -10,13 +12,18 @@ namespace WildfrostBirthday.Helpers
 
         // This script should be called manually from a counter change event or similar
         public override void Run(CardData card)
-        {
-            int counter = card.counter;
+        { 
+            string location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            UnityEngine.Debug.Log($"[CardScriptChangeMainOnCounter] Previous mainsprite name:{location} {(card.mainSprite != null ? card.mainSprite.name : "null")} {lastCounter} : {card.counter}");
+                int counter = card.counter;
             if (counter != lastCounter)
             {
                 int clamped = Mathf.Clamp(counter, 0, 3);
-                string path = $"{baseImagePath}{clamped}.png";
+                UnityEngine.Debug.Log($"[CardScriptChangeMainOnCounter] Previous mainsprite name:{location} {(card.mainSprite != null ? card.mainSprite.name : "null")}");
+                UnityEngine.Debug.Log($"[CardScriptChangeMainOnCounter] Changing sprite for {card.name} to {baseImagePath}{clamped}.png");
+                string path = Path.Combine(location, $"{baseImagePath}{clamped}.png");
                 card.mainSprite = path.ToSprite();
+                UnityEngine.Debug.Log($"[CardScriptChangeMainOnCounter] New mainsprite name: {(card.mainSprite != null ? card.mainSprite.name : "null")}");
                 lastCounter = counter;
             }
         }

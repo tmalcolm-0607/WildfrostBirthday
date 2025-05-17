@@ -20,7 +20,6 @@ namespace WildfrostBirthday.Charms
                 {
                     data.effects = new CardData.StatusEffectStacks[]
                     {
-                        mod.SStack("When Hit Add Frenzy To Self", 1),
                         mod.SStack("Set Attack", 1),
                         mod.SStack("MultiHit", 1)
                     };

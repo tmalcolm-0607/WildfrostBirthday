@@ -16,10 +16,10 @@ namespace WildfrostBirthday.Cards
                 if (cardId == "caleb")
                 {
                     int randomNumber = Dead.Random.Range(0, 3);
-                    UnityEngine.Debug.Log("[FamilyCharm] Random number for sprite path: " + basePath + randomNumber + ".png");
+                    UnityEngine.Debug.Log("[getSpritePath] Random number for sprite path: " + basePath + randomNumber + ".png");
                     return basePath + randomNumber + ".png";
                 }
-                UnityEngine.Debug.Log("[FamilyCharm] Card ID not recognized, using default sprite path: " + basePath + ".png");
+                UnityEngine.Debug.Log("[getSpritePath] Card ID not recognized, using default sprite path: " + basePath + ".png");
                 return basePath + ".png";
             }
             
@@ -39,10 +39,11 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[] {
                         mod.SStack("When Hit Apply Overload To Attacker", 1), // Overburn reduced from 2 to 1
                         mod.SStack("On Turn Apply Attack To Self", 1) // Gain attack at the start of each turn
-                    };
-                    // Attach dynamic sprite change script
+                    };                    // Attach dynamic sprite change script
                     var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
-                    script.baseImagePath = "companions/caleb";
+                    // Add "images/" prefix to match the expected path format
+                    script.baseImagePath = "images/companions/caleb";
+                    UnityEngine.Debug.Log($"[CardScriptChangeMainOnCounter] Setting Caleb companion sprite path to {script.baseImagePath}");
                     if (data.createScripts != null)
                     {
                         var scripts = new List<CardScript>(data.createScripts) { script };
