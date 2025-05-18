@@ -47,7 +47,7 @@ namespace WildfrostBirthday.Cards
                 {
                     // Start with effects
                     data.startWithEffects = new[] {
-                        mod.SStack("MultiHit", 2),
+                        mod.SStack("MultiHit", 1),
                         mod.SStack("On Turn Apply Ink To RandomEnemy", 1) // Ink reduced from 2 to 1
                     };
                     // Set traits

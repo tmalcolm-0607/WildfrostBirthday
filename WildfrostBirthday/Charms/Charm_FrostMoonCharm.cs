@@ -17,13 +17,20 @@ namespace WildfrostBirthday.Charms
                 .WithText("Gain +2 Counter and apply 5 Frost on attack")
                 .WithTier(3)                .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    data.effects = new CardData.StatusEffectStacks[]
-                    {
-                        mod.SStack("FrostMoon Increase Max Counter", 2),
-                        mod.SStack("FrostMoon Apply Frost On Attack", 5)
-                    };
-                });
-                
+                  data.attackEffects = new CardData.StatusEffectStacks[]
+                {
+                new CardData.StatusEffectStacks(mod.TryGet<StatusEffectData>("Frost"), 5),
+            };
+            data.effects = new CardData.StatusEffectStacks[]
+            {
+                mod.SStack("Increase Max Counter", 2)
+            };
+            data.targetConstraints = new TargetConstraint[]
+            {
+                ScriptableObject.CreateInstance<TargetConstraintIsUnit>()
+            };
+        });
+
             mod.assets.Add(builder);
         }
     }
