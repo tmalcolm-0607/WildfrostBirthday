@@ -15,21 +15,25 @@ namespace WildfrostBirthday.Charms
                 .WithType(CardUpgradeData.Type.Charm)
                 .WithImage("charms/pizza_charm.png")
                 .WithTitle("Pizza Charm")
-                .WithText("Gain Barrage. Consume.")
+                .WithText("Change this card's targeting mode. Consume.")
                 .WithTier(2)
                 .SubscribeToAfterAllBuildEvent(data =>
-                {                    
+                {
                     data.giveTraits = new CardData.TraitStacks[]
                     {
-                        mod.TStack("Consume", 1),
-                        mod.TStack("Barrage", 1)
+                        mod.TStack("Consume", 1)
                     };
                     data.targetConstraints = new TargetConstraint[]
                     {
                         ScriptableObject.CreateInstance<TargetConstraintIsItem>()
                     };
+                    // Add the status effect that changes target mode (like Nova)
+                    data.effects = new CardData.StatusEffectStacks[]
+                    {
+                        new CardData.StatusEffectStacks(mod.Get<StatusEffectData>("Hit All Enemies"), 1)
+                    };
                 });
-                
+
             mod.assets.Add(builder);
         }
     }

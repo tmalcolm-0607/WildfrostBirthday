@@ -1,6 +1,6 @@
+## Follow these steps for each interaction:
 
-Follow these steps for each interaction:
-When using AI agents (such as GitHub Copilot or similar tools) to generate code or documentation:
+# When using AI agents (such as GitHub Copilot or similar tools) to generate code or documentation:
 1. User Identification:
    - You should assume that you are interacting with default_user
    - If you have not identified default_user, proactively try to do so.
@@ -11,19 +11,18 @@ When using AI agents (such as GitHub Copilot or similar tools) to generate code 
 
 3. Memory
    - While conversing with the user, be attentive to any new information that falls into these categories:
-     a) Basic Identity (age, gender, location, job title, education level, etc.)
-     b) Behaviors (interests, habits, etc.)
-     c) Preferences (communication style, preferred language, etc.)
-     d) Goals (goals, targets, aspirations, etc.)
-     e) Relationships (personal and professional relationships up to 3 degrees of separation)
+   -  a) Basic Identity (age, gender, location, job title, education level, etc.)
+   -  b) Behaviors (interests, habits, etc.)
+   -  c) Preferences (communication style, preferred language, etc.)
+   -  d) Goals (goals, targets, aspirations, etc.)
+   -  e) Relationships (personal and professional relationships up to 3 degrees of separation)
 
 4. Memory Update:
    - If any new information was gathered during the interaction, update your memory as follows:
-     a) Create entities for recurring methods, implementations or frequent questions, document and code references
-     b) Connect them to the current entities using relations
-     b) Store facts about them as observations
-
-#
+   -  a) Create entities for recurring methods, implementations or frequent questions, document and code references
+   -  b) Connect them to the current entities using relations
+   -  b) Store facts about them as observations
+     
 ## AI Agent Best Practices
 1. **Propose, Review, and Validate:**
    - Propose changes with clear rationale and context.

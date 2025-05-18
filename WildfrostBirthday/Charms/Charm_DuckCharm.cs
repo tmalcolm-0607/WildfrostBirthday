@@ -14,21 +14,23 @@ namespace WildfrostBirthday.Charms
                 .WithType(CardUpgradeData.Type.Charm)
                 .WithImage("charms/duck_charm.png")
                 .WithTitle("Duck Charm")
-                .WithText("Gain Frenzy, Aimless, and set Attack to 1")
+                .WithText("Set Attack to 1, gain MultiHit equal to original attack, and Aimless.")
                 .WithTier(2)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    data.effects = new CardData.StatusEffectStacks[]
-                    {
-                        mod.SStack("Set Attack", 1),
-                        mod.SStack("MultiHit", 1)
-                    };
-                      data.giveTraits = new CardData.TraitStacks[]
+                    // Remove all attack, set to 1, add MultiHit X (original attack)
+                    var duckScript = ScriptableObject.CreateInstance<CardScriptDuckCharmMultiHit>();
+                    data.scripts = new CardScript[] { duckScript };
+                    data.giveTraits = new CardData.TraitStacks[]
                     {
                         mod.TStack("Aimless", 1)
                     };
+                    data.targetConstraints = new TargetConstraint[]
+                    {
+                        ScriptableObject.CreateInstance<TargetConstraintDoesAttack>()
+                    };
                 });
-                
+
             mod.assets.Add(builder);
         }
     }
