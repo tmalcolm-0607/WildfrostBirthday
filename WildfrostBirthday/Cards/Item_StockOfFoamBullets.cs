@@ -10,7 +10,7 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateItem("item-stockoffoambullets", "Stock of Foam Bullets")
                 .SetSprites("items/foambullets.png", "bg.png")
-                .WithFlavour("Add 4 Foam Bullets to your hand.")
+                .WithText("Add 4 Foam Bullets to your hand.")
                 .WithCardType("Item")
                 .WithValue(30)
                 .SubscribeToAfterAllBuildEvent(data =>
@@ -22,7 +22,10 @@ namespace WildfrostBirthday.Cards
                     // On play, add 4 Foam Bullets to hand using the new effect chain
                     data.startWithEffects = new[] {
                         mod.SStack("On Card Played Add Foam Bullets To Hand", 1),
-                        mod.SStack("MultiHit", 3)
+                        mod.SStack("On Card Played Add Foam Bullets To Hand", 1),
+                        mod.SStack("On Card Played Add Foam Bullets To Hand", 1),
+                        mod.SStack("On Card Played Add Foam Bullets To Hand", 1)
+
                     };
                     data.canPlayOnHand = false;
                     data.canPlayOnEnemy = false;
