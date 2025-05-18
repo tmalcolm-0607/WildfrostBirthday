@@ -6,12 +6,14 @@ public class CardScriptDuckCharmMultiHit : CardScript
 {
     public override void Run(CardData card)
     {
-        int originalAttack = card.damage > 0 ? card.damage -1 : 0;
+        //Using the Original Attack but subtracting 1 to account for the Duck Charm's effect
+        int originalAttack = card.damage > 0 ? card.damage : 0;
         Debug.Log($"[CardScriptDuckCharmMultiHit] Running for card: {card.name}, original attack: {originalAttack}");
         if (originalAttack > 1)
         {
-            card.damage = 1;
-            int multiHitCount = originalAttack > 1 ? originalAttack - 1 : 0;
+            card.damage = 1;            
+            // MultiHit count is original attack - 1, since Duck Charm sets attack to 1
+            int multiHitCount = originalAttack > 2 ? originalAttack - 1 : 0;
             Debug.Log($"[CardScriptDuckCharmMultiHit] Setting MultiHit count to: {multiHitCount}");
             // Check if the card has existing effects
             if (card.startWithEffects != null)
