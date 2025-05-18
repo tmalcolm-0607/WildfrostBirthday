@@ -16,7 +16,7 @@ public static class StatusEffect_SummonWisp
 			.WithText("{0}", SystemLanguage.ChineseTraditional)
 			.WithText("{0}", SystemLanguage.Korean)
 			.WithText("{0}", SystemLanguage.Japanese)
-			.WithTextInsert("<card=madfamilymod.wildfrost.madhouse.companion-wisp>")
+			.WithTextInsert("Summon <card=madfamilymod.wildfrost.madhouse.companion-wisp>")
 			.WithStackable(false)
 			.WithCanBeBoosted(false)
 			.WithOffensive(false)
