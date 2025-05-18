@@ -24,7 +24,6 @@ namespace WildfrostBirthday.Charms
                         mod.TStack("Consume", 1),
                         mod.TStack("Barrage", 1)
                     };
-                    
                     data.targetConstraints = new TargetConstraint[]
                     {
                         ScriptableObject.CreateInstance<TargetConstraintIsItem>()

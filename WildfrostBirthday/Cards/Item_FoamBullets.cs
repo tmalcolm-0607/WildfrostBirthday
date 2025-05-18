@@ -19,7 +19,9 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[] {
                         mod.SStack("Hit All Enemies", 1)
                     };
-                    data.traits = new List<CardData.TraitStacks>();
+                    data.traits = new List<CardData.TraitStacks> {
+                        mod.TStack("Noomlin", 1)
+                    };  
                     data.canPlayOnHand = false;
                     data.canPlayOnEnemy = true;
                     data.canPlayOnFriendly = true;

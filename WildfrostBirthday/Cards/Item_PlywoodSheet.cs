@@ -19,12 +19,12 @@ namespace WildfrostBirthday.Cards
                         mod.TStack("Consume", 1)
                     };
                     // Add 3 Scrap to hand on play
-                    data.startWithEffects = new[] {
+                    data.attackEffects = new[] {
                         mod.SStack("Instant Add Scrap", 3)
                     };
                     data.canPlayOnHand = true;
-                    data.canPlayOnEnemy = false;
-                    data.canPlayOnFriendly = false;
+                    data.canPlayOnEnemy = true;
+                    data.canPlayOnFriendly = true;
                     data.playOnSlot = false;
                 });
             mod.assets.Add(builder);

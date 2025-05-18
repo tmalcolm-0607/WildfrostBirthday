@@ -254,6 +254,7 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("companion-cassie"),
                 mod.TryGet<CardData>("companion-caleb"),
                 mod.TryGet<CardData>("companion-kaylee"),
+                mod.TryGet<CardData>("companion-bwob"),
             };
             additionalUnitsPool.isGeneralPool = true;
             pools.Add(additionalUnitsPool);

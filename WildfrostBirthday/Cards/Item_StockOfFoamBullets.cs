@@ -17,14 +17,16 @@ namespace WildfrostBirthday.Cards
                 {
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
+                     
                     };
                     // On play, add 4 Foam Bullets to hand using the new effect chain
                     data.startWithEffects = new[] {
-                        mod.SStack("On Card Played Add Foam Bullets To Hand", 4)
+                        mod.SStack("On Card Played Add Foam Bullets To Hand", 1),
+                        mod.SStack("MultiHit", 3)
                     };
                     data.canPlayOnHand = false;
                     data.canPlayOnEnemy = false;
-                    data.playOnSlot = true;
+                    data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
         }

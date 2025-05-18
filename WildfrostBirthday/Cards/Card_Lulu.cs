@@ -34,7 +34,7 @@ namespace WildfrostBirthday.Cards
                 {
                     // Start with effects
                     data.startWithEffects = new[] {
-                        mod.SStack("When Ally is Hit Apply Frost To Attacker", 2)
+                        mod.SStack("When Ally is Hit Apply Frost To Attacker", 1)
                     };                    // Attach dynamic sprite change script
                     var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
                     // Add "images/" prefix to match the expected path format

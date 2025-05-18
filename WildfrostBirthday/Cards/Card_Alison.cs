@@ -45,7 +45,7 @@ namespace WildfrostBirthday.Cards
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Attack effects
-                    data.attackEffects = new[] {
+                    data.startWithEffects = new[] {
                         mod.SStack("On Kill Heal To Self", 2)
                     };                    // Attach dynamic sprite change script
                     var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
@@ -76,7 +76,7 @@ namespace WildfrostBirthday.Cards
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Attack effects
-                    data.attackEffects = new[] {
+                    data.startWithEffects = new[] {
                         mod.SStack("On Kill Heal To Self", 2)
                     };  
                     
