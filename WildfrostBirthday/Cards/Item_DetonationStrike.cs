@@ -12,7 +12,7 @@ namespace WildfrostBirthday.Cards
                 .CreateItem("item-detonationstrike", "Detonation Strike")
                 .SetSprites("items/detonationstrike.png", "bg.png")
                 .WithFlavour("powerful strike that requires a shell target.")
-                .WithText("Target must be {keyword:Shell}'d.")
+                .WithText("Target must be Shelled.")
                 .WithCardType("Item")
                 .WithValue(60)
                 .SetDamage(16)

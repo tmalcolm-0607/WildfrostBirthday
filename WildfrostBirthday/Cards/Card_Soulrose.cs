@@ -17,7 +17,7 @@ namespace WildfrostBirthday.Cards
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Soulrose")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(1, 0, 0)  // HP, ATK, Counter
+                .SetStats(1, null, 0)  // HP, ATK, Counter
                 .WithFlavour("When destroyed, add +1 health to all allies")
                 .WithCardType("Friendly")
                 .WithValue(0)

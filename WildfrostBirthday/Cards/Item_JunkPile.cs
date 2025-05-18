@@ -20,8 +20,8 @@ namespace WildfrostBirthday.Cards
                         mod.TStack("Consume", 1)
                     };
                     data.canPlayOnHand = true;
-                    data.canPlayOnEnemy = false;
-                    data.canPlayOnFriendly = false;
+                    data.canPlayOnEnemy = true;
+                    data.canPlayOnFriendly = true;
                     data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
