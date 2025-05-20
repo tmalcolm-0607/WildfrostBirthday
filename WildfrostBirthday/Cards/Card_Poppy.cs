@@ -42,7 +42,7 @@ namespace WildfrostBirthday.Cards
                     };
                     // Attach dynamic sprite change script
                     var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
-                    script.baseImagePath = "companions/poppy";
+                    script.baseImagePath = "imagescompanions/poppy";
                     if (data.createScripts != null)
                     {
                         var scripts = new List<CardScript>(data.createScripts) { script };
