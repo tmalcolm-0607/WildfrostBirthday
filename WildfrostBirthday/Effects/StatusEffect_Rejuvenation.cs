@@ -1,39 +1,40 @@
-// Registers the "Deathwish" status effect for the mod.
-// When the counter reaches 0, the unit takes 999 damage (guaranteed death). Positioned like Snow.
+// Registers the "Rejuvenation" status effect for the mod.
+// Restores health every turn, counts down by 1 each turn. Positioned like Snow.
 using WildfrostBirthday.Helpers;
 namespace WildfrostBirthday.Effects
 {
-    public static class StatusEffect_Deathwish
+    public static class StatusEffect_Rejuvenation
     {
         public static void Register(WildFamilyMod mod)
         {
-            // Fallback: Use StatusEffectApplyXOnTurn with a custom effect that applies 999 damage to self when triggered
+            // Use StatusEffectApplyXOnTurn with a custom effect that restores health to self when triggered
             var builder = new StatusEffectDataBuilder(mod)
-                .Create<StatusEffectApplyXOnTurn>("Deathwish")
-                .WithText("When counter reaches 0, take fatal damage.")
-                .WithType("Snow") // Position and icon group like Snow
-                .WithIcon("status/deathwish.png")
+                .Create<StatusEffectApplyXOnTurn>("Rejuvenation")
+                .WithText("Restores health every turn.")
+                .WithIcon("status/rejuvenation.png")
                 .WithIconGroupName("counter")
-                .WithKeyword("deathwish")
+                .WithKeyword("rejuvenation")
+                .WithTextInsert("<{a}><keyword=health>")
                 .WithIsStatus(true)
                 .WithCanBeBoosted(false)
                 .WithStackable(false)
-                .WithOffensive(true)
-                .WithDoesDamage(true)
+                .WithOffensive(false)
+                .WithDoesDamage(false)
                 .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnTurn>(data =>
                 {
-                    data.dealDamage = true;
+                    data.dealDamage = false;
                     // Use a built-in ScriptableAmountConstant if available, else fallback to null (should default to 1)
                     if (typeof(ScriptableAmount).Assembly.GetType("ScriptableAmountConstant") is { } constantType)
                     {
                         var amount = (ScriptableAmount)System.Activator.CreateInstance(constantType);
-                        constantType.GetField("value").SetValue(amount, 999);
+                        constantType.GetField("value").SetValue(amount, 1); // Restore 1 health per turn
                         data.scriptableAmount = amount;
                     }
                     else
                     {
-                        data.scriptableAmount = null; // fallback, will deal 1 damage if not set
+                        data.scriptableAmount = null; // fallback, will restore 1 health if not set
                     }
+                    data.effectToApply = mod.TryGet<StatusEffectData>("Increase Health");
                     data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
                     data.waitForAnimationEnd = true;
                 });
