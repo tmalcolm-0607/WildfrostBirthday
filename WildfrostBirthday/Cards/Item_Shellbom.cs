@@ -11,7 +11,7 @@ namespace WildfrostBirthday.Cards
                 .CreateItem("item-shellbom", "Shellbom")
                 .SetSprites("items/shellbom.png", "bg.png")
                 .WithFlavour("A bomb that fortifies and weakens at once.")
-                .WithText("Apply 8 Shell and 1 Weakness.")
+                .SetDamage(0)
                 .WithCardType("Item")
                 .WithValue(60)
                .SubscribeToAfterAllBuildEvent(data =>
