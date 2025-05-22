@@ -69,7 +69,8 @@ namespace WildfrostBirthday.Cards
                     // Start with effects
                     data.startWithEffects = new[] {
                         mod.SStack("When Hit Apply Overload To Attacker", 1), // Overburn reduced from 2 to 1
-                        mod.SStack("On Turn Apply Attack To Self", 1) // Gain attack at the start of each turn
+                        mod.SStack("On Turn Apply Attack To Self", 1), // Gain attack at the start of each turn
+                       
                     };
                     // Leader-specific scripts
                     data.createScripts = new CardScript[]
