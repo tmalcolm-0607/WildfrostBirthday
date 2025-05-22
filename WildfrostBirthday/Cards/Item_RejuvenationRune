@@ -1,4 +1,7 @@
-// WildfrostBirthday/Items/Item_RejuvenationRune.cs
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using WildfrostBirthday;
 using WildfrostBirthday.Helpers;
 
 namespace WildfrostBirthday.Items

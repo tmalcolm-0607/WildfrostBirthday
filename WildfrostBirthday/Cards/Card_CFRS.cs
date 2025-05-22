@@ -1,6 +1,8 @@
-// WildfrostBirthday/Cards/Card_CFRS.cs
-using WildfrostBirthday.Helpers;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
+using WildfrostBirthday;
+using WildfrostBirthday.Helpers;
 
 namespace WildfrostBirthday.Cards
 {
@@ -8,19 +10,27 @@ namespace WildfrostBirthday.Cards
     {
         public static void Register(WildFamilyMod mod)
         {
+            string cardId = "companion-cfrs";
+            string spritePath = "companions/cfrs";
             var builder = new CardDataBuilder(mod)
-                .CreateUnit("C.F.R.S.", "C.F.R.S.")
-                .SetSprites("clunkers/cfrs.png", "clunkers/cfrs_bg.png") // Adjust sprite paths as needed
-                .SetStats(2, 1, 2) // Scrap, ATK, Counter
+                .CreateUnit(cardId, "C.F.R.S.")
+                .SetSprites(spritePath + ".png", spritePath + "_bg.png") // Adjust sprite paths as needed
+                .SetStats(null, 1, 2) // Scrap, ATK, Counter
                 .WithCardType("Clunker")
                 
                 .WithFlavour("A clunker equipped with Krunker's artillery.")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    data.traits = new List<CardData.TraitStacks> {
+                    // Add traits for scrap HP if needed
+                    data.startWithEffects = new[]
+                    {
+                        mod.SStack("Scrap", 2)
+                    };
+                  data.traits = new List<CardData.TraitStacks> {
                         new CardData.TraitStacks(mod.TryGet<TraitData>("Bombard 1"), 1)
                     };
                 });
+                
             mod.assets.Add(builder);
         }
     }
