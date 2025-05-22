@@ -111,6 +111,9 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("item-hazetacks"),
                 mod.TryGet<CardData>("item-inkegg"),
                 mod.TryGet<CardData>("item-junkpile"),
+                mod.TryGet<CardData>("item-rejuvenationrune"),
+                mod.TryGet<CardData>("item-shellbom"),
+                mod.TryGet<CardData>("item-cfrs"),
             };
             itemsPool.isGeneralPool = true;
             pools.Add(itemsPool);
@@ -257,6 +260,8 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("companion-ivy"),
                 mod.TryGet<CardData>("companion-bwob"),
                 mod.TryGet<CardData>("companion-chonk"),
+                mod.TryGet<CardData>("companion-quock"),
+               
             };
             additionalUnitsPool.isGeneralPool = true;
             pools.Add(additionalUnitsPool);

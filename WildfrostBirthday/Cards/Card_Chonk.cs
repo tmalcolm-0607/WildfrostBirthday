@@ -20,6 +20,7 @@ namespace WildfrostBirthday.Cards
                 .SetStats(null, 3, 3)  // Scrap HP, ATK, Counter
                 .WithFlavour("A clunker with a big heart and a bigger frame.")
                 .WithCardType("Clunker")
+               
                 .WithValue(0)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {

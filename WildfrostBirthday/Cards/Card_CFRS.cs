@@ -13,7 +13,7 @@ namespace WildfrostBirthday.Cards
                 .SetSprites("clunkers/cfrs.png", "clunkers/cfrs_bg.png") // Adjust sprite paths as needed
                 .SetStats(2, 1, 2) // Scrap, ATK, Counter
                 .WithCardType("Clunker")
-                .AddPool("FriendlyClunkerPool")
+                
                 .WithFlavour("A clunker equipped with Krunker's artillery.")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {

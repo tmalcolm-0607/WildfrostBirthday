@@ -10,31 +10,44 @@ namespace WildfrostBirthday.Effects
             // Use StatusEffectApplyXOnTurn with a custom effect that restores health to self when triggered
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectApplyXOnTurn>("Rejuvenation")
-                .WithText("Restores health every turn.")
+                .WithText("Restores {0} health every turn.")
                 .WithIcon("status/rejuvenation.png")
                 .WithIconGroupName("counter")
                 .WithKeyword("rejuvenation")
-                .WithTextInsert("<{a}><keyword=health>")
+                .WithTextInsert("<+{a}><keyword=health>")
                 .WithIsStatus(true)
                 .WithCanBeBoosted(false)
-                .WithStackable(false)
+                .WithStackable(true) // Most status effects are stackable
                 .WithOffensive(false)
                 .WithDoesDamage(false)
                 .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnTurn>(data =>
                 {
+                    // Debug logging to help diagnose loading issues
+                    System.Diagnostics.Debug.WriteLine("[Rejuvenation] Registering status effect...");
                     data.dealDamage = false;
-                    // Use a built-in ScriptableAmountConstant if available, else fallback to null (should default to 1)
                     if (typeof(ScriptableAmount).Assembly.GetType("ScriptableAmountConstant") is { } constantType)
                     {
                         var amount = (ScriptableAmount)System.Activator.CreateInstance(constantType);
                         constantType.GetField("value").SetValue(amount, 1); // Restore 1 health per turn
                         data.scriptableAmount = amount;
+                        System.Diagnostics.Debug.WriteLine($"[Rejuvenation] ScriptableAmountConstant found, set to 1");
                     }
                     else
                     {
                         data.scriptableAmount = null; // fallback, will restore 1 health if not set
+                        System.Diagnostics.Debug.WriteLine("[Rejuvenation] ScriptableAmountConstant not found, using default");
                     }
-                    data.effectToApply = mod.TryGet<StatusEffectData>("Increase Health");
+                    // Use StatusEffectInstantHeal for healing, as per modding docs
+                    var healEffect = mod.TryGet<StatusEffectData>("Heal");
+                    if (healEffect == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine("[Rejuvenation] Could not find StatusEffectData 'InstantHeal'. Status will not heal!");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("[Rejuvenation] Found StatusEffectData 'InstantHeal'.");
+                    }
+                    data.effectToApply = healEffect;
                     data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
                     data.waitForAnimationEnd = true;
                 });
