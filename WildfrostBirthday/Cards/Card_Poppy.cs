@@ -39,10 +39,10 @@ namespace WildfrostBirthday.Cards
                     // Set traits
                     data.traits = new List<CardData.TraitStacks> {
                         new CardData.TraitStacks(mod.TryGet<TraitData>("Smackback"), 1)
-                    };
-                    // Attach dynamic sprite change script
+                    };                    // Attach dynamic sprite change script
                     var script = ScriptableObject.CreateInstance<CardScriptChangeMainOnCounter>();
-                    script.baseImagePath = "imagescompanions/poppy";
+                    script.baseImagePath = "images/companions/poppy";
+                    UnityEngine.Debug.Log($"[CardScriptChangeMainOnCounter] Setting Poppy companion sprite path to {script.baseImagePath}");
                     if (data.createScripts != null)
                     {
                         var scripts = new List<CardScript>(data.createScripts) { script };

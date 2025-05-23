@@ -1,57 +1,79 @@
 // Registers the "Rejuvenation" status effect for the mod.
-// Restores health every turn, counts down by 1 each turn. Positioned like Snow.
+// Behaves like Shroom but heals instead of damaging
+using System;
+using System.Reflection;
+using UnityEngine;
+using Dead;
 using WildfrostBirthday.Helpers;
+
 namespace WildfrostBirthday.Effects
 {
     public static class StatusEffect_Rejuvenation
     {
         public static void Register(WildFamilyMod mod)
         {
-            // Use StatusEffectApplyXOnTurn with a custom effect that restores health to self when triggered
-            var builder = new StatusEffectDataBuilder(mod)
-                .Create<StatusEffectApplyXOnTurn>("Rejuvenation")
-                .WithText("Restores {0} health every turn.")
+            var builder = new StatusEffectDataBuilder(mod)                .Create<StatusEffectShroom>("Rejuvenation")
+                .WithText("Restores {0} health at the end of turn.")
                 .WithIcon("status/rejuvenation.png")
-                .WithIconGroupName("counter")
-                .WithKeyword("rejuvenation")
-                .WithTextInsert("<+{a}><keyword=health>")
+                .WithIconGroupName("health")
                 .WithIsStatus(true)
                 .WithCanBeBoosted(false)
-                .WithStackable(true) // Most status effects are stackable
-                .WithOffensive(false)
-                .WithDoesDamage(false)
-                .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnTurn>(data =>
-                {
-                    // Debug logging to help diagnose loading issues
-                    System.Diagnostics.Debug.WriteLine("[Rejuvenation] Registering status effect...");
-                    data.dealDamage = false;
-                    if (typeof(ScriptableAmount).Assembly.GetType("ScriptableAmountConstant") is { } constantType)
+                .WithStackable(true)
+                .WithOffensive(false)       // Not a negative status like Shroom
+                .WithMakesOffensive(false)  // Doesn't change targeting behavior
+                .WithDoesDamage(false)      // Doesn't do damage, it heals
+                .WithVisible(true)
+                .SubscribeToAfterAllBuildEvent<StatusEffectShroom>(data =>
+                {                    UnityEngine.Debug.Log("[Rejuvenation] Registering status effect...");
+                    data.applyFormatKey = Extensions.GetLocalizedString("Card Text", "Apply X");
+                    data.removeOnDiscard = true;
+                    
+                    // Use reflection to set the healInsteadOfDamage property if it exists
+                    // This is safer than direct access in case the property doesn't exist
+                    PropertyInfo healProperty = typeof(StatusEffectShroom).GetProperty("healInsteadOfDamage", 
+                        BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                    
+                    if (healProperty != null)
                     {
-                        var amount = (ScriptableAmount)System.Activator.CreateInstance(constantType);
-                        constantType.GetField("value").SetValue(amount, 1); // Restore 1 health per turn
-                        data.scriptableAmount = amount;
-                        System.Diagnostics.Debug.WriteLine($"[Rejuvenation] ScriptableAmountConstant found, set to 1");
+                        healProperty.SetValue(data, true);
+                        UnityEngine.Debug.Log("[Rejuvenation] Set healInsteadOfDamage to true");
                     }
-                    else
+                    else 
                     {
-                        data.scriptableAmount = null; // fallback, will restore 1 health if not set
-                        System.Diagnostics.Debug.WriteLine("[Rejuvenation] ScriptableAmountConstant not found, using default");
+                        FieldInfo healField = typeof(StatusEffectShroom).GetField("healInsteadOfDamage", 
+                            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                        
+                        if (healField != null)
+                        {
+                            healField.SetValue(data, true);
+                            UnityEngine.Debug.Log("[Rejuvenation] Set healInsteadOfDamage field to true");
+                        }
+                        else
+                        {
+                            UnityEngine.Debug.LogWarning("[Rejuvenation] Could not find healInsteadOfDamage property or field");
+                        }
                     }
-                    // Use StatusEffectInstantHeal for healing, as per modding docs
-                    var healEffect = mod.TryGet<StatusEffectData>("Heal");
-                    if (healEffect == null)
+                    
+                    // Set target constraints to ensure it can be applied properly
+                    data.targetConstraints = new TargetConstraint[]
                     {
-                        System.Diagnostics.Debug.WriteLine("[Rejuvenation] Could not find StatusEffectData 'InstantHeal'. Status will not heal!");
-                    }
-                    else
-                    {
-                        System.Diagnostics.Debug.WriteLine("[Rejuvenation] Found StatusEffectData 'InstantHeal'.");
-                    }
-                    data.effectToApply = healEffect;
-                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
-                    data.waitForAnimationEnd = true;
+                        new Scriptable<TargetConstraintCanBeHit>()
+                    };
                 });
             mod.assets.Add(builder);
+        }
+    }
+      // Helper class to create scriptable objects - same as used by Shroom
+    public class Scriptable<T> where T : ScriptableObject, new()
+    {
+        readonly Action<T>? modifier;
+        public Scriptable() { }
+        public Scriptable(Action<T> modifier) { this.modifier = modifier; }
+        public static implicit operator T(Scriptable<T> scriptable)
+        {
+            T result = ScriptableObject.CreateInstance<T>();
+            scriptable.modifier?.Invoke(result);
+            return result;
         }
     }
 }
