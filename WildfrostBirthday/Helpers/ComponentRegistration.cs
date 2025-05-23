@@ -52,9 +52,10 @@ namespace WildfrostBirthday.Helpers
                 else if (typeName.StartsWith("Item_"))
                     category = "Item";
                 else if (typeName.StartsWith("Charm_"))
-                    category = "Charm";
-                else if (typeName.StartsWith("Tribe_"))
+                    category = "Charm";                else if (typeName.StartsWith("Tribe_"))
                     category = "Tribe";
+                else if (typeName.StartsWith("Keyword_"))
+                    category = "Keyword";
 
                 // Skip if we couldn't determine category
                 if (category == null)
@@ -143,9 +144,7 @@ namespace WildfrostBirthday.Helpers
         public static void RegisterAllCharms(this WildFamilyMod mod)
         {
             RegisterComponentsByCategory(mod, "Charm");
-        }
-
-        /// <summary>
+        }        /// <summary>
         /// Registers all tribes
         /// </summary>
         /// <param name="mod">The mod instance</param>
@@ -155,18 +154,26 @@ namespace WildfrostBirthday.Helpers
         }
 
         /// <summary>
+        /// Registers all keywords
+        /// </summary>
+        /// <param name="mod">The mod instance</param>
+        public static void RegisterAllKeywords(this WildFamilyMod mod)
+        {
+            RegisterComponentsByCategory(mod, "Keyword");
+        }
+
+        /// <summary>
         /// Registers all components of all types
         /// </summary>
         /// <param name="mod">The mod instance</param>
         public static void RegisterAllComponents(this WildFamilyMod mod)
         {
-            UnityEngine.Debug.Log($"[{mod.Title}] Registering all components");
-
-            mod.RegisterAllStatusEffects();
+            UnityEngine.Debug.Log($"[{mod.Title}] Registering all components");            mod.RegisterAllStatusEffects();
             mod.RegisterAllCards();
             mod.RegisterAllItems();
             mod.RegisterAllCharms();            
             mod.RegisterAllTribes();
+            mod.RegisterAllKeywords();
         }
     }
 }
