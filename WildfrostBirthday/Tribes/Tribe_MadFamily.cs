@@ -113,7 +113,7 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("item-junkpile"),
                 mod.TryGet<CardData>("item-shellbom"),
                 mod.TryGet<CardData>("companion-cfrs"),
-            }.FindAll(x => x != null);
+            };
             itemsPool.isGeneralPool = true;
             pools.Add(itemsPool);
             
@@ -134,7 +134,7 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("LuminCat"),
                 mod.TryGet<CardData>("MagmaBlacksmith"),
                 mod.TryGet<CardData>("Blue"),
-            }.FindAll(x => x != null);
+            };
             unitsPool.isGeneralPool = true;
             pools.Add(unitsPool);
             
@@ -194,7 +194,6 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardUpgradeData>("charm-bookcharm"),
                 mod.TryGet<CardUpgradeData>("charm-duckcharm"),
             };
-            charmsPool.list = charmsPool.list.FindAll(x => x != null);
             charmsPool.isGeneralPool = true;
             pools.Add(charmsPool);
             
@@ -207,7 +206,6 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("Snowcake"),
                 mod.TryGet<CardData>("SnowGlobe"),
             };
-            snowItemsPool.list = snowItemsPool.list.FindAll(x => x != null);
             snowItemsPool.isGeneralPool = true;
             pools.Add(snowItemsPool);
             
@@ -220,7 +218,6 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("Snobble"),
                 mod.TryGet<CardData>("Snoffel"),
             };
-            snowUnitsPool.list = snowUnitsPool.list.FindAll(x => x != null);
             snowUnitsPool.isGeneralPool = true;
             pools.Add(snowUnitsPool);
             
@@ -232,7 +229,6 @@ namespace WildfrostBirthday.Tribes
             {
                 mod.TryGet<CardUpgradeData>("CardUpgradeSnowball"),
             };
-            snowCharmsPool.list = snowCharmsPool.list.FindAll(x => x != null);
             snowCharmsPool.isGeneralPool = true;
             pools.Add(snowCharmsPool);
             
@@ -246,7 +242,6 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("Snowcracker"),
                 mod.TryGet<CardData>("ScrapPile"),
             };
-            additionalItemsPool.list = additionalItemsPool.list.FindAll(x => x != null);
             additionalItemsPool.isGeneralPool = false;
             pools.Add(additionalItemsPool);
             
@@ -264,10 +259,9 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("companion-ivy"),
                 mod.TryGet<CardData>("companion-bwob"),
                 mod.TryGet<CardData>("companion-chonk"),
-                mod.TryGet<CardData>("companion-quock"),
+                
 
             };
-            additionalUnitsPool.list = additionalUnitsPool.list.FindAll(x => x != null);
             additionalUnitsPool.isGeneralPool = true;
             pools.Add(additionalUnitsPool);
             
@@ -286,7 +280,6 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardUpgradeData>("CardUpgradeScrap"),
                 mod.TryGet<CardUpgradeData>("CardUpgradeHeartburn"),
             };
-            additionalCharmsPool.list = additionalCharmsPool.list.FindAll(x => x != null);
             additionalCharmsPool.isGeneralPool = false;
             pools.Add(additionalCharmsPool);
             
@@ -308,7 +301,6 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<GameModifierData>("BlessingStrength"),
                 mod.TryGet<GameModifierData>("BlessingInfinity"),
             };
-            modifiersPool.list = modifiersPool.list.FindAll(x => x != null);
             modifiersPool.isGeneralPool = true;
             pools.Add(modifiersPool);
             

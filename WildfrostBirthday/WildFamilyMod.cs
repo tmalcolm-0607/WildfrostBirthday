@@ -23,6 +23,9 @@ public List<object> assets = new List<object>();
             {
                 // Automatically register all components (status effects, cards, charms, items, tribes)
                 WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllComponents(this);
+                // Register battles and campaign nodes
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllBattles(this);
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllCampaignNodeTypes(this);
                 preLoaded = true;
             }
 
@@ -31,6 +34,9 @@ public List<object> assets = new List<object>();
             Events.OnEntityCreated += FixImage;
             GameMode gameMode = TryGet<GameMode>("GameModeNormal"); //GameModeNormal is the standard game mode. 
             gameMode.classes = gameMode.classes.Append(TryGet<ClassData>("MadFamily")).ToArray();
+            
+            // Integrate our battle into the game mode
+            IntegrateBattleIntoGameMode(gameMode);
         }
 
         public override void Unload()
@@ -208,8 +214,32 @@ public CardDataBuilder AddItemCard(
 
             assets.Add(builder);
             return builder;
+        }        private void IntegrateBattleIntoGameMode(GameMode gameMode)
+        {
+            // Get our battle data
+            var battle = TryGet<BattleData>("battle_volatile_amoeboms");
+            if (battle == null)
+            {
+                Debug.LogError($"[{Title}] Could not find Volatile Amoeboms battle data");
+                return;
+            }
+
+            // Get the campaign populator for the game mode
+            var populator = gameMode.populator;
+            if (populator == null || populator.tiers == null || populator.tiers.Length < 5)
+            {
+                Debug.LogError($"[{Title}] Game mode does not have enough tiers");
+                return;
+            }
+
+            // Add the battle to tier 4 (challenging encounters)
+            var tier4 = populator.tiers[4];
+            if (tier4.battlePool == null)
+                tier4.battlePool = new BattleData[0];
+
+            // Create new array with our battle added
+            tier4.battlePool = tier4.battlePool.Concat(new[] { battle }).ToArray();
         }
     }
 }
 
-            

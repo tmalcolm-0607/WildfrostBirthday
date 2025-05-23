@@ -49,6 +49,10 @@ namespace WildfrostBirthday.Helpers
                     category = "StatusEffect";
                 else if (typeName.StartsWith("Card_"))
                     category = "Card";
+                else if (typeName.StartsWith("CampaignNodeType_"))
+                    category = "CampaignNodeType";
+                else if (typeName.StartsWith("Battle_"))
+                    category = "Battle";
                 else if (typeName.StartsWith("Item_"))
                     category = "Item";
                 else if (typeName.StartsWith("Charm_"))
@@ -155,6 +159,23 @@ namespace WildfrostBirthday.Helpers
         }
 
         /// <summary>
+        /// Registers all battles
+        /// </summary>
+        /// <param name="mod">The mod instance</param>
+        public static void RegisterAllBattles(this WildFamilyMod mod)
+        {
+            RegisterComponentsByCategory(mod, "Battle");
+        }
+
+        /// <summary>
+        /// Registers all campaign node types with Register method
+        /// </summary>
+        public static void RegisterAllCampaignNodeTypes(this WildFamilyMod mod)
+        {
+            RegisterComponentsByCategory(mod, "CampaignNodeType");
+        }
+
+        /// <summary>
         /// Registers all components of all types
         /// </summary>
         /// <param name="mod">The mod instance</param>
@@ -165,7 +186,8 @@ namespace WildfrostBirthday.Helpers
             mod.RegisterAllStatusEffects();
             mod.RegisterAllCards();
             mod.RegisterAllItems();
-            mod.RegisterAllCharms();            
+            mod.RegisterAllCharms();
+            mod.RegisterAllBattles();
             mod.RegisterAllTribes();
         }
     }
