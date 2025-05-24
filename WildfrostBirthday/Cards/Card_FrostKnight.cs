@@ -48,7 +48,7 @@ namespace WildfrostBirthday.Cards
 
             var builder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "The Frost Knight")
-                .SetSprites(spritePath + "frost_knight.png", "bg.png")
+                .SetSprites(spritePath + "frostboss.png", "bg.png")
                 .SetStats(40, 10, 6)  // HP: 40, ATK: 10, Counter: 6
                 .WithFlavour("An ancient warrior encased in glacial armor, commanding the very essence of winter itself.")
                 .WithCardType("Boss")
@@ -71,7 +71,7 @@ namespace WildfrostBirthday.Cards
             // Create Frost Knight 2 variant
             string cardId2 = "frost_knight_2";            var builder2 = new CardDataBuilder(mod)
                 .CreateUnit(cardId2, "The Frost Knight")
-                .SetSprites(spritePath + "frost_knight_2.png", "bg.png")
+                .SetSprites(spritePath + "frostboss2.png", "bg.png")
                 .SetStats(60, 2, 3)  // HP: 60, ATK: 2, Counter: 3
                 .WithFlavour("A more agile variant of the Frost Knight, darting around with rapid strikes.")
                 .WithCardType("Boss")

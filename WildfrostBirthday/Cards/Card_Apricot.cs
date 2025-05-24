@@ -32,7 +32,7 @@ namespace WildfrostBirthday.Cards
 
             var builder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Apricot")
-                .SetSprites(spritePath + "apricot.png", "bg.png")
+                .SetSprites(spritePath + "shellboss.png", "bg.png")
                 .SetStats(5, 5, 6)  // HP: 5, ATK: 5, Counter: 6
                 .WithFlavour("A master of shell manipulation, turning defense into devastating offense.")
                 .WithCardType("Boss")
@@ -59,7 +59,7 @@ namespace WildfrostBirthday.Cards
             
             var builder2 = new CardDataBuilder(mod)
                 .CreateUnit(cardId2, "Apricot")
-                .SetSprites(spritePath + "apricot_2.png", "bg.png")
+                .SetSprites(spritePath + "shellboss3.png", "bg.png")
                 .SetStats(5, 1, 1)  // HP: 5, ATK: 1, Counter: 1
                 .WithFlavour("Now focusing purely on defense, Apricot unleashes devastating area attacks.")
                 .WithCardType("Boss")
