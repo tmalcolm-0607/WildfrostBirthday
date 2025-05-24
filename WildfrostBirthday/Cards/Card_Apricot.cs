@@ -31,10 +31,10 @@ namespace WildfrostBirthday.Cards
             string spritePath = "enemies/apricot";
 
             var builder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Apricot")
-                .SetSprites(spritePath + "shellboss.png", "bg.png")
+                .CreateUnit(cardId, "Apricot", idleAnim: "GiantAnimationProfile")
+                .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(5, 5, 6)  // HP: 5, ATK: 5, Counter: 6
-                .WithFlavour("A master of shell manipulation, turning defense into devastating offense.")
+                .WithFlavour("Apricot remains sealed inside her prison, awaiting release. In the meantime, she harrasses her foes with extra damage equivalent to how hard the shell prison remains.")
                 .WithCardType("Boss")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
@@ -58,10 +58,10 @@ namespace WildfrostBirthday.Cards
             string cardId2 = "apricot_2";
             
             var builder2 = new CardDataBuilder(mod)
-                .CreateUnit(cardId2, "Apricot")
-                .SetSprites(spritePath + "shellboss3.png", "bg.png")
+                .CreateUnit(cardId2, "Apricot", idleAnim: "SwayAnimationProfile")
+                .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(5, 1, 1)  // HP: 5, ATK: 1, Counter: 1
-                .WithFlavour("Now focusing purely on defense, Apricot unleashes devastating area attacks.")
+                .WithFlavour("Now freed from her prison, Apricot dances around and strikes with precision on all of her foes.")
                 .WithCardType("Boss")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
@@ -72,9 +72,9 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("Hit All Enemies", 1)
                     };
 
-                    // Set traits - Frontline
+                    // Set traits - Spark
                     data.traits = new List<CardData.TraitStacks> {
-                        mod.TStack("Frontline", 1)
+                        mod.TStack("Spark", 1)
                     };
                 });
 

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using WildfrostBirthday.Helpers;
+using WildfrostBirthday.Helpers;    
 
 namespace WildfrostBirthday.Cards
 {

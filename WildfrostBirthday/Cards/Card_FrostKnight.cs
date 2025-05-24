@@ -43,14 +43,15 @@ namespace WildfrostBirthday.Cards
                     data.animation = null;
                 });
 
-            mod.assets.Add(phaseBuilder);            string cardId = "frost_knight";
-            string spritePath = "enemies/frost_knight";
+            mod.assets.Add(phaseBuilder);
+            string cardId = "frost_knight";
+            string spritePath = "enemies/frost";
 
             var builder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "The Frost Knight")
-                .SetSprites(spritePath + "frostboss.png", "bg.png")
+                .CreateUnit(cardId, "The Frost Knight", idleAnim: "GiantAnimationProfile")
+                .SetSprites("frostboss.png", "bg.png")
                 .SetStats(40, 10, 6)  // HP: 40, ATK: 10, Counter: 6
-                .WithFlavour("An ancient warrior encased in glacial armor, commanding the very essence of winter itself.")
+                .WithFlavour("An ancient warrior encased in the armor of the frost itself, wielding a violet sword to lethally numb those who oppose him.")
                 .WithCardType("Boss")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
@@ -69,11 +70,12 @@ namespace WildfrostBirthday.Cards
             mod.assets.Add(builder);
 
             // Create Frost Knight 2 variant
-            string cardId2 = "frost_knight_2";            var builder2 = new CardDataBuilder(mod)
-                .CreateUnit(cardId2, "The Frost Knight")
-                .SetSprites(spritePath + "frostboss2.png", "bg.png")
+            string cardId2 = "frost_knight_2";
+            var builder2 = new CardDataBuilder(mod)
+                .CreateUnit(cardId2, "The Frost Knight", idleAnim: "HeartbeatAnimationProfile")
+                .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(60, 2, 3)  // HP: 60, ATK: 2, Counter: 3
-                .WithFlavour("A more agile variant of the Frost Knight, darting around with rapid strikes.")
+                .WithFlavour("Revealing his true power, the Frost Knight unleashes a blizzard upon his foes, striking with furious vengeance.")
                 .WithCardType("Boss")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
