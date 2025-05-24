@@ -17,14 +17,11 @@ namespace WildfrostBirthday
 public List<object> assets = new List<object>();
 
         public override void Load()
-        {
-
-            if (!preLoaded)
+        {            if (!preLoaded)
             {
-                // Automatically register all components (status effects, cards, charms, items, tribes)
+                // Automatically register all components (status effects, cards, charms, items, tribes, battles, etc.)
                 WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllComponents(this);
-                // Register battles and campaign nodes
-                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllBattles(this);
+                // Also register campaign node types (not included in RegisterAllComponents)
                 WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllCampaignNodeTypes(this);
                 preLoaded = true;
             }
@@ -214,9 +211,7 @@ public CardDataBuilder AddItemCard(
 
             assets.Add(builder);
             return builder;
-        }
-
-        private void IntegrateBattleIntoGameMode(GameMode gameMode)
+        }        private void IntegrateBattleIntoGameMode(GameMode gameMode)
         {
             // Get our battle data
             var battle = TryGet<BattleData>("battle_volatile_amoeboms");
@@ -224,20 +219,27 @@ public CardDataBuilder AddItemCard(
             {
                 Debug.LogError($"[{Title}] Could not find Volatile Amoeboms battle data");
                 return;
-            }            // Get the campaign populator for the game mode
+            }
+            
+            // Get the campaign populator for the game mode
             var populator = gameMode.populator;
             if (populator == null || populator.tiers == null || populator.tiers.Length < 1)
             {
                 Debug.LogError($"[{Title}] Game mode does not have enough tiers");
                 return;
-            }            // Add the battle to tier 0 (alongside Snowbo Squad and Pengoons)
+            }
+            
+            // Add the battle to tier 0's pool to make it available throughout the game
             var tier0 = populator.tiers[0];
-            if (tier0.battlePool == null)
-                tier0.battlePool = new BattleData[0];
-
-            // Create new array with our battle added
-            tier0.battlePool = tier0.battlePool.Concat(new[] { battle }).ToArray();
+            
+            // A simpler approach: Make our battle the ONLY battle in tier 0
+            // This guarantees it will be the first battle encountered
+            Debug.Log($"[{Title}] Setting Volatile Amoeboms as the only battle in tier 0");
+            tier0.battlePool = new BattleData[] { battle };
+            
+            // This will force our battle to be the first one encountered
+            // since it's the only option in the pool for tier 0
+            Debug.Log($"[{Title}] Successfully made Volatile Amoeboms the first battle");
         }
     }
 }
-
