@@ -412,9 +412,39 @@
 
   <ItemGroup>
     <Folder Include="assets\images\" />
-  </ItemGroup>  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="robocopy &quot;$(TargetDir).&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday&quot; &quot;WildfrostBirthday.dll&quot;" IgnoreExitCode="true" />
-    <Exec Command="if exist &quot;$(ProjectDir)assets&quot; robocopy &quot;$(ProjectDir)assets&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday&quot; /E" IgnoreExitCode="true" />
+  </ItemGroup>  <PropertyGroup>
+    <ModPath>C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday</ModPath>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Message Text="Deploying mod files..." Importance="high" />
+    <!-- Create directories if they don't exist -->
+    <MakeDir Directories="$(ModPath)" />
+    <MakeDir Directories="$(ModPath)\assets" Condition="Exists('$(ProjectDir)assets')" />
+    
+    <!-- Copy DLL with retries -->
+    <ItemGroup>
+      <RetryDelete Include="$(ModPath)\WildfrostBirthday.dll" />
+      <RetryDelete Include="$(ModPath)\assets\**\*" />
+    </ItemGroup>
+    
+    <!-- Delete old files -->
+    <Delete Files="@(RetryDelete)" ContinueOnError="true" />
+    <RemoveDir Directories="$(ModPath)\assets" Condition="Exists('$(ModPath)\assets')" ContinueOnError="true" />
+    
+    <!-- Copy new files -->
+    <Copy SourceFiles="$(TargetPath)" 
+          DestinationFolder="$(ModPath)"
+          SkipUnchangedFiles="true"
+          RetryDelayMilliseconds="2000"
+          Retries="5" />
+          
+    <Copy SourceFiles="@(Content)"
+          DestinationFolder="$(ModPath)\assets"
+          Condition="Exists('$(ProjectDir)assets')"
+          SkipUnchangedFiles="true"
+          RetryDelayMilliseconds="2000"
+          Retries="5" />
   </Target>
 
 
