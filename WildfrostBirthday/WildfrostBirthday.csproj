@@ -412,11 +412,9 @@
 
   <ItemGroup>
     <Folder Include="assets\images\" />
-  </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /Y &quot;$(TargetDir)WildfrostBirthday.dll&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday\&quot;" />
-    <Exec Command="xcopy /Y /E /I &quot;$(ProjectDir)assets\*&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday\&quot;" />
+  </ItemGroup>  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="robocopy &quot;$(TargetDir).&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday&quot; &quot;WildfrostBirthday.dll&quot;" IgnoreExitCode="true" />
+    <Exec Command="if exist &quot;$(ProjectDir)assets&quot; robocopy &quot;$(ProjectDir)assets&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Wildfrost\Modded\Wildfrost_Data\StreamingAssets\Mods\WildfrostBirthday&quot; /E" IgnoreExitCode="true" />
   </Target>
 
 

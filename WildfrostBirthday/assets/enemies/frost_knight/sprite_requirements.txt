@@ -1,0 +1,27 @@
+Frost Knight Sprite Requirements
+
+Required files:
+1. phase1.png - The Frost Knight's first form
+- Large armored warrior
+- Glacial/ice-themed armor
+- Imposing stance
+- Color scheme: Cool blues and whites
+- Size: 256x256px recommended
+- Style: Match Wildfrost's art style
+
+2. phase2.png - The Frost Knight's second form
+- More agile/dynamic pose
+- Cracked/transforming ice armor
+- Shows signs of power unleashed
+- Same color scheme but more intense
+- Size: 256x256px recommended
+- Style: Match Wildfrost's art style
+
+3. bg.png - Background for both forms
+- Icy throne room or frozen battlefield
+- Subtle details to not overpower the character
+- Cool, misty atmosphere
+- Size: Match card background dimensions
+- Style: Match Wildfrost's background art style
+
+Note: All sprites should be transparent PNGs and follow Wildfrost's signature art style.
