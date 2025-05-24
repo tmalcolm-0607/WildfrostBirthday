@@ -12,7 +12,7 @@ namespace WildfrostBirthday.Cards
             string spritePath = "enemies/dodecahebom";
 
             var enemyBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Dodecahebom", idleAnim: "Heartbeat2AnimationProfile")
+                .CreateUnit(cardId, "Dodecahebom", idleAnim: "GiantAnimationProfile")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(874, 0, 4)  // HP, ATK, Counter
                 .WithFlavour("A geometrically perfect abomination pulsing with destructive energy.")

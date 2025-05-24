@@ -7,8 +7,7 @@ namespace WildfrostBirthday.Cards
     public static class Card_ColossalAmoebom
     {
         public static void Register(WildFamilyMod mod)
-        {
-            string cardId = "colossal-amoebom";
+        {            string cardId = "colossal_amoebom";
             string spritePath = "enemies/colossal_amoebom";
             
             var enemyBuilder = new CardDataBuilder(mod)

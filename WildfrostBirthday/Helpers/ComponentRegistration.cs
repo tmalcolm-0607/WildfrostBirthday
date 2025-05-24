@@ -175,6 +175,15 @@ namespace WildfrostBirthday.Helpers
         }
 
         /// <summary>
+        /// Registers all keywords
+        /// </summary>
+        /// <param name="mod">The mod instance</param>
+        public static void RegisterAllKeywords(this WildFamilyMod mod)
+        {
+            RegisterComponentsByCategory(mod, "Keyword");
+        }
+
+        /// <summary>
         /// Registers all components of all types
         /// </summary>
         /// <param name="mod">The mod instance</param>

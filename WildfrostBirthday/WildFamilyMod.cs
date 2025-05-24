@@ -214,7 +214,9 @@ public CardDataBuilder AddItemCard(
 
             assets.Add(builder);
             return builder;
-        }        private void IntegrateBattleIntoGameMode(GameMode gameMode)
+        }
+
+        private void IntegrateBattleIntoGameMode(GameMode gameMode)
         {
             // Get our battle data
             var battle = TryGet<BattleData>("battle_volatile_amoeboms");
@@ -222,23 +224,19 @@ public CardDataBuilder AddItemCard(
             {
                 Debug.LogError($"[{Title}] Could not find Volatile Amoeboms battle data");
                 return;
-            }
-
-            // Get the campaign populator for the game mode
+            }            // Get the campaign populator for the game mode
             var populator = gameMode.populator;
-            if (populator == null || populator.tiers == null || populator.tiers.Length < 5)
+            if (populator == null || populator.tiers == null || populator.tiers.Length < 1)
             {
                 Debug.LogError($"[{Title}] Game mode does not have enough tiers");
                 return;
-            }
-
-            // Add the battle to tier 4 (challenging encounters)
-            var tier4 = populator.tiers[4];
-            if (tier4.battlePool == null)
-                tier4.battlePool = new BattleData[0];
+            }            // Add the battle to tier 0 (alongside Snowbo Squad and Pengoons)
+            var tier0 = populator.tiers[0];
+            if (tier0.battlePool == null)
+                tier0.battlePool = new BattleData[0];
 
             // Create new array with our battle added
-            tier4.battlePool = tier4.battlePool.Concat(new[] { battle }).ToArray();
+            tier0.battlePool = tier0.battlePool.Concat(new[] { battle }).ToArray();
         }
     }
 }

@@ -7,8 +7,7 @@ namespace WildfrostBirthday.Cards
     public static class Card_SulfurBom
     {
         public static void Register(WildFamilyMod mod)
-        {
-            string cardId = "sulfur-bom";
+        {            string cardId = "sulfur_bom";
             string spritePath = "enemies/sulfur_bom";
 
             var enemyBuilder = new CardDataBuilder(mod)
