@@ -228,11 +228,18 @@ public CardDataBuilder AddItemCard(
                 Debug.LogError($"[{Title}] Game mode does not have enough tiers");
                 return;
             }
-
-            // Add the battle to tier 6's pool to make it available throughout the game
+  // Add the battle to tier 6's pool to make it available throughout the game
             var tier6 = populator.tiers[6];
-           ;
 
+            // A simpler approach: Make our battle the ONLY battle in tier 6
+            // This guarantees it will be the first battle encountered
+            Debug.Log($"[{Title}] Setting Volatile Amoeboms as the only battle in tier 0");
+            tier6.battlePool = new BattleData[] { battle };
+            
+            // This will force our battle to be the first one encountered
+            // since it's the only option in the pool for tier 0
+            Debug.Log($"[{Title}] Successfully made Volatile Amoeboms the first battle");
+        
     
         }
     }
