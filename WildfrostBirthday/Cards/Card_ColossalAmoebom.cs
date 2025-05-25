@@ -11,7 +11,7 @@ namespace WildfrostBirthday.Cards
             string spritePath = "enemies/colossal_amoebom";
             
             var enemyBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Colossal Amoebom", idleAnim: "GoopAnimationProfile")
+                .CreateUnit(cardId, "Colossal Amoebom", idleAnim: "WaveAnimationProfile")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(555, 2, 13)  // HP, ATK, Counter
                 .WithFlavour("A massive, ominous slime with six piercing yellow eyes.")

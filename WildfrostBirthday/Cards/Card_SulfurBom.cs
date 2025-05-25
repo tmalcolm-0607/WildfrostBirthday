@@ -11,7 +11,7 @@ namespace WildfrostBirthday.Cards
             string spritePath = "enemies/sulfur_bom";
 
             var enemyBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Sulfur Bom", idleAnim: "FloatAnimationProfile")
+                .CreateUnit(cardId, "Sulfur Bom", idleAnim: "FloatSquishAnimationProfile")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(13, 0, 5)  // HP, ATK, Counter
                 .WithFlavour("A volatile blob that floats menacingly.")

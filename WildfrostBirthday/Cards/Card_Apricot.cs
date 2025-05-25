@@ -50,35 +50,7 @@ namespace WildfrostBirthday.Cards
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Backline", 1)
                     };
-                });
-
-            mod.assets.Add(builder);
-
-            // Create Apricot Phase 2 variant
-            string cardId2 = "apricot_2";
-            
-            var builder2 = new CardDataBuilder(mod)
-                .CreateUnit(cardId2, "Apricot", idleAnim: "SwayAnimationProfile")
-                .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(5, 1, 1)  // HP: 5, ATK: 1, Counter: 1
-                .WithFlavour("Now freed from her prison, Apricot dances around and strikes with precision on all of her foes.")
-                .WithCardType("Boss")
-                .SubscribeToAfterAllBuildEvent(data =>
-                {
-                    // Starting effects
-                    data.startWithEffects = new[] {
-                        mod.SStack("ImmuneToSnow", 1),
-                        mod.SStack("Shell", 25),
-                        mod.SStack("Hit All Enemies", 1)
-                    };
-
-                    // Set traits - Spark
-                    data.traits = new List<CardData.TraitStacks> {
-                        mod.TStack("Spark", 1)
-                    };
-                });
-
-            mod.assets.Add(builder2);
+                });            mod.assets.Add(builder);
         }
     }
 }
