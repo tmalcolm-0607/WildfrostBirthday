@@ -14,7 +14,7 @@ namespace WildfrostBirthday.Cards
             var enemyBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Dodecahebom", idleAnim: "GiantAnimationProfile")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(874, 0, 4)  // HP, ATK, Counter
+                .SetStats(874, 0, 2)  // HP, ATK, Counter
                 .WithFlavour("A geometrically perfect abomination pulsing with destructive energy.")
                 .WithCardType("Miniboss")
                 .WithValue(150)

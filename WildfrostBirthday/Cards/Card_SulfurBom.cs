@@ -13,23 +13,23 @@ namespace WildfrostBirthday.Cards
             var enemyBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Sulfur Bom", idleAnim: "FloatSquishAnimationProfile")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(13, 0, 5)  // HP, ATK, Counter
+                .SetStats(21, 0, 5)  // HP, ATK, Counter
                 .WithFlavour("A volatile blob that floats menacingly.")
                 .WithCardType("Enemy")
-                .WithValue(50)
+                .WithValue(10)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Starting effects
                     var startEffects = new List<CardData.StatusEffectStacks>
                     {
-                        mod.SStack("Weakness", 1),    // Starts with 1 Weakness
+                        mod.SStack("Weakness", 3),    // Starts with 3 Weakness
                         mod.SStack("MultiHit", 2)     // Has 2 MultiHit
                     };
                     data.startWithEffects = startEffects.ToArray();
                     var AttackEffects = new List<CardData.StatusEffectStacks>
                     {
                         mod.SStack("Weakness", 1),    // Starts with 1 Weakness
-                    
+
                     };
                     data.attackEffects = AttackEffects.ToArray();
                     // Set traits - Aimless
