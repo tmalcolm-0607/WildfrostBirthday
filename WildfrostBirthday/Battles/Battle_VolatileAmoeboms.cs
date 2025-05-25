@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Dead;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Tables;
 
 namespace WildfrostBirthday.Battles
 {
@@ -34,18 +31,14 @@ namespace WildfrostBirthday.Battles
     /// 
     
     public static class Battle_VolatileAmoeboms 
-    {    public static void Register(WildFamilyMod mod)
     {
-        // Create string table entry for the battle name
-        string battleId = "volatile_amoeboms";
-        string displayName = "The Volatile Amoeboms";
-        
+    public static void Register(WildFamilyMod mod)
+    {
         var builder = new BattleDataBuilder(mod)
-            .Create(battleId)
-            .WithTitle("Battle!")
+            .Create("battle_volatile_amoeboms")
             .SubscribeToAfterAllBuildEvent(data =>
             {
-                data.title = "Battle!";
+                data.title = "Volatile Amoeboms";
                 data.waveCounter = 4;
                 data.pools = new BattleWavePoolData[]
                 {
@@ -129,16 +122,13 @@ namespace WildfrostBirthday.Battles
 
                 // Set up generation and setup scripts
                 data.generationScript = new Scriptable<BattleGenerationScriptWaves>();
-                data.setUpScript = new Scriptable<ScriptBattleSetUp>();                // Set the sprite for both battle and map icon
+                data.setUpScript = new Scriptable<ScriptBattleSetUp>();
+
+                // Set battle sprite
                 data.sprite = "battles/volatile_amoeboms".ToSprite();
 
-                // Set the display name for the battle
-                var localizedString = new LocalizedString("Battles", "volatile_amoeboms");
-                data.nameRef = localizedString;
-
-                // Add the localization entry
-                var collection = LocalizationHelper.GetCollection("Battles", new LocaleIdentifier(SystemLanguage.English));
-                collection.SetString("volatile_amoeboms", displayName);
+                // Set localized name reference
+                data.nameRef = Extensions.GetLocalizedString("UI Text", "map_battle_amoeboms");
             });
 
         mod.assets.Add(builder);
