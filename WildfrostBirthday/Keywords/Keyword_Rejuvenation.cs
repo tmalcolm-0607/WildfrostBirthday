@@ -2,8 +2,7 @@ using System;
 using UnityEngine;
 
 namespace WildfrostBirthday.Keywords
-{
-    public static class Keyword_Rejuvenation
+{    public static class Keyword_Rejuvenation
     {
         public static void Register(WildFamilyMod mod)
         {
@@ -11,10 +10,9 @@ namespace WildfrostBirthday.Keywords
             var builder = new KeywordDataBuilder(mod)
                 .Create("rejuvenation") // Internal name must be lowercase
                 .WithTitle("Rejuvenation") // Display name with proper capitalization
-                .WithDescription("Restores {0} health at the end of turn.") // Explanation with {0} for stack count                .WithTitleColour(new Color(0.35f, 0.75f, 0.35f)) // Green color for healing
-                .WithBodyColour(new Color(0.2f, 0.5f, 0.3f)) // Darker green for body text
+                .WithDescription("Restore health at the end of turn")
                 .WithShowName(true) // Show the name in the tooltip
-                .WithCanStack(true); // Can stack like Shroom does
+                .WithCanStack(true); // Can stack like other status effects
 
             // Add the keyword to the mod's assets
             mod.assets.Add(builder);
