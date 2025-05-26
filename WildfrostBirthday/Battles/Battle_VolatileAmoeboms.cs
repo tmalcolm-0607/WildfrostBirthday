@@ -25,7 +25,7 @@ namespace WildfrostBirthday.Battles
     /// <summary>
     /// A battle encounter featuring three waves:
     /// Wave 1: Sulfur Bom + Colossal Amoebom
-    /// Wave 2: Triple Sulfur Boms
+    /// Wave 2: two Sulfur Boms + Stormbringer
     /// Wave 3 (Boss): Colossal Amoebom + Sulfur Bom + Dodecahebom
     /// </summary>
     /// 
@@ -65,7 +65,7 @@ namespace WildfrostBirthday.Battles
                         };
                     }),
                     
-                    // Wave 2: Triple Sulfur Boms
+                    // Wave 2: Two Sulfur Boms + Stormbringer
                     new Scriptable<BattleWavePoolData>(bwpd =>
                     {
                         bwpd.weight = 1;
@@ -78,7 +78,7 @@ namespace WildfrostBirthday.Battles
                                 units = new List<CardData>
                                 {
                                     mod.TryGet<CardData>("sulfur_bom"),
-                                    mod.TryGet<CardData>("sulfur_bom"),
+                                    mod.TryGet<CardData>("stormbringer"),
                                     mod.TryGet<CardData>("sulfur_bom")
                                 },
                                 value = 125,
