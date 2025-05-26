@@ -6,18 +6,24 @@ namespace WildfrostBirthday.Keywords
     {
         public static void Register(WildFamilyMod mod)
         {
-            // Create the keyword data
-            var builder = new KeywordDataBuilder(mod)
-                .Create("rejuvenation") // Internal name must be lowercase
-                .WithTitle("Rejuvenation") // Display name with proper capitalization
-                .WithDescription("Restore health at the end of turn")
-                .WithShowName(true) // Show the name in the tooltip
-                .WithCanStack(true); // Can stack like other status effects
+            // Register the icon for the keyword (Pokefrost style)
+            // This assumes the icon is at assets/images/status/rejuvenation.png
+            var iconPath = "status/rejuvenation.png";
+            var iconName = "rejuvenation";
+            // If your mod has a helper for registering icons, call it here (Pokefrost uses CreateIcon)
+            // Example: mod.CreateIcon("RejuvenationIcon", ...)
 
-            // Add the keyword to the mod's assets
+            var builder = new KeywordDataBuilder(mod)
+                .Create("rejuvenation")
+                .WithTitle("Rejuvenation")
+                .WithDescription("Restore {a} health at the end of turn.")
+                .WithShowName(false)
+                .WithShowIcon(true)
+                .WithIconName(iconName)
+                .WithCanStack(true);
+
             mod.assets.Add(builder);
-            
-            Debug.Log($"[WildfrostBirthday] Registered 'Rejuvenation' keyword");
+            Debug.Log($"[WildfrostBirthday] Registered 'Rejuvenation' keyword with icon '{iconName}' and path '{iconPath}'");
         }
     }
 }

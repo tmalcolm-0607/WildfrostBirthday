@@ -1,9 +1,13 @@
 ﻿﻿// MadFamily Tribe Mod - Wildfrost
+using WildfrostBirthday.Helpers;
+
 namespace WildfrostBirthday
 {
 
     public class WildFamilyMod : WildfrostMod
     {
+        // Persistent UI root for mod icons (Pokefrost-style)
+        public static GameObject? UIRoot;
 
         public WildFamilyMod(string modDirectory) : base(modDirectory) => Instance = this;
         public static WildFamilyMod? Instance;
@@ -17,12 +21,23 @@ namespace WildfrostBirthday
 public List<object> assets = new List<object>();
 
         public override void Load()
-        {            if (!preLoaded)
+
+        {
+            if (!preLoaded)
             {
+                // Create persistent UI root for icons if not already present
+                if (UIRoot == null)
+                {
+                    UIRoot = new GameObject("WildfrostBirthdayUI");
+                    GameObject.DontDestroyOnLoad(UIRoot);
+                    UIRoot.SetActive(false);
+                }
                 // Automatically register all components (status effects, cards, charms, items, tribes, battles, etc.)
                 WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllComponents(this);
                 // Also register campaign node types (not included in RegisterAllComponents)
                 WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllCampaignNodeTypes(this);
+                // Register the Rejuvenation status icon (Pokefrost/Overshroom style)
+                WildfrostBirthday.Helpers.StatusIconRegistration.RegisterRejuvenationIcon(this);
                 preLoaded = true;
             }
 
@@ -31,7 +46,7 @@ public List<object> assets = new List<object>();
             Events.OnEntityCreated += FixImage;
             GameMode gameMode = TryGet<GameMode>("GameModeNormal"); //GameModeNormal is the standard game mode. 
             gameMode.classes = gameMode.classes.Append(TryGet<ClassData>("MadFamily")).ToArray();
-            
+
             // Integrate our battle into the game mode
             IntegrateBattleIntoGameMode(gameMode);
         }
@@ -258,5 +273,56 @@ public CardDataBuilder AddItemCard(
         
     
         }        
+        /// <summary>
+        /// Registers a custom status icon for use with status effects and keywords (Pokefrost/Overshroom style).
+        /// </summary>
+        /// <param name="name">The internal name for the icon GameObject (e.g. "RejuvenationIcon").</param>
+        /// <param name="sprite">The Unity sprite to use for the icon.</param>
+        /// <param name="type">The icon type string (should match the iconName used in KeywordData, e.g. "rejuvenationicon").</param>
+        /// <param name="copyTextFrom">The icon type to copy text overlay settings from (e.g. "shroom").</param>
+        /// <param name="textColor">The color for the icon's text overlay.</param>
+        /// <param name="keys">Any keywords to associate with this icon (for tooltip popups).</param>
+        /// <param name="posX">Horizontal offset for the icon (default 1 for Pokefrost compatibility).</param>
+        public GameObject CreateIcon(string name, UnityEngine.Sprite sprite, string type, string copyTextFrom, UnityEngine.Color textColor, KeywordData[] keys, int posX = 1)
+        {
+            GameObject gameObject = new GameObject(name);
+            // Parent to persistent UI root for mod icons
+            if (WildFamilyMod.UIRoot != null)
+                gameObject.transform.SetParent(WildFamilyMod.UIRoot.transform);
+            gameObject.SetActive(false);
+            StatusIcon icon = gameObject.AddComponent<StatusIconExt>();
+            var cardIcons = CardManager.cardIcons;
+            if (!string.IsNullOrEmpty(copyTextFrom) && cardIcons.ContainsKey(copyTextFrom))
+            {
+                var text = cardIcons[copyTextFrom].GetComponentInChildren<TMPro.TextMeshProUGUI>().gameObject.InstantiateKeepName();
+                text.transform.SetParent(gameObject.transform);
+                icon.textElement = text.GetComponent<TMPro.TextMeshProUGUI>();
+                icon.textColour = textColor;
+                icon.textColourAboveMax = textColor;
+                icon.textColourBelowMax = textColor;
+            }
+            icon.onCreate = new UnityEngine.Events.UnityEvent();
+            icon.onDestroy = new UnityEngine.Events.UnityEvent();
+            icon.onValueDown = new UnityEventStatStat();
+            icon.onValueUp = new UnityEventStatStat();
+            icon.afterUpdate = new UnityEngine.Events.UnityEvent();
+            var image = gameObject.AddComponent<UnityEngine.UI.Image>();
+            image.sprite = sprite;
+            var cardHover = gameObject.AddComponent<CardHover>();
+            cardHover.enabled = false;
+            cardHover.IsMaster = false;
+            var cardPopUp = gameObject.AddComponent<CardPopUpTarget>();
+            cardPopUp.keywords = keys;
+            cardPopUp.posX = posX;
+            cardHover.pop = cardPopUp;
+            var rectTransform = gameObject.GetComponent<RectTransform>();
+            rectTransform.anchorMin = Vector2.zero;
+            rectTransform.anchorMax = Vector2.zero;
+            rectTransform.sizeDelta *= 0.01f;
+            gameObject.SetActive(true);
+            icon.type = type;
+            cardIcons[type] = gameObject;
+            return gameObject;
+        }
     }
 }
