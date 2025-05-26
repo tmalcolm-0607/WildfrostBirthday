@@ -21,7 +21,7 @@ namespace WildfrostBirthday.Cards
                 {
                     data.attackEffects = new CardData.StatusEffectStacks[]
 		        {
-		            new CardData.StatusEffectStacks(Get<StatusEffectData>("Instant Gain Lumin"), 1)
+		            new CardData.StatusEffectStacks(mod.TryGet<StatusEffectData>("Instant Gain Lumin"), 1)
                     };
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Consume", 1)
