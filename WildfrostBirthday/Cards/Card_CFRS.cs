@@ -14,7 +14,7 @@ namespace WildfrostBirthday.Cards
             string spritePath = "companions/cfrs";
             var builder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "C.F.R.S.")
-                .SetSprites(spritePath + ".png", spritePath + "_bg.png") // Adjust sprite paths as needed
+                .SetSprites(spritePath + ".png", spritePath + "bg.png") // Adjust sprite paths as needed
                 .SetStats(null, 2, 2) // Scrap, ATK, Counter
                 .WithCardType("Clunker")
                 
