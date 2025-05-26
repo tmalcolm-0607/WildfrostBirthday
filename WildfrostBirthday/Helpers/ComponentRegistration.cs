@@ -189,13 +189,14 @@ namespace WildfrostBirthday.Helpers
         /// <param name="mod">The mod instance</param>
         public static void RegisterAllComponents(this WildFamilyMod mod)
         {
-            UnityEngine.Debug.Log($"[{mod.Title}] Registering all components");            mod.RegisterAllStatusEffects();
+            UnityEngine.Debug.Log($"[{mod.Title}] Registering all components");
+            mod.RegisterAllKeywords(); // Register keywords first!
+            mod.RegisterAllStatusEffects();
             mod.RegisterAllCards();
             mod.RegisterAllItems();
             mod.RegisterAllCharms();
             mod.RegisterAllBattles();
             mod.RegisterAllTribes();
-            mod.RegisterAllKeywords();
         }
     }
 }

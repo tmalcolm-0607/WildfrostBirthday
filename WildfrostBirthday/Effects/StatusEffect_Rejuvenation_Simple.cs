@@ -8,27 +8,26 @@ using Dead;
 using WildfrostBirthday.Helpers;
 
 namespace WildfrostBirthday.Effects
-{    // Custom status effect class that inherits from StatusEffectData to implement healing
+{
+    // Custom status effect class that mimics Shroom/Overshroom but heals instead of damages
     public class StatusEffectRejuvenationSimple : StatusEffectData
     {
-        private bool subbed;
-        private bool primed;
-        
-        // Override the init method to subscribe to end of turn events
+        public bool subbed;
+        public bool primed;
+
         public override void Init()
         {
-            base.OnTurnEnd += RestoreHealth;
+            base.OnTurnEnd += Heal;
             Events.OnPostProcessUnits += Prime;
             subbed = true;
-            Debug.Log("[Rejuvenation] Status effect initialized");
         }
-        
+
         public void OnDestroy()
         {
             Unsub();
         }
 
-        private void Unsub()
+        public void Unsub()
         {
             if (subbed)
             {
@@ -37,7 +36,7 @@ namespace WildfrostBirthday.Effects
             }
         }
 
-        private void Prime(Character character)
+        public void Prime(Character character)
         {
             primed = true;
             Unsub();
@@ -50,22 +49,24 @@ namespace WildfrostBirthday.Effects
                 return entity == target;
             }
             return false;
-        }        // Restore health at the end of turn (following StatusEffectShroom pattern)
-        public IEnumerator RestoreHealth(Entity entity)
+        }
+
+        // Heals at the end of turn, decrements stacks (mirrors Shroom/Overshroom logic)
+        public IEnumerator Heal(Entity entity)
         {
-            Debug.Log($"[Rejuvenation] Triggering healing effect for {count} health");
-              // Create a heal object (negative damage = healing) - follow base game pattern
+            if (!this || !target || !target.alive)
+                yield break;
+
+            // Heal for the current stack count
             Hit heal = new Hit(GetDamager(), target, -count)
             {
                 screenShake = 0.1f,
-                damageType = "heal"  // Use simple damage type
+                damageType = "heal"
             };
-            
-            // Process the healing
             yield return heal.Process();
             yield return Sequences.Wait(0.2f);
-            
-            // Decrement the effect by 1 after use (exactly like Shroom does)
+
+            // Decrement the effect by 1 after use (exactly like Shroom)
             int amount = 1;
             Events.InvokeStatusEffectCountDown(this, ref amount);
             if (amount != 0)
@@ -73,29 +74,31 @@ namespace WildfrostBirthday.Effects
                 yield return CountDown(entity, amount);
             }
         }
-    }    public static class StatusEffect_Rejuvenation_Simple
+    }
+
+    public static class StatusEffect_Rejuvenation_Simple
     {
         public static void Register(WildFamilyMod mod)
         {
             // Make sure the keyword exists first
             Keywords.Keyword_Rejuvenation.Register(mod);
-            
+
             Debug.Log("[Rejuvenation] Registering status effect");
-            
+
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectRejuvenationSimple>("Rejuvenation")
-                .WithText("Restore {0} health at the end of turn")
+                .WithText("Restore {0}")
+                .WithTextInsert("{a} <keyword=rejuvenation>") // {a} for count, keyword in text
                 .WithStackable(true)
                 .WithCanBeBoosted(true)
                 .WithOffensive(false)
                 .WithVisible(true)
-                .WithType("rejuvenation")  // Use custom type like Pokefrost
-                .WithKeyword("rejuvenation")  // Link to keyword
-                .WithIcon("status/rejuvenation.png")  // Try using the builder method for icon
-                .SubscribeToAfterAllBuildEvent<StatusEffectRejuvenationSimple>(data => 
+                .WithType("rejuvenation")
+                .WithIcon("status/rejuvenation.png")
+                .SubscribeToAfterAllBuildEvent<StatusEffectRejuvenationSimple>(data =>
                 {
                     Debug.Log("[Rejuvenation] Setting up status effect properties");
-                    
+
                     // Set basic properties 
                     data.visible = true;
                     data.isStatus = true;
@@ -106,8 +109,8 @@ namespace WildfrostBirthday.Effects
                     data.removeOnDiscard = true;
                     data.eventPriority = 0;
                     data.textInsert = "{a}";  // Format for displaying count
-                    data.iconGroupName = "counter";  // Group with other counter icons like Snow/Shroom
-                    
+                    data.iconGroupName = "health";  // Group with other health icons
+
                     // Set target constraints - following base game patterns
                     data.targetConstraints = new TargetConstraint[]
                     {
@@ -115,7 +118,7 @@ namespace WildfrostBirthday.Effects
                         ScriptableObject.CreateInstance<TargetConstraintIsAlive>()
                     };
                 });
-            
+
             mod.assets.Add(builder);
             Debug.Log("[WildfrostBirthday] Successfully registered 'Rejuvenation' status effect");
         }
