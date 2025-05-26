@@ -1,0 +1,33 @@
+// // Registers the "Summon LuminShard" effect for the mod.
+// // No usings needed; all required namespaces are provided by GlobalUsings.cs
+
+// namespace WildfrostBirthday.Effects
+// {
+//     public static class StatusEffect_SummonLuminFragment
+//     {
+//         /// <summary>
+//         /// Registers the "Summon LuminFragment" effect.
+//         /// </summary>
+//         public static void Register(WildfrostBirthday.WildFamilyMod mod)
+//         {
+//           var builder = new StatusEffectDataBuilder(mod)
+//                 .Create<StatusEffectSummon>("Summon LuminFragment")
+//                 .WithText("Summon Lumin Fragment", SystemLanguage.English)
+//                 // Removed .WithTextInsert() because item tags are not supported
+//                 .WithStackable(false)
+//                 .WithCanBeBoosted(false)
+//                 .WithOffensive(false)
+//                 .WithMakesOffensive(false)
+//                 .WithDoesDamage(false)
+//                 .SubscribeToAfterAllBuildEvent<StatusEffectSummon>(data =>
+//                 {
+//                     data.eventPriority = 99999;
+//                     data.summonCard = mod.TryGet<CardData>("item-luminfragment");
+//                     data.gainTrait = mod.TryGet<StatusEffectTemporaryTrait>("Temporary Summoned");
+//                     data.setCardType = mod.TryGet<CardType>("Item");
+//                     data.effectPrefabRef = new UnityEngine.AddressableAssets.AssetReference("SummonCreateCard");                    
+//                 });
+//             mod.assets.Add(builder);
+//         }
+//     }
+// }
