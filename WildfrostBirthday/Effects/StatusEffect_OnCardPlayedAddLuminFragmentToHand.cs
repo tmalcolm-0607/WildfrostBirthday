@@ -10,7 +10,7 @@ namespace WildfrostBirthday.Effects
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectApplyXOnCardPlayed>("On Card Played Add LuminFragment To Hand")
 
-                // Removed .WithTextInsert() because item tags are not supported
+                .WithTextInsert("Add Lumin Fragment to Hand")
                 .WithStackable(false)
                 .WithCanBeBoosted(false)
                 .WithOffensive(false)
@@ -19,7 +19,7 @@ namespace WildfrostBirthday.Effects
                 .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnCardPlayed>(data =>
                 {
                     data.effectToApply = mod.TryGet<StatusEffectData>("Instant Summon LuminFragment In Hand");
-                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
+                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Hand;
                 });
             mod.assets.Add(builder);
         }
