@@ -211,7 +211,30 @@ public CardDataBuilder AddItemCard(
 
             assets.Add(builder);
             return builder;
-        }        private void IntegrateBattleIntoGameMode(GameMode gameMode)
+        }       private void IntegrateBattleIntoGameMode2(GameMode gameMode)
+           {
+            // Get our battle data
+            var battle = TryGet<BattleData>("battle_apricot");
+            if (battle == null)
+            {
+                Debug.LogError($"[{Title}] Could not find Apricot battle data");
+                return;
+            }
+            
+            // Get the campaign populator for the game mode
+            var populator = gameMode.populator;
+            if (populator == null || populator.tiers == null || populator.tiers.Length < 3)
+            {
+                Debug.LogError($"[{Title}] Game mode does not have enough tiers");
+                return;
+            }
+           
+
+  // Add the battle to tier 2's pool to make it available throughout the game
+            var tier2 = populator.tiers[2];
+
+ 
+        } private void IntegrateBattleIntoGameMode(GameMode gameMode)
         {
             // Get our battle data
             var battle = TryGet<BattleData>("battle_volatile_amoeboms");
@@ -234,6 +257,6 @@ public CardDataBuilder AddItemCard(
            
         
     
-        }
+        }        
     }
 }
