@@ -14,7 +14,7 @@ namespace WildfrostBirthday.Cards
             string spritePath = "companions/ivy";
             
             var companionBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Ivy")
+                .CreateUnit(cardId, "Ivy", idleAnim: "SquishAnimationProfile", BloodProfile: "Blood Profile Fungus")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(12, 1, 3)  // HP, ATK, Counter
                 .WithFlavour("Applies 2 Shroom to any enemy who attacks her.")

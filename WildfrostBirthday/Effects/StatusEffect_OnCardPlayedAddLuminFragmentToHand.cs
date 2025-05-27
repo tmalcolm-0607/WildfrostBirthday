@@ -1,4 +1,4 @@
-// Registers the "On Card Played Add LuminShard To Hand" effect for the mod.
+// Registers the "On Card Played Add LuminFragment To Hand" effect for the mod.
 // No usings needed; all required namespaces are provided by GlobalUsings.cs
 
 namespace WildfrostBirthday.Effects

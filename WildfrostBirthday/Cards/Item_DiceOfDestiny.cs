@@ -13,7 +13,7 @@ namespace WildfrostBirthday.Cards
                 .WithFlavour("Deal 1–6 random damage.")
                 .WithCardType("Item")
                 .WithValue(45)
-                .SetDamage(0)
+                .SetDamage(6)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // On play, deal random damage between 1 and 6
