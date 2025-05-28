@@ -15,7 +15,7 @@ namespace WildfrostBirthday.Cards
             
             // COMPANION VERSION
             var companionBuilder = new CardDataBuilder(mod)
-                .CreateUnit(cardId, "Bwob", idleAnim: "GoopAnimationProfile", BloodProfile: "Blood Profile Fungus")
+                .CreateUnit(cardId, "Bwob", idleAnim: "GoopAnimationProfile")
                 .SetSprites(spritePath + ".png", "bg.png")
                 .SetStats(20, 1, 6)  // HP, ATK, Counter
                 .WithFlavour("When X health lost, split 4")

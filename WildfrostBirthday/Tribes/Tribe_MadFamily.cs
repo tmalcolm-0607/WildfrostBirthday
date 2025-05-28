@@ -259,6 +259,14 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("companion-ivy"),
                 mod.TryGet<CardData>("companion-bwob"),
                 mod.TryGet<CardData>("companion-chonk"),
+                mod.TryGet<CardData>("companion-colorhead"),
+                mod.TryGet<CardData>("companion-blocko"),
+                mod.TryGet<CardData>("companion-peppernote"),
+                mod.TryGet<CardData>("companion-etherea"),
+                mod.TryGet<CardData>("companion-hazefairy"),
+                mod.TryGet<CardData>("companion-lumin_moon"),
+                mod.TryGet<CardData>("companion-dreadnought"),
+                
                 
 
             };
