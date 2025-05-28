@@ -29,14 +29,14 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("ImmuneToSnow", 1),
                         mod.SStack("Scrap", 46),
                         mod.SStack("On Card Played Lose Scrap To Self", 9),
+                        mod.SStack("On Card Played Destroy All Junk In Hand And Draw For Each", 0),
                         mod.SStack("Pre Turn Take Gold", 20),
                     };
 
                     // Set traits - Backline
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Pigheaded", 1),
-                        mod.TStack("Hellbent", 1),
-                        mod.TStack("Recycle", 2),
+                        mod.TStack("Recycle", 4), // Dreadnought must need 4 Junk in your hand to be able to attack!
                     };
                 });
             mod.assets.Add(builder);
