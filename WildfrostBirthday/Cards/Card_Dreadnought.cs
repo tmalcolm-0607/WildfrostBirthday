@@ -12,7 +12,7 @@ namespace WildfrostBirthday.Cards
         {
 
             string cardId = "companion-dreadnought";
-            string spritePath = "companions/dreadnought";
+           
 
             var builder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Dreadnought", idleAnim: "GiantAnimationProfile")

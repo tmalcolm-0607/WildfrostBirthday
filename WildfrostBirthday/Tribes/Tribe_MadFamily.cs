@@ -113,6 +113,17 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("item-junkpile"),
                 mod.TryGet<CardData>("item-shellbom"),
                 mod.TryGet<CardData>("companion-cfrs"),
+                mod.TryGet<CardData>("companion-kpsf"),
+                mod.TryGet<CardData>("companion-doommine"),
+                mod.TryGet<CardData>("companion-lasersentry"),
+                mod.TryGet<CardData>("companion-railgunsentry"),
+                mod.TryGet<CardData>("companion-minisentry"),
+                mod.TryGet<CardData>("companion-spacesentry"),
+                mod.TryGet<CardData>("item-sentrytoolkit"),
+                mod.TryGet<CardData>("item-supplydrop"),
+                mod.TryGet<CardData>("companion-frostflower"),
+                mod.TryGet<CardData>("item-energycore"),
+                
             };
             itemsPool.isGeneralPool = true;
             pools.Add(itemsPool);
@@ -266,7 +277,7 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("companion-hazefairy"),
                 mod.TryGet<CardData>("companion-lumin_moon"),
                 mod.TryGet<CardData>("companion-dreadnought"),
-                
+                mod.TryGet<CardData>("companion-warcraft"),
                 
 
             };
