@@ -30,7 +30,7 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("Scrap", 5)
                     };
                     data.traits = new List<CardData.TraitStacks> {
-                        new CardData.TraitStacks(mod.TryGet<TraitData>("Spark"), 1)
+                        new CardData.TraitStacks(mod.TryGet<TraitData>("Recycle"), 1)
                     };
                 });
             mod.assets.Add(companionBuilder);
