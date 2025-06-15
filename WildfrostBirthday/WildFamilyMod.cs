@@ -1,5 +1,6 @@
 ﻿﻿// MadFamily Tribe Mod - Wildfrost
 using WildfrostBirthday.Helpers;
+using WildfrostBirthday.Patches;
 
 namespace WildfrostBirthday
 {
@@ -9,7 +10,12 @@ namespace WildfrostBirthday
         // Persistent UI root for mod icons (Pokefrost-style)
         public static GameObject? UIRoot;
 
-        public WildFamilyMod(string modDirectory) : base(modDirectory) => Instance = this;
+        public WildFamilyMod(string modDirectory) : base(modDirectory) 
+        {
+            Instance = this;
+            // Apply Harmony patches for debugging and functionality
+            HarmonyInstance.PatchAll(typeof(StatusEffectPopupDebugPatch));
+        }
         public static WildFamilyMod? Instance;
 
         public override string GUID => "madfamilymod.wildfrost.madhouse";
@@ -22,8 +28,7 @@ public List<object> assets = new List<object>();
 
         public override void Load()
 
-        {
-            if (!preLoaded)
+        {            if (!preLoaded)
             {
                 // Create persistent UI root for icons if not already present
                 if (UIRoot == null)
@@ -32,17 +37,29 @@ public List<object> assets = new List<object>();
                     GameObject.DontDestroyOnLoad(UIRoot);
                     UIRoot.SetActive(false);
                 }
-                // Automatically register all components (status effects, cards, charms, items, tribes, battles, etc.)
-                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllComponents(this);
-                // Also register campaign node types (not included in RegisterAllComponents)
+                
+                // IMPORTANT: Register components in the correct order
+                // Keywords must be registered FIRST, then status effects, then icons
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllKeywords(this);
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllStatusEffects(this);
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllCards(this);
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllItems(this);
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllCharms(this);
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllBattles(this);
+                WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllTribes(this);
+                
+                // Register campaign node types (not included in RegisterAllComponents)
                 WildfrostBirthday.Helpers.ComponentRegistration.RegisterAllCampaignNodeTypes(this);
-                // Register the Rejuvenation status icon (Pokefrost/Overshroom style)
-                WildfrostBirthday.Helpers.StatusIconRegistration.RegisterRejuvenationIcon(this);
+                
+                // Register the Rejuvenation status icon AFTER keywords and status effects are registered
+                
+                
                 preLoaded = true;
             }
 
             base.Load();
 
+            WildfrostBirthday.Helpers.StatusIconRegistration.RegisterRejuvenationIcon(this);
             Events.OnEntityCreated += FixImage;
             GameMode gameMode = TryGet<GameMode>("GameModeNormal"); //GameModeNormal is the standard game mode. 
             gameMode.classes = gameMode.classes.Append(TryGet<ClassData>("MadFamily")).ToArray();
