@@ -77,18 +77,17 @@ namespace WildfrostBirthday.Effects
     }
 
     public static class StatusEffect_Rejuvenation_Simple
-    {
-        public static void Register(WildFamilyMod mod)
+    {        public static void Register(WildFamilyMod mod)
         {
-            // Make sure the keyword exists first
-            Keywords.Keyword_Rejuvenation.Register(mod);
+            // Note: Keyword registration is handled automatically by ComponentRegistration.RegisterAllKeywords
+            // No need to manually register it here to avoid double registration
 
             Debug.Log("[Rejuvenation] Registering status effect");
 
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectRejuvenationSimple>("Rejuvenation")
                 .WithText("Restore {0}")
-                .WithTextInsert("{a} <keyword=rejuvenation>") // {a} for count, keyword in text
+                .WithTextInsert("<{a}>") // Correct format: <{a}><keyword=name>
                 .WithStackable(true)
                 .WithCanBeBoosted(true)
                 .WithOffensive(false)
@@ -108,7 +107,6 @@ namespace WildfrostBirthday.Effects
                     data.doesDamage = false;
                     data.removeOnDiscard = true;
                     data.eventPriority = 0;
-                    data.textInsert = "{a}";  // Format for displaying count
                     data.iconGroupName = "health";  // Group with other health icons
 
                     // Set target constraints - following base game patterns
