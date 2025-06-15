@@ -27,6 +27,11 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[] {
                         mod.SStack("When Destroyed Add Health To Allies", 1)
                     };
+                    // Set traits
+                    data.traits = new List<CardData.TraitStacks> {
+                        mod.TStack("Fragile", 1),
+                        
+                    };
                 });
                 
             mod.assets.Add(companionBuilder);

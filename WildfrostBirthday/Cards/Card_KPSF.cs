@@ -15,7 +15,7 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "K.P.S.F.")
                 .SetSprites(spritePath + ".png", spritePath + "bg.png") // Adjust sprite paths as needed
-                .SetStats(null, 3, 2) // Scrap, ATK, Counter
+                .SetStats(null, 3, 5) // Scrap, ATK, Counter
                 .WithCardType("Clunker")
                 .WithValue(60)
                 .WithFlavour("A clunker equipped with Krunker's artillery.")
@@ -25,8 +25,8 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[]
                     {
                         mod.SStack("Scrap", 2),
-                        mod.SStack("When Hit Reduce Attack To Self", 1),
-                        mod.SStack("On Turn Apply Attack To Self", 4)
+                        mod.SStack("When Hit Reduce Attack To Self", 3),
+                        mod.SStack("On Turn Apply Attack To Self", 1)
                     };
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Aimless", 1)

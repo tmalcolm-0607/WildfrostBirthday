@@ -276,7 +276,7 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("companion-etherea"),
                 mod.TryGet<CardData>("companion-hazefairy"),
                 mod.TryGet<CardData>("companion-lumin_moon"),
-                mod.TryGet<CardData>("companion-dreadnought"),
+                //mod.TryGet<CardData>("companion-dreadnought"),
                 mod.TryGet<CardData>("companion-warcraft"),
                 
 
