@@ -10,7 +10,7 @@ namespace WildfrostBirthday.Effects
             var builder = new StatusEffectDataBuilder(mod)
                 .Create<StatusEffectApplyXOnCardPlayed>("On Card Played Deal Random Damage To Target (1-6)")
                 .WithText("Deal {0} random damage (1-6) to the target when played", SystemLanguage.English)
-                .WithTextInsert("<+{a}><keyword=attack>")
+                .WithTextInsert("<+{a}><keyword=frost>")
                            .WithStackable(false)
                 .WithCanBeBoosted(false)
                 .WithOffensive(true)
@@ -19,9 +19,9 @@ namespace WildfrostBirthday.Effects
                 .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnCardPlayed>(data =>
                 {
                     data.dealDamage = true;
-                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Target;
-                    // Custom scriptableAmount: random 1-6
-                    data.scriptableAmount = new ScriptableAmountRandomRange(1, 6);
+                    data.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
+                    // Custom scriptableAmount: random 0-5
+                    data.scriptableAmount = new ScriptableAmountRandomRange(0, 5);
                 });
             mod.assets.Add(builder);
         }

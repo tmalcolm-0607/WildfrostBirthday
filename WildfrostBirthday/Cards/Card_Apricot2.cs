@@ -28,7 +28,8 @@ namespace WildfrostBirthday.Cards
 
                     // Set traits - Spark
                     data.traits = new List<CardData.TraitStacks> {
-                        mod.TStack("Spark", 1)
+                        mod.TStack("Spark", 1),
+                        mod.TStack("Frontline", 1)
                     };
                 });
 

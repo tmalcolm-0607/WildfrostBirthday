@@ -20,14 +20,14 @@ namespace WildfrostBirthday.Cards
                 .SetStats(null, null, 0)  // Scrap HP, ATK, Counter
                 .WithFlavour("A Flower that blooms in the coldest of winters, bringing a those who touch it a sense of weakness.")
                 .WithCardType("Clunker")
-                .WithText("When Destroyed, deal 20 damage to the attacker.")
+                
                 .WithValue(50)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Add traits for scrap HP if needed
                     data.startWithEffects = new[]
                     {
-                        
+                        mod.SStack("Scrap", 3),
                         mod.SStack("When Hit Apply Frost To Attacker", 2),
                     };
                     

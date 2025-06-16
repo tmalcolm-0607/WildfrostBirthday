@@ -9,24 +9,39 @@ using WildfrostBirthday.Helpers;
 namespace WildfrostBirthday.Battles
 {
     /// <summary>
-    /// A battle encounter featuring three waves:
-    /// Wave 1: Sulfur Bom + Colossal Amoebom
-    /// Wave 2: two Sulfur Boms + Stormbringer
-    /// Wave 3 (Boss): Colossal Amoebom + Sulfur Bom + Dodecahebom
+    /// Helper class for creating scriptable objects with initialization
     /// </summary>
-    public static partial class Battle_VolatileAmoeboms 
+    public class Scriptable<T> where T : ScriptableObject, new()
+    {
+        readonly Action<T> modifier;
+        public Scriptable() { }
+        public Scriptable(Action<T> modifier) { this.modifier = modifier; }
+        public static implicit operator T(Scriptable<T> scriptable)
+        {
+            T result = ScriptableObject.CreateInstance<T>();
+            scriptable.modifier?.Invoke(result);
+            return result;
+        }
+    }
+    /// <summary>
+    /// A battle encounter featuring three waves:
+    /// Wave 1: Apricot + Walnut + Hazelnut
+    /// Wave 2: Walnut + Hazelnut + Hazelnut + Walnut
+    /// Wave 3: Walnut + Hazelnut + Hazelnut + Walnut
+    /// </summary>
+    public static class Battle_Apricot 
     {
         public static void Register(WildFamilyMod mod)
         {
             var builder = new BattleDataBuilder(mod)
-                .Create("battle_volatile_amoeboms")
+                .Create("battle_apricot")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    data.title = "Volatile Amoeboms";
+                    data.title = "Apricot";
                     data.waveCounter = 4;
                     data.pools = new BattleWavePoolData[]
                     {
-                        // Wave 1: Sulfur Bom + Colossal Amoebom
+                        // Wave 1: Apricot + Walnut + Hazelnut
                         new Scriptable<BattleWavePoolData>(bwpd =>
                         {
                             bwpd.weight = 1;
@@ -38,18 +53,20 @@ namespace WildfrostBirthday.Battles
                                 {
                                     units = new List<CardData>
                                     {
-                                        mod.TryGet<CardData>("sulfur_bom"),
-                                        mod.TryGet<CardData>("colossal_amoebom")
+                                        mod.TryGet<CardData>("apricot"),
+                                        mod.TryGet<CardData>("walnut"),
+                                        mod.TryGet<CardData>("hazelnut"),
+
                                     },
                                     value = 125,
                                     positionPriority = 0,
-                                    fixedOrder = false,
-                                    maxSize = 2,
+                                    fixedOrder = true,
+                                    maxSize = 3,
                                 }
                             };
                         }),
-                        
-                        // Wave 2: Two Sulfur Boms + Stormbringer
+
+                        // Wave 2: Two hazelnuts and two walnuts
                         new Scriptable<BattleWavePoolData>(bwpd =>
                         {
                             bwpd.weight = 1;
@@ -61,19 +78,21 @@ namespace WildfrostBirthday.Battles
                                 {
                                     units = new List<CardData>
                                     {
-                                        mod.TryGet<CardData>("sulfur_bom"),
-                                        mod.TryGet<CardData>("stormbringer"),
-                                        mod.TryGet<CardData>("sulfur_bom")
+                                        
+                                        mod.TryGet<CardData>("hazelnut"),
+                                        mod.TryGet<CardData>("walnut"),
+                                        mod.TryGet<CardData>("walnut"),
+                                        mod.TryGet<CardData>("hazelnut"),
                                     },
                                     value = 125,
                                     positionPriority = 1,
-                                    fixedOrder = true,
-                                    maxSize = 3,
+                                    fixedOrder = false,
+                                    maxSize = 4,
                                 }
                             };
                         }),
                         
-                        // Wave 3 (Boss): Colossal Amoebom + Sulfur Bom + Dodecahebom
+                        // Wave 3: two walnuts and two hazelnuts
                         new Scriptable<BattleWavePoolData>(bwpd =>
                         {
                             bwpd.weight = 1;
@@ -85,38 +104,35 @@ namespace WildfrostBirthday.Battles
                                 {
                                     units = new List<CardData>
                                     {
-                                        mod.TryGet<CardData>("colossal_amoebom"),
-                                        mod.TryGet<CardData>("sulfur_bom"),
-                                        mod.TryGet<CardData>("dodecahebom")
+                                        mod.TryGet<CardData>("walnut"),
+                                        mod.TryGet<CardData>("hazelnut"),
+                                        mod.TryGet<CardData>("hazelnut"),
+                                        mod.TryGet<CardData>("walnut"),
                                     },
                                     value = 0,
                                     positionPriority = 9,
-                                    fixedOrder = true,
-                                    maxSize = 3,
+                                    fixedOrder = false,
+                                    maxSize = 4,
                                 }
                             };
                         })
                     };
 
-                    // Set up gold giver pool (optional)
-                    data.goldGiverPool = new CardData[]
-                    {
-                        mod.TryGet<CardData>("Gobling")
-                    };
+                  
 
                     // Set up generation and setup scripts
                     data.generationScript = new Scriptable<BattleGenerationScriptWaves>();
                     data.setUpScript = new Scriptable<ScriptBattleSetUp>();
 
                     // Set battle sprite
-                    data.sprite = "battles/volatile_amoeboms".ToSprite();
+                    data.sprite = "battles/apricot".ToSprite();
 
                     // Set localized name reference
-                    data.nameRef = Extensions.GetLocalizedString("UI Text", "map_battle_amoeboms");
+                    data.nameRef = Extensions.GetLocalizedString("UI Text", "map_battle_apricot");
                 });
 
             mod.assets.Add(builder);
-            Debug.Log($"[VolatileAmoeboms] Registered battle data: battle_volatile_amoeboms");
+            Debug.Log($"[Apricot] Registered battle data: battle_apricot");
         }
     }
 }
