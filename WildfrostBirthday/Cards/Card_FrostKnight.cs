@@ -35,7 +35,7 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "The Frost Knight", idleAnim: "GiantAnimationProfile")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(40, 10, 6)  // HP: 40, ATK: 10, Counter: 6
+                .SetStats(40, 7, 6)  // HP: 40, ATK: 7, Counter: 6
                 .WithFlavour("An ancient warrior encased in the armor of the frost itself, wielding a violet sword to lethally numb those who oppose him.")
                 .WithCardType("Boss")
                 .SubscribeToAfterAllBuildEvent(data =>
@@ -46,9 +46,9 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("FrostBossPhase2", 1)
                     };
 
-                    // Attack effect: Apply 10 Frost
+                    // Attack effect: Apply 7 Frost
                     data.attackEffects = new[] {
-                        mod.SStack("Frost", 10)
+                        mod.SStack("Frost", 7)
                     };
                 });            mod.assets.Add(builder);
         }

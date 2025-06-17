@@ -21,10 +21,9 @@ namespace WildfrostBirthday.Cards
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Starting effects - Start with Shell 2
-                    var attackEffects = new List<CardData.StatusEffectStacks> {
-                        mod.SStack("Frost", 3),
+                    data.attackEffects = new[] {
+                        mod.SStack("Frost", 3)
                     };
-                    data.startWithEffects = attackEffects.ToArray();
                     
                 });
                 

@@ -24,8 +24,7 @@ namespace WildfrostBirthday.Cards
                     var attackEffects = new List<CardData.StatusEffectStacks> {
                         mod.SStack("Frost", 2),
                     };
-                    data.startWithEffects = attackEffects.ToArray();
-                    var traits = new List<CardData.TraitStacks>
+                    data.traits = new List<CardData.TraitStacks>
                     {
                         mod.TStack("Longshot", 1) // Frost Crossbowman hits the furthest enemy
                     };

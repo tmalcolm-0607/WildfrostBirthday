@@ -26,12 +26,12 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("MultiHit", 2)     // Has 2 MultiHit
                     };
                     data.startWithEffects = startEffects.ToArray();
-                    var AttackEffects = new List<CardData.StatusEffectStacks>
+                    var attackEffects = new List<CardData.StatusEffectStacks>
                     {
                         mod.SStack("Weakness", 1),    // Starts with 1 Weakness
 
                     };
-                    data.attackEffects = AttackEffects.ToArray();
+                    data.attackEffects = attackEffects.ToArray();
                     // Set traits - Aimless
                     data.traits = new List<CardData.TraitStacks>
                     {

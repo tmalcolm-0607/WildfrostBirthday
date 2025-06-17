@@ -15,7 +15,7 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "The Frost Knight", idleAnim: "HeartbeatAnimationProfile")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(60, 2, 3)  // HP: 60, ATK: 2, Counter: 3
+                .SetStats(60, 1, 3)  // HP: 60, ATK: 1, Counter: 3
                 .WithFlavour("Revealing his true power, the Frost Knight unleashes a blizzard upon his foes, striking with furious vengeance.")
                 .WithCardType("Boss")
                 .SubscribeToAfterAllBuildEvent(data =>
