@@ -14,7 +14,7 @@ namespace WildfrostBirthday.Cards
             var enemyBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Frost Medic", idleAnim: "PulseAnimationProfile", bloodProfile: "BloodProfilePinkWisp")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(10, 4, 3)  // HP, ATK, Counter
+                .SetStats(10, 1, 6)  // HP, ATK, Counter
                 .WithFlavour("A Frosty Medic who heals allies with the magic of the frost.")
                 .WithCardType("Enemy")
                 .WithValue(100)
