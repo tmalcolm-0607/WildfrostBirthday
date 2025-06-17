@@ -28,6 +28,7 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[]
                     {
                         mod.SStack("Scrap", 5)
+                        mod.SStack("When Card Played Destroy Random Junk In Hand", 1),
                     };
                     data.traits = new List<CardData.TraitStacks> {
                         new CardData.TraitStacks(mod.TryGet<TraitData>("Recycle"), 1)
