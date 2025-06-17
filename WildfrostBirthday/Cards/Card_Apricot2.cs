@@ -23,13 +23,14 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[] {
                         mod.SStack("ImmuneToSnow", 1),
                         mod.SStack("Shell", 25),
-                        mod.SStack("Hit All Enemies", 1)
+                        mod.SStack("Hit All Enemies", 1),
+                        
                     };
 
                     // Set traits - Spark
                     data.traits = new List<CardData.TraitStacks> {
                         mod.TStack("Spark", 1),
-                        mod.TStack("Frontline", 1)
+                        
                     };
                 });
 

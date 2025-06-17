@@ -23,6 +23,7 @@ namespace WildfrostBirthday.Cards
                     // Starting effects - Start with Shell 2
                     var startEffects = new List<CardData.StatusEffectStacks> {
                         mod.SStack("Shell", 2),
+                        mod.SStack("On Turn Apply Shell To Self", 1),
 
                     };
                     data.startWithEffects = startEffects.ToArray();

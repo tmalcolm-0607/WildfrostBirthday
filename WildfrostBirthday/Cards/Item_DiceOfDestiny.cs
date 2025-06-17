@@ -10,16 +10,18 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateItem("item-diceofdestiny", "Dice of Destiny")
                 .SetSprites("items/diceofdestiny.png", "bg.png")
-                .WithFlavour("Deal 1–6 random damage.")
+                .WithFlavour("A mystical die that channels chaos into power.")
                 .WithCardType("Item")
                 .WithValue(45)
-                .SetDamage(6)
+                .SetDamage(0) // No damage, this is an item
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // On play, deal random damage between 1 and 6
                     data.startWithEffects = new[] {
                         mod.SStack("On Card Played Deal Random Damage To Target (1-6)", 1)
                     };
+                    data.canPlayOnEnemy = true;
+                    data.playOnSlot = false;
                 });
             mod.assets.Add(builder);
         }

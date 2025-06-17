@@ -246,20 +246,35 @@ public CardDataBuilder AddItemCard(
         }       private void IntegrateBattleIntoGameMode(GameMode gameMode)
         {
             // Get our battle data
-            var battle = TryGet<BattleData>("battle_apricot");
-            if (battle == null)
+            var apricotBattle = TryGet<BattleData>("battle_apricot");
+            if (apricotBattle == null)
             {
                 Debug.LogError($"[{Title}] Could not find Apricot battle data");
                 return;
             }
-
             // Get the campaign populator for the game mode
             var populator = gameMode.populator;
             if (populator == null || populator.tiers == null || populator.tiers.Length < 3)
             {
                 Debug.LogError($"[{Title}] Game mode does not have enough tiers");
                 return;
-            }          
+            }
+            // Add the battle to tier 2's pool to make it available throughout the game
+            var tier2 = populator.tiers[2];
+            tier2.battlePool = new BattleData[] { apricotBattle };
+            Debug.Log($"[{Title}] Successfully added Apricot to tier 2");            // Get our battle data
+            var frostknightBattle = TryGet<BattleData>("battle_frost_knight");
+            if (frostknightBattle == null)
+            {
+                Debug.LogError($"[{Title}] Could not find Frost Knight battle data");
+                return;
+            }
+            
+            // Add the battle to tier 5's pool to make it available throughout the game
+            var tier5 = populator.tiers[5];
+            tier5.battlePool = new BattleData[] { frostknightBattle };
+            Debug.Log($"[{Title}] Successfully added Frost Knight to tier 5");
+
             // Get our battle data for Volatile Amoeboms
             var amoebomsBattle = TryGet<BattleData>("battle_volatile_amoeboms");
             if (amoebomsBattle == null)
