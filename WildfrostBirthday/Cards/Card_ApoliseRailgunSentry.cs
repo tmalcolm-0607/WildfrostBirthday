@@ -27,7 +27,7 @@ namespace WildfrostBirthday.Cards
                     // Add traits for scrap HP if needed
                     data.startWithEffects = new[]
                     {
-                        mod.SStack("Scrap", 5)
+                        mod.SStack("Scrap", 5),
                         mod.SStack("When Card Played Destroy Random Junk In Hand", 1),
                     };
                     data.traits = new List<CardData.TraitStacks> {
