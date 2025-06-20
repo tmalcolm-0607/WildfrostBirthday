@@ -14,7 +14,7 @@ namespace WildfrostBirthday.Cards
             var enemyBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Hazelnut", idleAnim: "PulseAnimationProfile", bloodProfile: "BloodProfileHusk")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(1, 2, 2)  // HP, ATK, Counter
+                .SetStats(1, 2, 4)  // HP, ATK, Counter
                 .WithFlavour("A tiny little acorn who throws small pebbles at enemies to protect their leader, Apricot.")
                 .WithCardType("Enemy")
                 .WithValue(100)

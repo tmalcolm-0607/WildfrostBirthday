@@ -14,23 +14,21 @@ namespace WildfrostBirthday.Cards
             string spritePath = "companions/lumin_moon";
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Lumin Moon")
-                .SetSprites(spritePath + ".png", "bg.png") // Adjust sprite paths as needed
-                .SetStats(20, null, 6) // HP, ATK, Counter
+                .SetSprites(spritePath + ".png", "bg.png")
+                .SetStats(20, null, 6)  // HP, ATK, Counter
                 .WithCardType("Friendly")
                 .WithText("Add a Lumin Fragment to your hand.")
                 .WithFlavour("A radiant companion who grants an object of power amplifying ice crystals if she manages to successfully trigger without being hit.")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
-                    // Use the helper methods to get status effect stacks and trait stacks
-                    data.startWithEffects = new[] {
+                    data.startWithEffects = new[] 
+                    {
                         mod.SStack("ImmuneToSnow", 1),
                         mod.SStack("When Hit Apply Null To Self", 6),
-                        new CardData.StatusEffectStacks(mod.TryGet<StatusEffectData>("On Card Played Add LuminFragment To Hand"), 1),
-
+                        mod.SStack("On Card Played Add LuminFragment To Hand", 1)
                     };
-                    
-        
                 });
+
             mod.assets.Add(companionBuilder);
         }
     }

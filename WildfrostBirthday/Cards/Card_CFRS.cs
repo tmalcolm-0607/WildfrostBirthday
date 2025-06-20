@@ -15,7 +15,7 @@ namespace WildfrostBirthday.Cards
             var builder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "C.F.R.S.")
                 .SetSprites(spritePath + ".png", spritePath + "bg.png") // Adjust sprite paths as needed
-                .SetStats(null, 2, 2) // Scrap, ATK, Counter
+                .SetStats(null, 2, 4) // Scrap, ATK, Counter
                 .WithCardType("Clunker")
                 .WithValue(60)
                 .WithFlavour("A clunker equipped with Krunker's artillery.")

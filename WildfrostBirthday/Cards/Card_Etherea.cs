@@ -20,7 +20,7 @@ namespace WildfrostBirthday.Cards
                 .SetStats(6, null, 6)  // HP, ATK, Counter
                 .WithFlavour("An enchanted Blue Willow, harnessing the powers of Overload, no enemies are safe from her reach.")
                 .WithCardType("Friendly")
-                .WithText("Apply 2 Overburn to a random enemy.")
+                .WithText("Apply 2 <keyword=overload> to a random enemy.")
                 .WithValue(0)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {

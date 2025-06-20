@@ -17,9 +17,10 @@ namespace WildfrostBirthday.Cards
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Apolise War Machine Spacecraft")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(40, 2, 8)  // Scrap HP, ATK, Counter
+                .SetStats(40, 4, 3)  // Scrap HP, ATK, Counter
                 .WithFlavour("The Ultimate War Machine From Apolise Spacelines, Capable Of Destroying Anything In Its Path. However, It Is Very Dangerous If It Gets Destroyed.")
-                .WithCardType("Leader")
+                .WithCardType("Leader") 
+                .WithCardType("Friendly")
                
                 .WithValue(50)
                 .SubscribeToAfterAllBuildEvent(data =>
@@ -28,7 +29,6 @@ namespace WildfrostBirthday.Cards
                     data.startWithEffects = new[]
                     {
                         mod.SStack("When Destroyed Apply Damage To Allies", 10),
-                        mod.SStack("Hit All Enemies", 1),
                         mod.SStack("ImmuneToSnow", 1),
                     };
                     data.traits = new List<CardData.TraitStacks> {
