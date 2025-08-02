@@ -38,7 +38,7 @@ namespace WildfrostBirthday.Battles
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.title = "Apricot";
-                    data.waveCounter = 4;
+                    data.waveCounter = 5;
                     data.pools = new BattleWavePoolData[]
                     {
                         // Wave 1: Apricot + Walnut + Hazelnut

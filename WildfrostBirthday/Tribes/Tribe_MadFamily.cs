@@ -123,6 +123,9 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("item-supplydrop"),
                 mod.TryGet<CardData>("companion-frostflower"),
                 mod.TryGet<CardData>("item-energycore"),
+                mod.TryGet<CardData>("item-turbo_drive"),
+                mod.TryGet<CardData>("companion-pressure_conversion_cube"),
+                mod.TryGet<CardData>("companion-parti_callie"),
                 
             };
             itemsPool.isGeneralPool = true;
@@ -279,6 +282,8 @@ namespace WildfrostBirthday.Tribes
                 //mod.TryGet<CardData>("companion-dreadnought"),
                 mod.TryGet<CardData>("companion-goldengale"),
                 mod.TryGet<CardData>("companion-warcraft"),
+                mod.TryGet<CardData>("companion-larry"),
+                
                 
 
             };
@@ -320,6 +325,7 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<GameModifierData>("BlessingNoomlin"),
                 mod.TryGet<GameModifierData>("BlessingStrength"),
                 mod.TryGet<GameModifierData>("BlessingInfinity"),
+                
             };
             modifiersPool.isGeneralPool = true;
             pools.Add(modifiersPool);

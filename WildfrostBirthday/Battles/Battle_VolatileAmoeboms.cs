@@ -23,7 +23,7 @@ namespace WildfrostBirthday.Battles
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     data.title = "Volatile Amoeboms";
-                    data.waveCounter = 4;
+                    data.waveCounter = 5;
                     data.pools = new BattleWavePoolData[]
                     {
                         // Wave 1: Sulfur Bom + Colossal Amoebom

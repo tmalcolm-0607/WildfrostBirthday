@@ -15,14 +15,14 @@ namespace WildfrostBirthday.Cards
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Larry")
                 .SetSprites(spritePath + ".png", "bg.png") // Adjust sprite paths as needed
-                .SetStats(3, 1, 7) // HP, ATK, Counter
+                .SetStats(2, 1, 0) // HP, ATK, Counter
                 .WithCardType("Friendly")                .WithFlavour("A knitted friend of cassie, always ready to help by healing allies when hit.")
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Use the helper methods to get status effect stacks and trait stacks
                     data.startWithEffects = new[] {
                         mod.SStack("On Turn Heal Allies", 1),
-                        mod.SStack("Scrap", 2)
+                        mod.SStack("Scrap", 4)
                     };
                     
                     data.traits = new List<CardData.TraitStacks> {
