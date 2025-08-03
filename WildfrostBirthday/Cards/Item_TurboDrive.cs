@@ -13,7 +13,7 @@ namespace WildfrostBirthday.Cards
                 .SetSprites("items/turbo_drive.png", "bg.png")
                 .WithFlavour("A device that Overclocks the target, at the cost of their health.")
                 .WithCardType("Item")
-                .WithValue(45)
+                .WithValue(100) // Set an expensive value to make it a rare item
                 .SetDamage(4)
                 .SubscribeToAfterAllBuildEvent(data =>
                 {

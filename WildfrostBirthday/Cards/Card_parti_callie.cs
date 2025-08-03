@@ -12,16 +12,16 @@ namespace WildfrostBirthday.Cards
         {
             string cardId = "companion-parti_callie";
             string spritePath = "companions/parti_callie";
-            
+
             // CLUNKER COMPANION VERSION
             var companionBuilder = new CardDataBuilder(mod)
                 .CreateUnit(cardId, "Parti-Callie Accele-Rella")
                 .SetSprites(spritePath + ".png", "bg.png")
-                .SetStats(null, 4, 4)  // Scrap HP, ATK, Counter
-                .WithFlavour("A Perfected machine, Parti-Callie Accele-Rella is the ultimate creation of the Madfamily, constantly charging power with each trigger.")
-                .WithCardType("Companion")
+                .SetStats(null, 4, 2)  // Scrap HP, ATK, Counter
+                .WithFlavour("A perfected machine, Parti-Callie Accele-Rella stores power over time, unleashing devastating attacks when fully charged.")
+                .WithCardType("Friendly")
                
-                .WithValue(999999) // Set a high value to prevent it from being used in normal gameplay
+                .WithValue(9999) //Cannot be bought, only found in the chests as an extremely rare item
                 .SubscribeToAfterAllBuildEvent(data =>
                 {
                     // Add traits for scrap HP if needed
@@ -31,9 +31,8 @@ namespace WildfrostBirthday.Cards
                         mod.SStack("Shell", 30),
                         mod.SStack("On Turn Apply Attack To Self", 2) // Gain attack at the start of each turn
                     };
-                    data.attackEffects = new[]
-                    {
-                        mod.SStack("Overload", 1)
+                    data.traits = new List<CardData.TraitStacks> {
+                        new CardData.TraitStacks(mod.TryGet<TraitData>("Aimless"), 1)
                     };
                 });
             mod.assets.Add(companionBuilder);

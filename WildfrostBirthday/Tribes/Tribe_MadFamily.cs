@@ -124,7 +124,7 @@ namespace WildfrostBirthday.Tribes
                 mod.TryGet<CardData>("companion-frostflower"),
                 mod.TryGet<CardData>("item-energycore"),
                 mod.TryGet<CardData>("item-turbo_drive"),
-                mod.TryGet<CardData>("companion-pressure_conversion_cube"),
+                mod.TryGet<CardData>("companion-pressurecube"),
                 mod.TryGet<CardData>("companion-parti_callie"),
                 
             };
